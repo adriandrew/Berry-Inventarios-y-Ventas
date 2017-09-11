@@ -5,16 +5,25 @@ Public Class Articulos
     Private idAlmacen As Integer
     Private idFamilia As Integer
     Private idSubFamilia As Integer
-    Private id As Integer
+    Private id As Long
     Private nombre As String
     Private nombreComercial As String
     Private idUnidadMedida As Integer
     Private cantidadMinima As Integer
-    Private cantidadMaxima As Integer 
+    Private cantidadMaxima As Integer
     Private precio As Double
     Private seccion As String
     Private estante As String
     Private nivel As String
+    Private pagina As Integer
+    Private codigo As String
+    Private color As String
+    Private talla As String
+    Private modelo As String
+    Private codigoInternet As String
+    Private idProveedor As Integer
+
+
 
     Public Property EIdAlmacen() As Integer
         Get
@@ -40,11 +49,11 @@ Public Class Articulos
             idSubFamilia = value
         End Set
     End Property
-    Public Property EId() As Integer
+    Public Property EId() As Long
         Get
             Return id
         End Get
-        Set(value As Integer)
+        Set(value As Long)
             id = value
         End Set
     End Property
@@ -121,12 +130,74 @@ Public Class Articulos
         End Set
     End Property
 
+    Public Property EPagina() As Integer
+        Get
+            Return pagina
+        End Get
+        Set(value As Integer)
+            pagina = value
+        End Set
+    End Property
+
+    Public Property ECodigo() As String
+        Get
+            Return codigo
+        End Get
+        Set(value As String)
+            codigo = value
+        End Set
+    End Property
+
+    Public Property EColor() As String
+        Get
+            Return color
+        End Get
+        Set(value As String)
+            color = value
+        End Set
+    End Property
+
+    Public Property ETalla() As String
+        Get
+            Return talla
+        End Get
+        Set(value As String)
+            talla = value
+        End Set
+    End Property
+
+    Public Property EModelo() As String
+        Get
+            Return modelo
+        End Get
+        Set(value As String)
+            modelo = value
+        End Set
+    End Property
+
+    Public Property ECodigoInternet() As String
+        Get
+            Return codigoInternet
+        End Get
+        Set(value As String)
+            codigoInternet = value
+        End Set
+    End Property
+    Public Property EIdProveedor() As Integer
+        Get
+            Return idProveedor
+        End Get
+        Set(value As Integer)
+            idProveedor = value
+        End Set
+    End Property
+
     Public Sub Guardar()
 
         Try
             Dim comando As New SqlCommand()
             comando.Connection = BaseDatos.conexionCatalogo
-            comando.CommandText = "INSERT INTO " & ALMLogicaCatalogos.Programas.prefijoBaseDatosAlmacen & "Articulos (IdAlmacen, IdFamilia, IdSubFamilia, Id, Nombre, NombreComercial, IdUnidadMedida, CantidadMinima, CantidadMaxima, Precio, Seccion, Estante, Nivel) VALUES (@idAlmacen, @idFamilia, @idSubFamilia, @id, @nombre, @nombreComercial, @idUnidadMedida, @cantidadMinima, @cantidadMaxima, @precio, @seccion, @estante, @nivel)"
+            comando.CommandText = "INSERT INTO " & ALMLogicaCatalogos.Programas.prefijoBaseDatosAlmacen & "Articulos (IdAlmacen, IdFamilia, IdSubFamilia, Id, Nombre, NombreComercial, IdUnidadMedida, CantidadMinima, CantidadMaxima, Precio, Seccion, Estante, Nivel, Pagina, Codigo, Color, Talla, Modelo, CodigoInternet, IdProveedor) VALUES (@idAlmacen, @idFamilia, @idSubFamilia, @id, @nombre, @nombreComercial, @idUnidadMedida, @cantidadMinima, @cantidadMaxima, @precio, @seccion, @estante, @nivel,@pagina,@codigo,@color,@talla,@modelo, @codigoInternet, @idProveedor)"
             comando.Parameters.AddWithValue("@idAlmacen", Me.EIdAlmacen)
             comando.Parameters.AddWithValue("@idFamilia", Me.EIdFamilia)
             comando.Parameters.AddWithValue("@idSubFamilia", Me.EIdSubFamilia)
@@ -140,6 +211,13 @@ Public Class Articulos
             comando.Parameters.AddWithValue("@seccion", Me.ESeccion)
             comando.Parameters.AddWithValue("@estante", Me.EEstante)
             comando.Parameters.AddWithValue("@nivel", Me.ENivel)
+            comando.Parameters.AddWithValue("@pagina", Me.EPagina)
+            comando.Parameters.AddWithValue("@codigo", Me.ECodigo)
+            comando.Parameters.AddWithValue("@color", Me.EColor)
+            comando.Parameters.AddWithValue("@talla", Me.ETalla)
+            comando.Parameters.AddWithValue("@modelo", Me.EModelo)
+            comando.Parameters.AddWithValue("@codigoInternet", Me.ECodigoInternet)
+            comando.Parameters.AddWithValue("@idProveedor", Me.EIdProveedor)
             BaseDatos.conexionCatalogo.Open()
             comando.ExecuteNonQuery()
             BaseDatos.conexionCatalogo.Close()
@@ -204,7 +282,7 @@ Public Class Articulos
             If Me.EId > 0 Then
                 condicion &= " AND Id=@id"
             End If
-            comando.CommandText = "SELECT A.Id, A.Nombre, A.NombreComercial, A.IdUnidadMedida, UM.Nombre, A.CantidadMinima, A.CantidadMaxima, A.Precio, A.Seccion, A.Estante, A.Nivel FROM " & ALMLogicaCatalogos.Programas.prefijoBaseDatosAlmacen & "Articulos AS A LEFT JOIN " & ALMLogicaCatalogos.Programas.prefijoBaseDatosAlmacen & "UnidadesMedidas AS UM ON A.IdUnidadMedida=UM.Id WHERE 0=0 " & condicion & " ORDER BY A.IdAlmacen, A.IdFamilia, A.IdSubFamilia, A.Id ASC"
+            comando.CommandText = "SELECT A.Id, A.Nombre, A.NombreComercial, A.IdUnidadMedida, UM.Nombre, A.CantidadMinima, A.CantidadMaxima, A.Precio, A.Seccion, A.Estante, A.Nivel, A.Pagina, A.Codigo, A.Color, A.Talla, A.Modelo, A.CodigoInternet FROM " & ALMLogicaCatalogos.Programas.prefijoBaseDatosAlmacen & "Articulos AS A LEFT JOIN " & ALMLogicaCatalogos.Programas.prefijoBaseDatosAlmacen & "UnidadesMedidas AS UM ON A.IdUnidadMedida=UM.Id WHERE 0=0 " & condicion & " ORDER BY A.IdAlmacen, A.IdFamilia, A.IdSubFamilia, A.Id ASC"
             comando.Parameters.AddWithValue("@idAlmacen", Me.EIdAlmacen)
             comando.Parameters.AddWithValue("@idFamilia", Me.EIdFamilia)
             comando.Parameters.AddWithValue("@idSubFamilia", Me.EIdSubFamilia)

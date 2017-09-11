@@ -144,4 +144,26 @@ Public Class Proveedores
 
     End Function
 
+    Public Function ObtenerNombreProveedor() As DataTable
+
+        Try
+            Dim datos As New DataTable
+            Dim comando As New SqlCommand()
+            comando.Connection = BaseDatos.conexionCatalogo
+            comando.CommandText = "SELECT Id FROM " & ALMLogicaCatalogos.Programas.prefijoBaseDatosAlmacen & "Proveedores WHERE Nombre Like @nombre"
+            comando.Parameters.AddWithValue("@nombre", Me.nombre)
+            BaseDatos.conexionCatalogo.Open()
+            Dim dataReader As SqlDataReader
+            dataReader = comando.ExecuteReader()
+            datos.Load(dataReader)
+            BaseDatos.conexionCatalogo.Close()
+            Return datos
+        Catch ex As Exception
+            Throw ex
+        Finally
+            BaseDatos.conexionCatalogo.Close()
+        End Try
+
+    End Function
+
 End Class

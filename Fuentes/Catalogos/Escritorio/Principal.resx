@@ -117,6 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="spCatalogos_Sheet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>517, 17</value>
+  </metadata>
+  <metadata name="spAlmacenes_Sheet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="spFamilias_Sheet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>781, 47</value>
+  </metadata>
+  <metadata name="spSubFamilias_Sheet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>896, 17</value>
+  </metadata>
+  <metadata name="spArticulos_Sheet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1011, 17</value>
+  </metadata>
+  <metadata name="spVarios_Sheet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1126, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnEliminar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -129,6 +147,22 @@
         tSC7ezCS6IJZ0fkYSXTBrOh8jCS6YFZ0PkYSXTArOh8jkXPqFrzQnVvozG7+ie4QjETOsVvwLh7pXoTO
         ajPP8490j2Akctbioy3IpDvW9AwEo0XOQXyLfuF/0tkH2m3BeI2cjXgV/U9+K52lMze08xqMlWCsBGMl
         GCvBWAnGOpbVD8I/dmo4frk/AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="btnImportar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAU
+        wwAAFMMBFXBNQgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAIfSURBVGhD7ZPB
+        TWRBEENBJEIKIAIgAIIiCM6cCGAjIQIOREAAXAYbTUm1havbf6QvaGksvdWUp9y4WHFxOByWRporIc2V
+        kOZKSHMlpLkS0iQQ/zmVO/HeXfp+M/W9QJqkPrCRZ/Hec/p+M/W9QJqkPrCRT8DC/K0Tfqandi1qv0Ca
+        xAlnoCvwEpkB3LlSb1RSBmOzo0zihCvQ7Ai7PEk5jM2OMokTVkA84gE8gbcj/EzPLk+gaQdpEie8N04H
+        aRInvDdOB2kSJ7w3TgdpEie8N04HaRInPAK6B49H7tXODGjaQZrECY+AWDzeeFQ7M1IeY7OjTOKER0Dn
+        A1IeY7OjTOKER0DnA1IeY7OjTOKER0DnA1IeY7OjTOKER0BrHQBdg5s0ywOgG3Ad8wgo8hibHWUSJxxA
+        LP8OPsDt0ftxAHQLuMPd6RFQ5DE2O8okTphAl+A1dsH3EeC/A44evwuPmUv1ZpB2MTY7yiROOIBqOX7+
+        l2Z+rt9//0+NSPsYmx1lEiecgeoRHVZ5kjIYmx1lEidcgWZH2OVJymFsdpRJnLAC6o7YVJ6kLMZmR5nE
+        CXdA6m9iU3mS8hibHWUSJzwCiiNOKk+gaQdpEic8A+IRJ5Un/NlB/S6QJnHCe+N0kCZxwnvjdJAmccJ7
+        43SQJnHCe+N0kCbJ4b9A7RdIk9QHfpvaL5AmqQ/8NrVfIM2VkOZKSHMlpLkS0lwJaa7D4eILvpFyq67Z
+        CtkAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="btnGuardar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -144,24 +178,6 @@
         TkSuQmCC
 </value>
   </data>
-  <metadata name="spCatalogos_Sheet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>517, 17</value>
-  </metadata>
-  <metadata name="spAlmacenes_Sheet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="spFamilias_Sheet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>781, 17</value>
-  </metadata>
-  <metadata name="spSubFamilias_Sheet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>896, 17</value>
-  </metadata>
-  <metadata name="spArticulos_Sheet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1011, 17</value>
-  </metadata>
-  <metadata name="spVarios_Sheet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1126, 17</value>
-  </metadata>
   <data name="btnAyuda.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAvxJREFUaEPV
@@ -203,8 +219,11 @@
   <metadata name="temporizador.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>667, 17</value>
   </metadata>
+  <metadata name="opdArchivos.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 86</value>
+  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>48</value>
+    <value>104</value>
   </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

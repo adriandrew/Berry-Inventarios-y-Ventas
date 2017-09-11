@@ -47,21 +47,21 @@ Public Class Principal
     Public prefijoBaseDatosAlmacen As String = "ALM" & "_"
     ' Hilos para carga rapida. 
     Public hiloCentrar As New Thread(AddressOf Centrar)
-    Public hiloNombrePrograma As New Thread(AddressOf CargarNombrePrograma)
-    Public hiloTooltips As New Thread(AddressOf AsignarTooltips)
-    Public hiloEncabezadosTitulos As New Thread(AddressOf CargarEncabezadosTitulos)
-    Public hiloMedidas As New Thread(AddressOf CargarMedidas)
+    Public hiloNombrePrograma As New Thread(AddressOf CargarNombrePrograma) 
+    Public hiloEncabezadosTitulos As New Thread(AddressOf CargarEncabezadosTitulos) 
     ' Variable de desarrollo.
-    Public esDesarrollo As Boolean = False
+    Public esDesarrollo As Boolean = True
 
 #Region "Eventos"
 
     Private Sub Principal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Me.Cursor = Cursors.WaitCursor
-        MostrarCargando(True) 
+        MostrarCargando(True)
         ConfigurarConexiones()
         IniciarHilosCarga()
+        CargarMedidas()
+        AsignarTooltips()
         Me.Cursor = Cursors.Default
 
     End Sub
@@ -542,6 +542,20 @@ Public Class Principal
 
     End Sub
 
+    Private Sub btnImportar_Click(sender As Object, e As EventArgs) Handles btnImportar.Click
+
+        Me.Cursor = Cursors.WaitCursor
+        Importar()
+        Me.Cursor = Cursors.Default
+
+    End Sub
+
+    Private Sub btnImportar_MouseEnter(sender As Object, e As EventArgs) Handles btnImportar.MouseEnter
+
+        AsignarTooltips("Importar.")
+
+    End Sub
+
 #End Region
 
 #Region "Métodos"
@@ -665,10 +679,8 @@ Public Class Principal
 
         CheckForIllegalCrossThreadCalls = False
         hiloNombrePrograma.Start()
-        hiloCentrar.Start()
-        hiloTooltips.Start()
+        hiloCentrar.Start() 
         hiloEncabezadosTitulos.Start()
-        hiloMedidas.Start()
 
     End Sub
 
@@ -701,8 +713,8 @@ Public Class Principal
         tp.SetToolTip(Me.btnSalir, "Salir.")
         tp.SetToolTip(Me.btnGuardar, "Guardar.")
         tp.SetToolTip(Me.btnEliminar, "Eliminar.")
-        tp.SetToolTip(Me.pnlMenu, "Menú.")
-        hiloTooltips.Abort()
+        tp.SetToolTip(Me.btnImportar, "Importar.")
+        tp.SetToolTip(Me.pnlMenu, "Menú.") 
 
     End Sub
 
@@ -716,8 +728,8 @@ Public Class Principal
 
         If (Me.esDesarrollo) Then
             ALMLogicaCatalogos.Directorios.id = 1
-            ALMLogicaCatalogos.Directorios.instanciaSql = "BERRY1-DELL\SQLEXPRESS2008"
-            ALMLogicaCatalogos.Directorios.usuarioSql = "AdminBerry"
+            ALMLogicaCatalogos.Directorios.instanciaSql = "LOCALHOST\SQLEXPRESS2008"
+            ALMLogicaCatalogos.Directorios.usuarioSql = "adminberry"
             ALMLogicaCatalogos.Directorios.contrasenaSql = "@berry2017"
             pnlEncabezado.BackColor = Color.DarkRed
             pnlPie.BackColor = Color.DarkRed
@@ -833,8 +845,7 @@ Public Class Principal
         Me.altoMitad = Me.altoTotal / 2
         Me.anchoTercio = Me.anchoTotal / 3
         Me.altoTercio = Me.altoTotal / 3
-        Me.altoCuarto = Me.altoTotal / 4
-        hiloMedidas.Abort()
+        Me.altoCuarto = Me.altoTotal / 4 
 
     End Sub
 
@@ -1462,8 +1473,14 @@ Public Class Principal
         spArticulos.ActiveSheet.Columns(numeracion).Tag = "seccion" : numeracion += 1
         spArticulos.ActiveSheet.Columns(numeracion).Tag = "estante" : numeracion += 1
         spArticulos.ActiveSheet.Columns(numeracion).Tag = "nivel" : numeracion += 1
-        spArticulos.ActiveSheet.Columns("id").Width = 50
-        spArticulos.ActiveSheet.Columns("nombre").Width = 400
+        spArticulos.ActiveSheet.Columns(numeracion).Tag = "pagina" : numeracion += 1
+        spArticulos.ActiveSheet.Columns(numeracion).Tag = "codigo" : numeracion += 1
+        spArticulos.ActiveSheet.Columns(numeracion).Tag = "color" : numeracion += 1
+        spArticulos.ActiveSheet.Columns(numeracion).Tag = "talla" : numeracion += 1
+        spArticulos.ActiveSheet.Columns(numeracion).Tag = "modelo" : numeracion += 1
+        spArticulos.ActiveSheet.Columns(numeracion).Tag = "codigoInternet" : numeracion += 1
+        spArticulos.ActiveSheet.Columns("id").Width = 100
+        spArticulos.ActiveSheet.Columns("nombre").Width = 300
         spArticulos.ActiveSheet.Columns("nombreComercial").Width = 250
         spArticulos.ActiveSheet.Columns("idUnidadMedida").Width = 50
         spArticulos.ActiveSheet.Columns("nombreUnidadMedida").Width = 200
@@ -1473,6 +1490,12 @@ Public Class Principal
         spArticulos.ActiveSheet.Columns("seccion").Width = 120
         spArticulos.ActiveSheet.Columns("estante").Width = 120
         spArticulos.ActiveSheet.Columns("nivel").Width = 120
+        spArticulos.ActiveSheet.Columns("pagina").Width = 120
+        spArticulos.ActiveSheet.Columns("codigo").Width = 140
+        spArticulos.ActiveSheet.Columns("color").Width = 120
+        spArticulos.ActiveSheet.Columns("talla").Width = 120
+        spArticulos.ActiveSheet.Columns("modelo").Width = 120
+        spArticulos.ActiveSheet.Columns("codigoInternet").Width = 120
         spArticulos.ActiveSheet.Columns("id").CellType = tipoEntero
         spArticulos.ActiveSheet.Columns("nombre").CellType = tipoTexto
         spArticulos.ActiveSheet.Columns("nombreComercial").CellType = tipoTexto
@@ -1484,6 +1507,12 @@ Public Class Principal
         spArticulos.ActiveSheet.Columns("seccion").CellType = tipoTexto
         spArticulos.ActiveSheet.Columns("estante").CellType = tipoTexto
         spArticulos.ActiveSheet.Columns("nivel").CellType = tipoTexto
+        spArticulos.ActiveSheet.Columns("pagina").CellType = tipoEntero
+        spArticulos.ActiveSheet.Columns("codigo").CellType = tipoTexto
+        spArticulos.ActiveSheet.Columns("color").CellType = tipoTexto
+        spArticulos.ActiveSheet.Columns("talla").CellType = tipoTexto
+        spArticulos.ActiveSheet.Columns("modelo").CellType = tipoTexto
+        spArticulos.ActiveSheet.Columns("codigoInternet").CellType = tipoTexto
         spArticulos.ActiveSheet.AddColumnHeaderSpanCell(0, 0, 1, spArticulos.ActiveSheet.Columns.Count)
         spArticulos.ActiveSheet.ColumnHeader.Cells(0, 0).Value = "A  r  t  í  c  u  l  o  s".ToUpper()
         spArticulos.ActiveSheet.ColumnHeader.Cells(1, spArticulos.ActiveSheet.Columns("id").Index).Value = "No. *".ToUpper()
@@ -1497,6 +1526,14 @@ Public Class Principal
         spArticulos.ActiveSheet.ColumnHeader.Cells(1, spArticulos.ActiveSheet.Columns("seccion").Index).Value = "Sección".ToUpper()
         spArticulos.ActiveSheet.ColumnHeader.Cells(1, spArticulos.ActiveSheet.Columns("estante").Index).Value = "Estante".ToUpper()
         spArticulos.ActiveSheet.ColumnHeader.Cells(1, spArticulos.ActiveSheet.Columns("nivel").Index).Value = "Nivel".ToUpper()
+        spArticulos.ActiveSheet.ColumnHeader.Cells(1, spArticulos.ActiveSheet.Columns("pagina").Index).Value = "Página".ToUpper()
+        spArticulos.ActiveSheet.ColumnHeader.Cells(1, spArticulos.ActiveSheet.Columns("codigo").Index).Value = "Código".ToUpper()
+        spArticulos.ActiveSheet.ColumnHeader.Cells(1, spArticulos.ActiveSheet.Columns("color").Index).Value = "Color".ToUpper()
+        spArticulos.ActiveSheet.ColumnHeader.Cells(1, spArticulos.ActiveSheet.Columns("talla").Index).Value = "Talla".ToUpper()
+        spArticulos.ActiveSheet.ColumnHeader.Cells(1, spArticulos.ActiveSheet.Columns("modelo").Index).Value = "Modelo".ToUpper()
+        spArticulos.ActiveSheet.ColumnHeader.Cells(1, spArticulos.ActiveSheet.Columns("codigoInternet").Index).Value = "Código Internet".ToUpper()
+        spArticulos.ActiveSheet.Columns("nombreComercial").Visible = False
+        spArticulos.ActiveSheet.Columns(spArticulos.ActiveSheet.Columns("seccion").Index, spArticulos.ActiveSheet.Columns("nivel").Index).Visible = False
         If (Me.opcionSeleccionada = OpcionMenu.articulos) Then
             spArticulos.ActiveSheet.Rows.Count += 1
         End If
@@ -1521,6 +1558,11 @@ Public Class Principal
             Dim seccion As String = spArticulos.ActiveSheet.Cells(fila, spArticulos.ActiveSheet.Columns("seccion").Index).Text
             Dim estante As String = spArticulos.ActiveSheet.Cells(fila, spArticulos.ActiveSheet.Columns("estante").Index).Text
             Dim nivel As String = spArticulos.ActiveSheet.Cells(fila, spArticulos.ActiveSheet.Columns("nivel").Index).Text
+            Dim pagina As Integer = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spArticulos.ActiveSheet.Cells(fila, spArticulos.ActiveSheet.Columns("pagina").Index).Text)
+            Dim codigo As Integer = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spArticulos.ActiveSheet.Cells(fila, spArticulos.ActiveSheet.Columns("codigo").Index).Text)
+            Dim color As String = spArticulos.ActiveSheet.Cells(fila, spArticulos.ActiveSheet.Columns("color").Index).Text
+            Dim talla As String = spArticulos.ActiveSheet.Cells(fila, spArticulos.ActiveSheet.Columns("talla").Index).Text
+            Dim modelo As String = spArticulos.ActiveSheet.Cells(fila, spArticulos.ActiveSheet.Columns("modelo").Index).Text
             If (idAlmacen > 0 AndAlso idFamilia > 0 AndAlso idSubFamilia > 0 AndAlso id > 0 AndAlso Not String.IsNullOrEmpty(nombre) AndAlso idUnidadMedida > 0 AndAlso precio >= 0) Then
                 articulos.EIdAlmacen = idAlmacen
                 articulos.EIdFamilia = idFamilia
@@ -1535,6 +1577,11 @@ Public Class Principal
                 articulos.ESeccion = seccion
                 articulos.EEstante = estante
                 articulos.ENivel = nivel
+                articulos.EPagina = pagina
+                articulos.ECodigo = codigo
+                articulos.EColor = color
+                articulos.ETalla = talla
+                articulos.EModelo = modelo
                 articulos.Guardar()
             End If
         Next
@@ -1711,7 +1758,7 @@ Public Class Principal
         spVarios.Show()
         monedas.EId = 0
         spVarios.ActiveSheet.DataSource = monedas.ObtenerListadoReporte()
-        FormatearSpreadMonedas()
+        FormatearSpreadMonedas() 
 
     End Sub
 
@@ -2244,6 +2291,184 @@ Public Class Principal
 
     End Sub
 
+    Private Sub Importar()
+
+        Dim ruta As String = String.Empty
+        opdArchivos.Filter = "Excel Files(.xls)|*.xls|Excel Files(.xlsx)|*.xlsx"
+        opdArchivos.Multiselect = False
+        opdArchivos.FileName = ""
+        If opdArchivos.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            spArticulos.Visible = True
+            spArticulos.Height = Me.altoTotal
+            spArticulos.Width = Me.anchoTotal
+            ruta = opdArchivos.FileName
+            Dim nombreProveedor As String = System.IO.Path.GetFileNameWithoutExtension(opdArchivos.FileName)
+            Dim separadores() As String = {" "}
+            Dim palabras() As String = nombreProveedor.Split(separadores, StringSplitOptions.RemoveEmptyEntries)
+            For Each palabra In palabras
+                proveedores.ENombre = palabra
+                Exit For
+            Next
+            Dim proveedor As DataTable = proveedores.ObtenerNombreProveedor()
+            Dim idProveedor As Integer = 0
+            If proveedor.Rows.Count > 0 Then
+                idProveedor = proveedor.Rows(0).Item("id")
+            End If
+            'Obtener archivo excel
+            spArticulos.OpenExcel(ruta)
+            spArticulos.Refresh()
+            'Recorrer spread
+            'Try
+            Dim contador As Integer = 0
+            Dim filaMaxima As Integer = 0
+            For fila = 1 To spArticulos.ActiveSheet.RowCount
+                Dim texto As String = spArticulos.ActiveSheet.Cells(fila, 0).Text
+                If String.IsNullOrEmpty(texto) Then
+                    contador = contador + 1
+                Else
+                    contador = 0
+                End If
+                If contador = 10 Then
+                    filaMaxima = fila - 10
+                    Exit For
+                End If
+            Next
+            Dim talla As Integer = 0
+            Dim pagina As Integer = 0
+            Dim codigo As Integer = 0
+            Dim color As Integer = 0
+            Dim modelo As Integer = 0
+            Dim codigoInternet As Integer = 0
+            Dim precio As Integer = 0
+            Dim cantidadcolumnas As Integer = 0
+            If spArticulos.ActiveSheet.Columns.Count < 7 Then
+                cantidadcolumnas = spArticulos.ActiveSheet.Columns.Count
+            Else
+                cantidadcolumnas = 7
+            End If
+            Dim filaInicial As Integer = 0
+            Dim id As Integer = 0
+            Dim nombreArticulo As String = String.Empty
+            If idProveedor = 1 Then ' Castalia.
+                pagina = -1 ' No aplica.
+                codigoInternet = -1 ' No aplica.
+                modelo = 0
+                color = 1
+                talla = 2
+                precio = 3
+                codigo = 4
+                filaInicial = 1
+                nombreArticulo = "Castalia"
+                id = 100000
+            ElseIf idProveedor = 2 Then ' Rinna.
+                pagina = -1 ' No aplica.
+                codigoInternet = -1 ' No aplica.
+                modelo = 0
+                color = 1
+                talla = 2
+                precio = 3
+                codigo = 4
+                filaInicial = 1
+                nombreArticulo = "Rinna"
+                id = 200000
+            ElseIf idProveedor = 3 Then ' Impuls.
+                pagina = 0
+                codigoInternet = 1
+                modelo = 2
+                color = 3
+                talla = 4
+                codigo = 5
+                precio = 6
+                filaInicial = 5
+                nombreArticulo = "Impuls"
+                id = 300000
+            ElseIf idProveedor = 4 Then ' Cklass.
+                pagina = -1 ' No aplica.
+                codigoInternet = -1 ' No aplica.
+                modelo = 0
+                color = 1
+                talla = 2
+                precio = 3
+                codigo = 4
+                filaInicial = 1
+                nombreArticulo = "Cklass"
+                id = 400000
+            ElseIf idProveedor = 5 Then ' Terra.
+                pagina = 0
+                codigoInternet = -1 ' No aplica.
+                modelo = 1
+                color = 2
+                codigo = 3
+                talla = 4
+                precio = 5
+                filaInicial = 10
+                nombreArticulo = "Terra"
+                id = 500000
+            End If
+            For fila = 1 To filaMaxima
+                If (fila >= filaInicial) Then
+                    Dim numeroPagina As Integer = 0
+                    If (idProveedor = 3 Or idProveedor = 5) Then
+                        numeroPagina = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spArticulos.ActiveSheet.Cells(fila, pagina).Text)
+                    End If
+                    Dim sModelo As String = ALMLogicaCatalogos.Funciones.ValidarLetra(spArticulos.ActiveSheet.Cells(fila, modelo).Text)
+                    Dim sColor As String = ALMLogicaCatalogos.Funciones.ValidarLetra(spArticulos.ActiveSheet.Cells(fila, color).Text)
+                    Dim sCodigo As String = ALMLogicaCatalogos.Funciones.ValidarLetra(spArticulos.ActiveSheet.Cells(fila, codigo).Value)
+                    Dim sTalla As String = ALMLogicaCatalogos.Funciones.ValidarLetra(spArticulos.ActiveSheet.Cells(fila, talla).Text)
+                    Dim sPrecio As Double = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spArticulos.ActiveSheet.Cells(fila, precio).Text)
+                    Dim sCodigoInternet As Integer = 0
+                    If (idProveedor = 3) Then
+                        sCodigoInternet = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spArticulos.ActiveSheet.Cells(fila, codigoInternet).Text)
+                    End If
+                    Dim nombre As String = String.Format("{0} {1}", nombreArticulo, sCodigo)
+                    Dim nombreComercial As String = ""
+                    Dim idUnidadMedida As Integer = 6
+                    Dim cantidadMinima As Integer = 0
+                    Dim cantidadMaxima As Integer = 0
+                    Dim seccion As String = String.Empty
+                    Dim estante As String = String.Empty
+                    Dim nivel As String = String.Empty
+                    Dim idAlmacen As Integer = 1
+                    Dim idFamilia As Integer = 1
+                    Dim idSubFamilia As Integer = 1
+                    If (idAlmacen > 0 AndAlso idFamilia > 0 AndAlso idSubFamilia > 0 AndAlso id > 0 AndAlso Not String.IsNullOrEmpty(nombre) AndAlso idUnidadMedida > 0 AndAlso precio >= 0) Then
+                        articulos.EIdAlmacen = idAlmacen
+                        articulos.EIdFamilia = idFamilia
+                        articulos.EIdSubFamilia = idSubFamilia
+                        articulos.EId = id
+                        articulos.ENombre = nombre
+                        articulos.ENombreComercial = nombreComercial
+                        articulos.EIdUnidadMedida = idUnidadMedida
+                        articulos.ECantidadMinima = cantidadMinima
+                        articulos.ECantidadMaxima = cantidadMaxima
+                        articulos.EPrecio = sPrecio
+                        articulos.ESeccion = seccion
+                        articulos.EEstante = estante
+                        articulos.ENivel = nivel
+                        articulos.EPagina = numeroPagina
+                        articulos.ECodigo = sCodigo
+                        articulos.EColor = sColor
+                        articulos.ETalla = sTalla
+                        articulos.EModelo = sModelo
+                        articulos.ECodigoInternet = sCodigoInternet
+                        articulos.EIdProveedor = idProveedor
+                        articulos.Guardar()
+                    End If
+                End If
+                id += 1
+            Next
+            'Catch ex As Exception
+            '    Throw ex
+            'End Try
+            MsgBox("Proceso finalizado.", MsgBoxStyle.ApplicationModal, "Finalizado.")
+            spArticulos.Visible = False
+            spArticulos.Reset()
+            FormatearSpread()
+            FormatearSpreadArticulos()
+        End If
+
+    End Sub
+
 #End Region
 
 #End Region
@@ -2265,7 +2490,6 @@ Public Class Principal
         unidadesMedidas = 11
 
     End Enum
-
 #End Region
 
 End Class
