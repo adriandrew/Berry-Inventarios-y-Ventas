@@ -301,4 +301,38 @@ Public Class Articulos
 
     End Function
 
+    Public Sub EliminarArticulosProveedor(id As Integer)
+
+        Try
+            Dim comando As New SqlCommand()
+            comando.Connection = BaseDatos.conexionCatalogo
+            'Dim condicion As String = String.Empty
+            'If (Me.EIdAlmacen > 0) Then
+            '    condicion &= " AND IdAlmacen=@idAlmacen"
+            'End If
+            'If (Me.EIdFamilia > 0) Then
+            '    condicion &= " AND IdFamilia=@idFamilia"
+            'End If
+            'If (Me.EIdSubFamilia > 0) Then
+            '    condicion &= " AND IdSubFamilia=@idSubFamilia"
+            'End If
+            'If (Me.EId > 0) Then
+            '    condicion &= " AND Id=@id"
+            'End If
+            comando.CommandText = "DELETE FROM " & ALMLogicaCatalogos.Programas.prefijoBaseDatosAlmacen & "Articulos WHERE IdProveedor=@idProveedor"
+            'comando.Parameters.AddWithValue("@idAlmacen", Me.EIdAlmacen)
+            'comando.Parameters.AddWithValue("@idFamilia", Me.EIdFamilia)
+            'comando.Parameters.AddWithValue("@idSubFamilia", Me.EIdSubFamilia)
+            comando.Parameters.AddWithValue("@idProveedor", Me.EIdProveedor)
+            BaseDatos.conexionCatalogo.Open()
+            comando.ExecuteNonQuery()
+            BaseDatos.conexionCatalogo.Close()
+        Catch ex As Exception
+            Throw ex
+        Finally
+            BaseDatos.conexionCatalogo.Close()
+        End Try
+
+    End Sub
+
 End Class
