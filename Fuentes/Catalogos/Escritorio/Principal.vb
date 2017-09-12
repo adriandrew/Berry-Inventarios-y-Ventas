@@ -728,9 +728,12 @@ Public Class Principal
 
         If (Me.esDesarrollo) Then
             ALMLogicaCatalogos.Directorios.id = 1
-            ALMLogicaCatalogos.Directorios.instanciaSql = "LOCALHOST\SQLEXPRESS2008"
-            ALMLogicaCatalogos.Directorios.usuarioSql = "adminberry"
-            ALMLogicaCatalogos.Directorios.contrasenaSql = "@berry2017"
+            'ALMLogicaCatalogos.Directorios.instanciaSql = "LOCALHOST\SQLEXPRESS2008"
+            'ALMLogicaCatalogos.Directorios.usuarioSql = "adminberry"
+            'ALMLogicaCatalogos.Directorios.contrasenaSql = "@berry2017"
+            ALMLogicaCatalogos.Directorios.instanciaSql = "DESKTOP-JG2IS29"
+            ALMLogicaCatalogos.Directorios.usuarioSql = "OmarFlx"
+            ALMLogicaCatalogos.Directorios.contrasenaSql = "ofv123"
             pnlEncabezado.BackColor = Color.DarkRed
             pnlPie.BackColor = Color.DarkRed
         Else
@@ -2294,7 +2297,7 @@ Public Class Principal
     Private Sub Importar()
 
         Dim ruta As String = String.Empty
-        opdArchivos.Filter = "Excel Files(.xls)|*.xls|Excel Files(.xlsx)|*.xlsx"
+        opdArchivos.Filter = "Excel Files(*.xls;*.xlsxs)|*.xls;*.xlsx"
         opdArchivos.Multiselect = False
         opdArchivos.FileName = ""
         If opdArchivos.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
@@ -2313,6 +2316,7 @@ Public Class Principal
             Dim idProveedor As Integer = 0
             If proveedor.Rows.Count > 0 Then
                 idProveedor = proveedor.Rows(0).Item("id")
+                articulos.EliminarArticulosProveedor(idProveedor)
             End If
             'Obtener archivo excel
             spArticulos.OpenExcel(ruta)

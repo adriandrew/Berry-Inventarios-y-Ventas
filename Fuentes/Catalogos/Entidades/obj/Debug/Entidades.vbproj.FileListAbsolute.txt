@@ -18,3 +18,15 @@ C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catal
 C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Entidades\obj\Debug\ALMEntidadesCatalogos.dll
 C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Entidades\obj\Debug\ALMEntidadesCatalogos.xml
 C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Entidades\obj\Debug\ALMEntidadesCatalogos.pdb
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Entidades\obj\Debug\Entidades.vbprojResolveAssemblyReference.cache
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Entidades\obj\Debug\ALMEntidadesCatalogos.Resources.resources
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Entidades\obj\Debug\Entidades.vbproj.GenerateResource.Cache
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Entidades\obj\Debug\ALMEntidadesCatalogos.dll
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Entidades\obj\Debug\ALMEntidadesCatalogos.xml
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Entidades\obj\Debug\ALMEntidadesCatalogos.pdb
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Entidades\bin\Debug\ALMEntidadesCatalogos.dll
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Entidades\bin\Debug\ALMEntidadesCatalogos.pdb
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Entidades\bin\Debug\ALMEntidadesCatalogos.xml
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Entidades\bin\Debug\ALMLogicaCatalogos.dll
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Entidades\bin\Debug\ALMLogicaCatalogos.pdb
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Entidades\bin\Debug\ALMLogicaCatalogos.xml

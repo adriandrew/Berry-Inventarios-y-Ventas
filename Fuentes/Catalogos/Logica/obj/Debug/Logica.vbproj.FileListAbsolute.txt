@@ -6,3 +6,12 @@ C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catal
 C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Logica\obj\Debug\ALMLogicaCatalogos.dll
 C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Logica\obj\Debug\ALMLogicaCatalogos.xml
 C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Logica\obj\Debug\ALMLogicaCatalogos.pdb
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Logica\bin\Debug\ALMLogicaCatalogos.dll
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Logica\bin\Debug\ALMLogicaCatalogos.pdb
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Logica\bin\Debug\ALMLogicaCatalogos.xml
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Logica\obj\Debug\Logica.vbprojResolveAssemblyReference.cache
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Logica\obj\Debug\ALMLogicaCatalogos.Resources.resources
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Logica\obj\Debug\Logica.vbproj.GenerateResource.Cache
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Logica\obj\Debug\ALMLogicaCatalogos.dll
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Logica\obj\Debug\ALMLogicaCatalogos.xml
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Logica\obj\Debug\ALMLogicaCatalogos.pdb
