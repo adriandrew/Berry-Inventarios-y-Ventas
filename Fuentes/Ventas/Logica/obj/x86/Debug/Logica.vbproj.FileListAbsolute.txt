@@ -1,0 +1,16 @@
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Salidas\Logica\bin\x86\Debug\ALMLogicaVentas.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Salidas\Logica\bin\x86\Debug\ALMLogicaVentas.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Salidas\Logica\bin\x86\Debug\ALMLogicaVentas.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Salidas\Logica\obj\x86\Debug\ALMLogicaVentas.Resources.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Salidas\Logica\obj\x86\Debug\Logica.vbproj.GenerateResource.Cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Salidas\Logica\obj\x86\Debug\ALMLogicaVentas.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Salidas\Logica\obj\x86\Debug\ALMLogicaVentas.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Salidas\Logica\obj\x86\Debug\ALMLogicaVentas.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Ventas\Logica\bin\x86\Debug\ALMLogicaVentas.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Ventas\Logica\bin\x86\Debug\ALMLogicaVentas.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Ventas\Logica\bin\x86\Debug\ALMLogicaVentas.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Ventas\Logica\obj\x86\Debug\ALMLogicaVentas.Resources.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Ventas\Logica\obj\x86\Debug\Logica.vbproj.GenerateResource.Cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Ventas\Logica\obj\x86\Debug\ALMLogicaVentas.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Ventas\Logica\obj\x86\Debug\ALMLogicaVentas.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Ventas\Logica\obj\x86\Debug\ALMLogicaVentas.pdb

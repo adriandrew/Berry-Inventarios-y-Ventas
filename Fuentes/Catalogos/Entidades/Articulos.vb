@@ -10,7 +10,7 @@ Public Class Articulos
     Private nombreComercial As String
     Private idUnidadMedida As Integer
     Private cantidadMinima As Integer
-    Private cantidadMaxima As Integer
+    Private cantidadMaxima As Integer 
     Private precio As Double
     Private seccion As String
     Private estante As String
@@ -22,8 +22,6 @@ Public Class Articulos
     Private modelo As String
     Private codigoInternet As String
     Private idProveedor As Integer
-
-
 
     Public Property EIdAlmacen() As Integer
         Get
@@ -129,7 +127,6 @@ Public Class Articulos
             nivel = value
         End Set
     End Property
-
     Public Property EPagina() As Integer
         Get
             Return pagina
@@ -137,8 +134,7 @@ Public Class Articulos
         Set(value As Integer)
             pagina = value
         End Set
-    End Property
-
+    End Property 
     Public Property ECodigo() As String
         Get
             Return codigo
@@ -146,8 +142,7 @@ Public Class Articulos
         Set(value As String)
             codigo = value
         End Set
-    End Property
-
+    End Property 
     Public Property EColor() As String
         Get
             Return color
@@ -155,8 +150,7 @@ Public Class Articulos
         Set(value As String)
             color = value
         End Set
-    End Property
-
+    End Property 
     Public Property ETalla() As String
         Get
             Return talla
@@ -164,8 +158,7 @@ Public Class Articulos
         Set(value As String)
             talla = value
         End Set
-    End Property
-
+    End Property 
     Public Property EModelo() As String
         Get
             Return modelo
@@ -197,14 +190,14 @@ Public Class Articulos
         Try
             Dim comando As New SqlCommand()
             comando.Connection = BaseDatos.conexionCatalogo
-            comando.CommandText = "INSERT INTO " & ALMLogicaCatalogos.Programas.prefijoBaseDatosAlmacen & "Articulos (IdAlmacen, IdFamilia, IdSubFamilia, Id, Nombre, NombreComercial, IdUnidadMedida, CantidadMinima, CantidadMaxima, Precio, Seccion, Estante, Nivel, Pagina, Codigo, Color, Talla, Modelo, CodigoInternet, IdProveedor) VALUES (@idAlmacen, @idFamilia, @idSubFamilia, @id, @nombre, @nombreComercial, @idUnidadMedida, @cantidadMinima, @cantidadMaxima, @precio, @seccion, @estante, @nivel,@pagina,@codigo,@color,@talla,@modelo, @codigoInternet, @idProveedor)"
+            comando.CommandText = String.Format("INSERT INTO {0}Articulos (IdAlmacen, IdFamilia, IdSubFamilia, Id, Nombre, NombreComercial, IdUnidadMedida, CantidadMinima, CantidadMaxima, Precio, Seccion, Estante, Nivel, Pagina, Codigo, Color, Talla, Modelo, CodigoInternet, IdProveedor) VALUES (@idAlmacen, @idFamilia, @idSubFamilia, @id, @nombre, @nombreComercial, @idUnidadMedida, @cantidadMinima, @cantidadMaxima, @precio, @seccion, @estante, @nivel, @pagina, @codigo, @color, @talla, @modelo, @codigoInternet, @idProveedor)", ALMLogicaCatalogos.Programas.prefijoBaseDatosAlmacen)
             comando.Parameters.AddWithValue("@idAlmacen", Me.EIdAlmacen)
             comando.Parameters.AddWithValue("@idFamilia", Me.EIdFamilia)
             comando.Parameters.AddWithValue("@idSubFamilia", Me.EIdSubFamilia)
             comando.Parameters.AddWithValue("@id", Me.EId)
             comando.Parameters.AddWithValue("@nombre", Me.ENombre)
             comando.Parameters.AddWithValue("@nombreComercial", Me.ENombreComercial)
-            comando.Parameters.AddWithValue("@idUnidadMedida", Me.idUnidadMedida)
+            comando.Parameters.AddWithValue("@idUnidadMedida", Me.EIdUnidadMedida)
             comando.Parameters.AddWithValue("@cantidadMinima", Me.ECantidadMinima)
             comando.Parameters.AddWithValue("@cantidadMaxima", Me.ECantidadMaxima)
             comando.Parameters.AddWithValue("@precio", Me.EPrecio)
@@ -247,11 +240,11 @@ Public Class Articulos
             If (Me.EId > 0) Then
                 condicion &= " AND Id=@id"
             End If
-            comando.CommandText = "DELETE FROM " & ALMLogicaCatalogos.Programas.prefijoBaseDatosAlmacen & "Articulos WHERE 0=0 " & condicion
+            comando.CommandText = String.Format("DELETE FROM {0}Articulos WHERE 0=0 {1}", ALMLogicaCatalogos.Programas.prefijoBaseDatosAlmacen, condicion)
             comando.Parameters.AddWithValue("@idAlmacen", Me.EIdAlmacen)
             comando.Parameters.AddWithValue("@idFamilia", Me.EIdFamilia)
             comando.Parameters.AddWithValue("@idSubFamilia", Me.EIdSubFamilia)
-            comando.Parameters.AddWithValue("@id", Me.id)
+            comando.Parameters.AddWithValue("@id", Me.EId)
             BaseDatos.conexionCatalogo.Open()
             comando.ExecuteNonQuery()
             BaseDatos.conexionCatalogo.Close()
@@ -270,19 +263,22 @@ Public Class Articulos
             Dim comando As New SqlCommand()
             comando.Connection = BaseDatos.conexionCatalogo
             Dim condicion As String = String.Empty
-            If Me.EIdAlmacen > 0 Then
+            If (Me.EIdAlmacen > 0) Then
                 condicion &= " AND IdAlmacen=@idAlmacen"
             End If
-            If Me.EIdFamilia > 0 Then
+            If (Me.EIdFamilia > 0) Then
                 condicion &= " AND IdFamilia=@idFamilia"
             End If
             If (Me.EIdSubFamilia > 0) Then
                 condicion &= " AND IdSubFamilia=@idSubFamilia"
             End If
-            If Me.EId > 0 Then
+            If (Me.EId > 0) Then
                 condicion &= " AND Id=@id"
             End If
-            comando.CommandText = "SELECT A.Id, A.Nombre, A.NombreComercial, A.IdUnidadMedida, UM.Nombre, A.CantidadMinima, A.CantidadMaxima, A.Precio, A.Seccion, A.Estante, A.Nivel, A.Pagina, A.Codigo, A.Color, A.Talla, A.Modelo, A.CodigoInternet FROM " & ALMLogicaCatalogos.Programas.prefijoBaseDatosAlmacen & "Articulos AS A LEFT JOIN " & ALMLogicaCatalogos.Programas.prefijoBaseDatosAlmacen & "UnidadesMedidas AS UM ON A.IdUnidadMedida=UM.Id WHERE 0=0 " & condicion & " ORDER BY A.IdAlmacen, A.IdFamilia, A.IdSubFamilia, A.Id ASC"
+            comando.CommandText = String.Format("SELECT A.Id, A.Nombre, A.NombreComercial, A.IdUnidadMedida, UM.Nombre, A.CantidadMinima, A.CantidadMaxima, A.Precio, A.Seccion, A.Estante, A.Nivel, A.Pagina, A.Codigo, A.Color, A.Talla, A.Modelo, A.CodigoInternet  " & _
+            " FROM {0}Articulos AS A " & _
+            " LEFT JOIN {0}UnidadesMedidas AS UM ON A.IdUnidadMedida=UM.Id " & _
+            " WHERE 0=0 {1} ORDER BY A.IdAlmacen, A.IdFamilia, A.IdSubFamilia, A.Id ASC", ALMLogicaCatalogos.Programas.prefijoBaseDatosAlmacen, condicion)
             comando.Parameters.AddWithValue("@idAlmacen", Me.EIdAlmacen)
             comando.Parameters.AddWithValue("@idFamilia", Me.EIdFamilia)
             comando.Parameters.AddWithValue("@idSubFamilia", Me.EIdSubFamilia)
@@ -301,28 +297,12 @@ Public Class Articulos
 
     End Function
 
-    Public Sub EliminarArticulosProveedor(id As Integer)
+    Public Sub EliminarArticulosProveedor()
 
         Try
             Dim comando As New SqlCommand()
-            comando.Connection = BaseDatos.conexionCatalogo
-            'Dim condicion As String = String.Empty
-            'If (Me.EIdAlmacen > 0) Then
-            '    condicion &= " AND IdAlmacen=@idAlmacen"
-            'End If
-            'If (Me.EIdFamilia > 0) Then
-            '    condicion &= " AND IdFamilia=@idFamilia"
-            'End If
-            'If (Me.EIdSubFamilia > 0) Then
-            '    condicion &= " AND IdSubFamilia=@idSubFamilia"
-            'End If
-            'If (Me.EId > 0) Then
-            '    condicion &= " AND Id=@id"
-            'End If
-            comando.CommandText = "DELETE FROM " & ALMLogicaCatalogos.Programas.prefijoBaseDatosAlmacen & "Articulos WHERE IdProveedor=@idProveedor"
-            'comando.Parameters.AddWithValue("@idAlmacen", Me.EIdAlmacen)
-            'comando.Parameters.AddWithValue("@idFamilia", Me.EIdFamilia)
-            'comando.Parameters.AddWithValue("@idSubFamilia", Me.EIdSubFamilia)
+            comando.Connection = BaseDatos.conexionCatalogo 
+            comando.CommandText = String.Format("DELETE FROM {0}Articulos WHERE IdProveedor=@idProveedor", ALMLogicaCatalogos.Programas.prefijoBaseDatosAlmacen)
             comando.Parameters.AddWithValue("@idProveedor", Me.EIdProveedor)
             BaseDatos.conexionCatalogo.Open()
             comando.ExecuteNonQuery()

@@ -70,67 +70,21 @@ C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalog
 C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\Catalogos.Principal.resources
 C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\Escritorio.vbproj.GenerateResource.Cache
 C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\ALM01.exe.licenses
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\ALM01.exe.config
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\obj\x86\Debug\ALM01.exe
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\obj\x86\Debug\ALM01.xml
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\obj\x86\Debug\ALM01.pdb
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\ALM01.exe
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\ALM01.pdb
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\ALM01.xml
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\ALMEntidadesCatalogos.dll
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\ALMLogicaCatalogos.dll
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.CalcEngine.dll
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Excel.dll
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.PDF.dll
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.PluginCalendar.WinForms.dll
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.Chart.dll
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.dll
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.Spread.dll
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\ALMEntidadesCatalogos.pdb
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\ALMEntidadesCatalogos.xml
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\ALMLogicaCatalogos.pdb
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\ALMLogicaCatalogos.xml
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.CalcEngine.xml
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Excel.xml
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.PDF.xml
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.PluginCalendar.WinForms.xml
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.xml
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.Chart.xml
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.Spread.xml
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\obj\x86\Debug\Escritorio.vbprojResolveAssemblyReference.cache
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\obj\x86\Debug\Catalogos.Resources.resources
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\obj\x86\Debug\Catalogos.Principal.resources
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\obj\x86\Debug\Escritorio.vbproj.GenerateResource.Cache
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\obj\x86\Debug\ALM01.exe.licenses
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\ALM01.exe.config
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\obj\x86\Debug\Escritorio.vbprojResolveAssemblyReference.cache
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\obj\x86\Debug\Catalogos.Resources.resources
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\obj\x86\Debug\Catalogos.Principal.resources
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\obj\x86\Debug\Escritorio.vbproj.GenerateResource.Cache
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\obj\x86\Debug\ALM01.exe.licenses
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\obj\x86\Debug\ALM01.xml
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\ALM01.exe
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\ALM01.pdb
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\ALM01.xml
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\ALMEntidadesCatalogos.dll
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\ALMLogicaCatalogos.dll
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.CalcEngine.dll
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Excel.dll
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.PDF.dll
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.PluginCalendar.WinForms.dll
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.Chart.dll
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.dll
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.Spread.dll
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\ALMEntidadesCatalogos.pdb
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\ALMEntidadesCatalogos.xml
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\ALMLogicaCatalogos.pdb
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\ALMLogicaCatalogos.xml
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.CalcEngine.xml
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Excel.xml
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.PDF.xml
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.PluginCalendar.WinForms.xml
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.xml
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.Chart.xml
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.Spread.xml
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\obj\x86\Debug\ALM01.exe
-C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\obj\x86\Debug\ALM01.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Escritorio\bin\x86\Debug\ALM01.exe.config
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Escritorio\bin\x86\Debug\ALM01.exe
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Escritorio\bin\x86\Debug\ALM01.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Escritorio\bin\x86\Debug\ALM01.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Escritorio\bin\x86\Debug\ALMEntidadesCatalogos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Escritorio\bin\x86\Debug\ALMLogicaCatalogos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Escritorio\bin\x86\Debug\ALMEntidadesCatalogos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Escritorio\bin\x86\Debug\ALMEntidadesCatalogos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Escritorio\bin\x86\Debug\ALMLogicaCatalogos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Escritorio\bin\x86\Debug\ALMLogicaCatalogos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Escritorio\obj\x86\Debug\Escritorio.vbprojResolveAssemblyReference.cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Escritorio\obj\x86\Debug\ALMCatalogos.Resources.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Escritorio\obj\x86\Debug\ALMCatalogos.Principal.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Escritorio\obj\x86\Debug\Escritorio.vbproj.GenerateResource.Cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Escritorio\obj\x86\Debug\ALM01.exe.licenses
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Escritorio\obj\x86\Debug\ALM01.exe
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Escritorio\obj\x86\Debug\ALM01.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Escritorio\obj\x86\Debug\ALM01.pdb

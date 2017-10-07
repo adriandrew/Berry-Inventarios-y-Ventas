@@ -6,20 +6,19 @@ C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalog
 C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Logica\obj\Release\ALMLogicaCatalogos.dll
 C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Logica\obj\Release\ALMLogicaCatalogos.xml
 C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Logica\obj\Release\ALMLogicaCatalogos.pdb
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Logica\bin\Release\ALMLogicaCatalogos.dll
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Logica\bin\Release\ALMLogicaCatalogos.pdb
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Logica\bin\Release\ALMLogicaCatalogos.xml
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Logica\obj\Release\Logica.vbprojResolveAssemblyReference.cache
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Logica\obj\Release\ALMLogicaCatalogos.Resources.resources
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Logica\obj\Release\Logica.vbproj.GenerateResource.Cache
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Logica\obj\Release\ALMLogicaCatalogos.dll
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Logica\obj\Release\ALMLogicaCatalogos.xml
-C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Logica\obj\Release\ALMLogicaCatalogos.pdb
-C:\Users\Berry 1\Desktop\Omar\Berry-Inventarios y Ventas-Test\Catalogos\Logica\bin\Release\ALMLogicaCatalogos.dll
-C:\Users\Berry 1\Desktop\Omar\Berry-Inventarios y Ventas-Test\Catalogos\Logica\bin\Release\ALMLogicaCatalogos.pdb
-C:\Users\Berry 1\Desktop\Omar\Berry-Inventarios y Ventas-Test\Catalogos\Logica\bin\Release\ALMLogicaCatalogos.xml
-C:\Users\Berry 1\Desktop\Omar\Berry-Inventarios y Ventas-Test\Catalogos\Logica\obj\Release\ALMLogicaCatalogos.Resources.resources
-C:\Users\Berry 1\Desktop\Omar\Berry-Inventarios y Ventas-Test\Catalogos\Logica\obj\Release\Logica.vbproj.GenerateResource.Cache
-C:\Users\Berry 1\Desktop\Omar\Berry-Inventarios y Ventas-Test\Catalogos\Logica\obj\Release\ALMLogicaCatalogos.dll
-C:\Users\Berry 1\Desktop\Omar\Berry-Inventarios y Ventas-Test\Catalogos\Logica\obj\Release\ALMLogicaCatalogos.xml
-C:\Users\Berry 1\Desktop\Omar\Berry-Inventarios y Ventas-Test\Catalogos\Logica\obj\Release\ALMLogicaCatalogos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Logica\bin\Release\ALMLogicaCatalogos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Logica\bin\Release\ALMLogicaCatalogos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Logica\bin\Release\ALMLogicaCatalogos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Logica\obj\Release\ALMLogicaCatalogos.Resources.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Logica\obj\Release\Logica.vbproj.GenerateResource.Cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Logica\obj\Release\ALMLogicaCatalogos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Logica\obj\Release\ALMLogicaCatalogos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Catalogos\Logica\obj\Release\ALMLogicaCatalogos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Catalogos\Logica\bin\Release\ALMLogicaCatalogos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Catalogos\Logica\bin\Release\ALMLogicaCatalogos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Catalogos\Logica\bin\Release\ALMLogicaCatalogos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Catalogos\Logica\obj\Release\ALMLogicaCatalogos.Resources.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Catalogos\Logica\obj\Release\Logica.vbproj.GenerateResource.Cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Catalogos\Logica\obj\Release\ALMLogicaCatalogos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Catalogos\Logica\obj\Release\ALMLogicaCatalogos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Catalogos\Logica\obj\Release\ALMLogicaCatalogos.pdb

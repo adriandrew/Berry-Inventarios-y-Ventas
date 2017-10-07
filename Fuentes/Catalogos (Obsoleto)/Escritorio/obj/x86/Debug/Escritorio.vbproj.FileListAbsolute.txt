@@ -1,0 +1,136 @@
+C:\Users\Administrator\Desktop\PROYECTOS PERSONALES\Proyecto Agenda-Bitacora\FUENTES MODIFICADOS\Catalogos\Escritorio\bin\x86\Debug\CatalogosBerry.exe.config
+C:\Users\Administrator\Desktop\PROYECTOS PERSONALES\Proyecto Agenda-Bitacora\FUENTES MODIFICADOS\Catalogos\Escritorio\bin\x86\Debug\CatalogosBerry.exe
+C:\Users\Administrator\Desktop\PROYECTOS PERSONALES\Proyecto Agenda-Bitacora\FUENTES MODIFICADOS\Catalogos\Escritorio\bin\x86\Debug\CatalogosBerry.pdb
+C:\Users\Administrator\Desktop\PROYECTOS PERSONALES\Proyecto Agenda-Bitacora\FUENTES MODIFICADOS\Catalogos\Escritorio\bin\x86\Debug\CatalogosBerry.xml
+C:\Users\Administrator\Desktop\PROYECTOS PERSONALES\Proyecto Agenda-Bitacora\FUENTES MODIFICADOS\Catalogos\Escritorio\bin\x86\Debug\EntidadesCatalogos.dll
+C:\Users\Administrator\Desktop\PROYECTOS PERSONALES\Proyecto Agenda-Bitacora\FUENTES MODIFICADOS\Catalogos\Escritorio\bin\x86\Debug\LogicaCatalogos.dll
+C:\Users\Administrator\Desktop\PROYECTOS PERSONALES\Proyecto Agenda-Bitacora\FUENTES MODIFICADOS\Catalogos\Escritorio\bin\x86\Debug\EntidadesCatalogos.pdb
+C:\Users\Administrator\Desktop\PROYECTOS PERSONALES\Proyecto Agenda-Bitacora\FUENTES MODIFICADOS\Catalogos\Escritorio\bin\x86\Debug\EntidadesCatalogos.xml
+C:\Users\Administrator\Desktop\PROYECTOS PERSONALES\Proyecto Agenda-Bitacora\FUENTES MODIFICADOS\Catalogos\Escritorio\bin\x86\Debug\LogicaCatalogos.pdb
+C:\Users\Administrator\Desktop\PROYECTOS PERSONALES\Proyecto Agenda-Bitacora\FUENTES MODIFICADOS\Catalogos\Escritorio\bin\x86\Debug\LogicaCatalogos.xml
+C:\Users\Administrator\Desktop\PROYECTOS PERSONALES\Proyecto Agenda-Bitacora\FUENTES MODIFICADOS\Catalogos\Escritorio\obj\x86\Debug\Escritorio.vbprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\PROYECTOS PERSONALES\Proyecto Agenda-Bitacora\FUENTES MODIFICADOS\Catalogos\Escritorio\obj\x86\Debug\Catalogos.Resources.resources
+C:\Users\Administrator\Desktop\PROYECTOS PERSONALES\Proyecto Agenda-Bitacora\FUENTES MODIFICADOS\Catalogos\Escritorio\obj\x86\Debug\Catalogos.Principal.resources
+C:\Users\Administrator\Desktop\PROYECTOS PERSONALES\Proyecto Agenda-Bitacora\FUENTES MODIFICADOS\Catalogos\Escritorio\obj\x86\Debug\Escritorio.vbproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\PROYECTOS PERSONALES\Proyecto Agenda-Bitacora\FUENTES MODIFICADOS\Catalogos\Escritorio\obj\x86\Debug\CatalogosBerry.exe.licenses
+C:\Users\Administrator\Desktop\PROYECTOS PERSONALES\Proyecto Agenda-Bitacora\FUENTES MODIFICADOS\Catalogos\Escritorio\obj\x86\Debug\CatalogosBerry.exe
+C:\Users\Administrator\Desktop\PROYECTOS PERSONALES\Proyecto Agenda-Bitacora\FUENTES MODIFICADOS\Catalogos\Escritorio\obj\x86\Debug\CatalogosBerry.xml
+C:\Users\Administrator\Desktop\PROYECTOS PERSONALES\Proyecto Agenda-Bitacora\FUENTES MODIFICADOS\Catalogos\Escritorio\obj\x86\Debug\CatalogosBerry.pdb
+C:\Users\Andrew\Desktop\Proyectos Personales\Proyecto Agenda-Bitacora\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\EYE01.exe.config
+C:\Users\Andrew\Desktop\Proyectos Personales\Proyecto Agenda-Bitacora\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\EYE01.exe
+C:\Users\Andrew\Desktop\Proyectos Personales\Proyecto Agenda-Bitacora\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\EYE01.pdb
+C:\Users\Andrew\Desktop\Proyectos Personales\Proyecto Agenda-Bitacora\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\EYE01.xml
+C:\Users\Andrew\Desktop\Proyectos Personales\Proyecto Agenda-Bitacora\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\EntidadesCatalogos.dll
+C:\Users\Andrew\Desktop\Proyectos Personales\Proyecto Agenda-Bitacora\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\LogicaCatalogos.dll
+C:\Users\Andrew\Desktop\Proyectos Personales\Proyecto Agenda-Bitacora\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\EntidadesCatalogos.pdb
+C:\Users\Andrew\Desktop\Proyectos Personales\Proyecto Agenda-Bitacora\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\EntidadesCatalogos.xml
+C:\Users\Andrew\Desktop\Proyectos Personales\Proyecto Agenda-Bitacora\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\LogicaCatalogos.pdb
+C:\Users\Andrew\Desktop\Proyectos Personales\Proyecto Agenda-Bitacora\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\LogicaCatalogos.xml
+C:\Users\Andrew\Desktop\Proyectos Personales\Proyecto Agenda-Bitacora\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\Escritorio.vbprojResolveAssemblyReference.cache
+C:\Users\Andrew\Desktop\Proyectos Personales\Proyecto Agenda-Bitacora\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\Catalogos.Resources.resources
+C:\Users\Andrew\Desktop\Proyectos Personales\Proyecto Agenda-Bitacora\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\Catalogos.Principal.resources
+C:\Users\Andrew\Desktop\Proyectos Personales\Proyecto Agenda-Bitacora\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\Escritorio.vbproj.GenerateResource.Cache
+C:\Users\Andrew\Desktop\Proyectos Personales\Proyecto Agenda-Bitacora\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\EYE01.exe.licenses
+C:\Users\Andrew\Desktop\Proyectos Personales\Proyecto Agenda-Bitacora\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\EYE01.exe
+C:\Users\Andrew\Desktop\Proyectos Personales\Proyecto Agenda-Bitacora\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\EYE01.xml
+C:\Users\Andrew\Desktop\Proyectos Personales\Proyecto Agenda-Bitacora\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\EYE01.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP-Almacen\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\ALM01.exe.config
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP-Almacen\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\ALM01.exe
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP-Almacen\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\ALM01.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP-Almacen\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\ALM01.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP-Almacen\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\EntidadesCatalogos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP-Almacen\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\LogicaCatalogos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP-Almacen\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\EntidadesCatalogos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP-Almacen\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\EntidadesCatalogos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP-Almacen\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\LogicaCatalogos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP-Almacen\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\LogicaCatalogos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP-Almacen\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\Escritorio.vbprojResolveAssemblyReference.cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP-Almacen\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\Catalogos.Resources.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP-Almacen\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\Catalogos.Principal.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP-Almacen\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\Escritorio.vbproj.GenerateResource.Cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP-Almacen\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\ALM01.exe.licenses
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP-Almacen\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\ALM01.exe
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP-Almacen\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\ALM01.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP-Almacen\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\ALM01.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\ALM01.exe.config
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\ALM01.exe
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\ALM01.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\ALM01.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\ALM01.exe
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\ALM01.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\ALM01.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\ALMEntidadesCatalogos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\ALMLogicaCatalogos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\ALMEntidadesCatalogos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\ALMEntidadesCatalogos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\ALMLogicaCatalogos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Debug\ALMLogicaCatalogos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\Escritorio.vbprojResolveAssemblyReference.cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\Catalogos.Resources.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\Catalogos.Principal.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\Escritorio.vbproj.GenerateResource.Cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Debug\ALM01.exe.licenses
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\ALM01.exe.config
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\obj\x86\Debug\ALM01.exe
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\obj\x86\Debug\ALM01.xml
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\obj\x86\Debug\ALM01.pdb
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\ALM01.exe
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\ALM01.pdb
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\ALM01.xml
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\ALMEntidadesCatalogos.dll
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\ALMLogicaCatalogos.dll
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.CalcEngine.dll
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Excel.dll
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.PDF.dll
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.PluginCalendar.WinForms.dll
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.Chart.dll
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.dll
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.Spread.dll
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\ALMEntidadesCatalogos.pdb
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\ALMEntidadesCatalogos.xml
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\ALMLogicaCatalogos.pdb
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\ALMLogicaCatalogos.xml
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.CalcEngine.xml
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Excel.xml
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.PDF.xml
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.PluginCalendar.WinForms.xml
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.xml
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.Chart.xml
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.Spread.xml
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\obj\x86\Debug\Escritorio.vbprojResolveAssemblyReference.cache
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\obj\x86\Debug\Catalogos.Resources.resources
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\obj\x86\Debug\Catalogos.Principal.resources
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\obj\x86\Debug\Escritorio.vbproj.GenerateResource.Cache
+C:\Users\OmarFlx\Documents\Berry\Proyectos\Berry-Inventarios y Ventas-Test\Catalogos\Escritorio\obj\x86\Debug\ALM01.exe.licenses
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\ALM01.exe.config
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\obj\x86\Debug\Escritorio.vbprojResolveAssemblyReference.cache
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\obj\x86\Debug\Catalogos.Resources.resources
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\obj\x86\Debug\Catalogos.Principal.resources
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\obj\x86\Debug\Escritorio.vbproj.GenerateResource.Cache
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\obj\x86\Debug\ALM01.exe.licenses
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\obj\x86\Debug\ALM01.xml
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\ALM01.exe
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\ALM01.pdb
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\ALM01.xml
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\ALMEntidadesCatalogos.dll
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\ALMLogicaCatalogos.dll
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.CalcEngine.dll
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Excel.dll
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.PDF.dll
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.PluginCalendar.WinForms.dll
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.Chart.dll
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.dll
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.Spread.dll
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\ALMEntidadesCatalogos.pdb
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\ALMEntidadesCatalogos.xml
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\ALMLogicaCatalogos.pdb
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\ALMLogicaCatalogos.xml
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.CalcEngine.xml
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Excel.xml
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.PDF.xml
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.PluginCalendar.WinForms.xml
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.xml
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.Chart.xml
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\bin\x86\Debug\FarPoint.Win.Spread.xml
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\obj\x86\Debug\ALM01.exe
+C:\Users\OmarFlx\Source\Repos\Berry-Inventarios-y-Ventas\Fuentes\Catalogos\Escritorio\obj\x86\Debug\ALM01.pdb
