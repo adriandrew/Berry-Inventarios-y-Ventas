@@ -15,7 +15,7 @@ Public Class Salidas
     Private tipoCambio As Double
     Private fecha As Date
     Private cantidad As Integer
-    Private precioUnitario As Double
+    Private precio As Double
     Private total As Double
     Private totalPesos As Double
     Private orden As Integer
@@ -131,12 +131,12 @@ Public Class Salidas
             cantidad = value
         End Set
     End Property
-    Public Property EPrecioUnitario() As Double
+    Public Property EPrecio() As Double
         Get
-            Return precioUnitario
+            Return precio
         End Get
         Set(value As Double)
-            precioUnitario = value
+            precio = value
         End Set
     End Property
     Public Property ETotal() As Double
@@ -225,7 +225,7 @@ Public Class Salidas
         Try
             Dim comando As New SqlCommand()
             comando.Connection = BaseDatos.conexionAlmacen
-            comando.CommandText = String.Format("INSERT INTO Salidas (IdOrigen, IdAlmacen, IdFamilia, IdSubFamilia, IdArticulo, Id, IdExterno, IdTipoSalida, IdCliente, IdMoneda, TipoCambio, Fecha, Cantidad, PrecioUnitario, Total, TotalPesos, Orden, Observaciones, Factura, Chofer, Camion, NoEconomico, IdLote, IdCultivo) VALUES (@idOrigen, @idAlmacen, @idFamilia, @idSubFamilia, @idArticulo, @id, @idExterno, @idTipoSalida, @idCliente, @idMoneda, @tipoCambio, @fecha, @cantidad, @precioUnitario, @total, @totalPesos, @orden, @observaciones, @factura, @chofer, @camion, @noEconomico, @idLote, @idCultivo)")
+            comando.CommandText = String.Format("INSERT INTO Salidas (IdOrigen, IdAlmacen, IdFamilia, IdSubFamilia, IdArticulo, Id, IdExterno, IdTipoSalida, IdCliente, IdMoneda, TipoCambio, Fecha, Cantidad, Precio, Total, TotalPesos, Orden, Observaciones, Factura, Chofer, Camion, NoEconomico, IdLote, IdCultivo) VALUES (@idOrigen, @idAlmacen, @idFamilia, @idSubFamilia, @idArticulo, @id, @idExterno, @idTipoSalida, @idCliente, @idMoneda, @tipoCambio, @fecha, @cantidad, @precio, @total, @totalPesos, @orden, @observaciones, @factura, @chofer, @camion, @noEconomico, @idLote, @idCultivo)")
             comando.Parameters.AddWithValue("@idOrigen", Me.EIdOrigen)
             comando.Parameters.AddWithValue("@idAlmacen", Me.EIdAlmacen)
             comando.Parameters.AddWithValue("@idFamilia", Me.EIdFamilia)
@@ -239,7 +239,7 @@ Public Class Salidas
             comando.Parameters.AddWithValue("@tipoCambio", Me.ETipoCambio)
             comando.Parameters.AddWithValue("@fecha", Me.EFecha)
             comando.Parameters.AddWithValue("@cantidad", Me.ECantidad)
-            comando.Parameters.AddWithValue("@precioUnitario", Me.EPrecioUnitario)
+            comando.Parameters.AddWithValue("@precio", Me.EPrecio)
             comando.Parameters.AddWithValue("@total", Me.ETotal)
             comando.Parameters.AddWithValue("@totalPesos", Me.ETotalPesos)
             comando.Parameters.AddWithValue("@orden", Me.EOrden)

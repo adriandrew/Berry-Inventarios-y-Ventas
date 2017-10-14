@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SqlClient
 
-Public Class Entradas
+Public Class Salidas
 
     Private idOrigen As Integer
     Private idAlmacen As Integer
@@ -9,8 +9,8 @@ Public Class Entradas
     Private idArticulo As Integer
     Private id As Integer
     Private idExterno As String
-    Private idTipoEntrada As Integer
-    Private idProveedor As Integer
+    Private idTipoSalida As Integer
+    Private idCliente As Integer
     Private idMoneda As Integer
     Private tipoCambio As Double
     Private fecha As Date
@@ -24,6 +24,8 @@ Public Class Entradas
     Private chofer As String
     Private camion As String
     Private noEconomico As String
+    Private idLote As Integer
+    Private idCultivo As Integer
 
     Public Property EIdOrigen() As Integer
         Get
@@ -81,20 +83,20 @@ Public Class Entradas
             idExterno = value
         End Set
     End Property
-    Public Property EIdTipoEntrada() As Integer
+    Public Property EIdTipoSalida() As Integer
         Get
-            Return idTipoEntrada
+            Return idTipoSalida
         End Get
         Set(value As Integer)
-            idTipoEntrada = value
+            idTipoSalida = value
         End Set
     End Property
-    Public Property EIdProveedor() As Integer
+    Public Property EIdCliente() As Integer
         Get
-            Return idProveedor
+            Return idCliente
         End Get
         Set(value As Integer)
-            idProveedor = value
+            idCliente = value
         End Set
     End Property
     Public Property EIdMoneda() As Integer
@@ -201,13 +203,29 @@ Public Class Entradas
             noEconomico = value
         End Set
     End Property
+    Public Property EIdLote() As Integer
+        Get
+            Return idLote
+        End Get
+        Set(value As Integer)
+            idLote = value
+        End Set
+    End Property
+    Public Property EIdCultivo() As Integer
+        Get
+            Return idCultivo
+        End Get
+        Set(value As Integer)
+            idCultivo = value
+        End Set
+    End Property
 
     Public Sub Guardar()
 
         Try
             Dim comando As New SqlCommand()
             comando.Connection = BaseDatos.conexionAlmacen
-            comando.CommandText = String.Format("INSERT INTO Entradas (IdOrigen, IdAlmacen, IdFamilia, IdSubFamilia, IdArticulo, Id, IdExterno, IdTipoEntrada, IdProveedor, IdMoneda, TipoCambio, Fecha, Cantidad, Precio, Total, TotalPesos, Orden, Observaciones, Factura, Chofer, Camion, NoEconomico) VALUES (@idOrigen, @idAlmacen, @idFamilia, @idSubFamilia, @idArticulo, @id, @idExterno, @idTipoEntrada, @idProveedor, @idMoneda, @tipoCambio, @fecha, @cantidad, @precio, @total, @totalPesos, @orden, @observaciones, @factura, @chofer, @camion, @noEconomico)")
+            comando.CommandText = String.Format("INSERT INTO Salidas (IdOrigen, IdAlmacen, IdFamilia, IdSubFamilia, IdArticulo, Id, IdExterno, IdTipoSalida, IdCliente, IdMoneda, TipoCambio, Fecha, Cantidad, Precio, Total, TotalPesos, Orden, Observaciones, Factura, Chofer, Camion, NoEconomico, IdLote, IdCultivo) VALUES (@idOrigen, @idAlmacen, @idFamilia, @idSubFamilia, @idArticulo, @id, @idExterno, @idTipoSalida, @idCliente, @idMoneda, @tipoCambio, @fecha, @cantidad, @precio, @total, @totalPesos, @orden, @observaciones, @factura, @chofer, @camion, @noEconomico, @idLote, @idCultivo)")
             comando.Parameters.AddWithValue("@idOrigen", Me.EIdOrigen)
             comando.Parameters.AddWithValue("@idAlmacen", Me.EIdAlmacen)
             comando.Parameters.AddWithValue("@idFamilia", Me.EIdFamilia)
@@ -215,8 +233,8 @@ Public Class Entradas
             comando.Parameters.AddWithValue("@idArticulo", Me.EIdArticulo)
             comando.Parameters.AddWithValue("@id", Me.EId)
             comando.Parameters.AddWithValue("@idExterno", Me.EIdExterno)
-            comando.Parameters.AddWithValue("@idTipoEntrada", Me.EIdTipoEntrada)
-            comando.Parameters.AddWithValue("@idProveedor", Me.EIdProveedor)
+            comando.Parameters.AddWithValue("@idTipoSalida", Me.EIdTipoSalida)
+            comando.Parameters.AddWithValue("@idCliente", Me.EIdCliente)
             comando.Parameters.AddWithValue("@idMoneda", Me.EIdMoneda)
             comando.Parameters.AddWithValue("@tipoCambio", Me.ETipoCambio)
             comando.Parameters.AddWithValue("@fecha", Me.EFecha)
@@ -230,6 +248,8 @@ Public Class Entradas
             comando.Parameters.AddWithValue("@chofer", Me.EChofer)
             comando.Parameters.AddWithValue("@camion", Me.ECamion)
             comando.Parameters.AddWithValue("@noEconomico", Me.ENoEconomico)
+            comando.Parameters.AddWithValue("@idLote", Me.EIdLote)
+            comando.Parameters.AddWithValue("@idCultivo", Me.EIdCultivo)
             BaseDatos.conexionAlmacen.Open()
             comando.ExecuteNonQuery()
             BaseDatos.conexionAlmacen.Close()
@@ -256,7 +276,7 @@ Public Class Entradas
             If (Me.EId > 0) Then
                 condicion &= " AND Id=@id"
             End If
-            comando.CommandText = String.Format("DELETE FROM Entradas WHERE 0=0 {0}", condicion)
+            comando.CommandText = String.Format("DELETE FROM Salidas WHERE 0=0 {0}", condicion)
             comando.Parameters.AddWithValue("@idOrigen", Me.EIdOrigen)
             comando.Parameters.AddWithValue("@idAlmacen", Me.EIdAlmacen)
             comando.Parameters.AddWithValue("@id", Me.EId)
@@ -270,5 +290,5 @@ Public Class Entradas
         End Try
 
     End Sub
-     
+
 End Class

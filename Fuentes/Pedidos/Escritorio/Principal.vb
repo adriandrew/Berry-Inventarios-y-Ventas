@@ -141,26 +141,26 @@ Public Class Principal
 
     Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
 
+        Me.Cursor = Cursors.WaitCursor
         If (Me.opcionPestanaSeleccionada = OpcionPestana.capturar) Then
             ValidarGuardado()
             If (Me.esGuardadoValido) Then
                 GuardarEditarPedidos()
             End If
         Else
-            Me.Cursor = Cursors.WaitCursor
             ActualizarPedidosActualizar()
-            Me.Cursor = Cursors.Default
         End If
+        Me.Cursor = Cursors.Default
 
     End Sub
 
     Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
 
+        Me.Cursor = Cursors.WaitCursor
         If (Me.opcionPestanaSeleccionada = OpcionPestana.capturar) Then
-            EliminarPedidos(True)
-        Else
-
+            EliminarPedidos(True) 
         End If
+        Me.Cursor = Cursors.Default
 
     End Sub
 
@@ -367,16 +367,19 @@ Public Class Principal
 
     Private Sub txtBuscarCatalogo_TextChanged(sender As Object, e As EventArgs) Handles txtBuscarCatalogo.TextChanged
 
+        Me.Cursor = Cursors.WaitCursor
         If (Me.opcionCatalogoSeleccionada = OpcionCatalogo.articulo) Then
             BuscarCatalogosRapidoArticulos()
         Else
             BuscarCatalogos()
         End If
+        Me.Cursor = Cursors.WaitCursor
 
     End Sub
 
     Private Sub chkMostrarDatos_CheckedChanged(sender As Object, e As EventArgs) Handles chkMostrarDetallado.CheckedChanged
 
+        Me.Cursor = Cursors.WaitCursor
         If (Me.estaMostrado) Then
             If (chkMostrarDetallado.Checked) Then
                 spPedidosCapturar.ActiveSheet.Columns(spPedidosCapturar.ActiveSheet.Columns("idFamilia").Index, spPedidosCapturar.ActiveSheet.Columns("nombreSubFamilia").Index).Visible = True
@@ -386,6 +389,7 @@ Public Class Principal
                 spPedidosCapturar.ActiveSheet.Columns("nombreArticulo").Visible = False
             End If
         End If
+        Me.Cursor = Cursors.Default
 
     End Sub
 
@@ -1059,7 +1063,7 @@ Public Class Principal
                     If (lista.Count = 1) Then
                         spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("nombreArticulo").Index).Value = lista(0).ENombre
                         spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("cantidad").Index).Value = 1 ' Por defecto. 
-                        spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precioUnitario").Index).Value = lista(0).EPrecio ' Por defecto. 
+                        spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precio").Index).Value = lista(0).EPrecio ' Por defecto. 
                         spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("total").Index).Value = lista(0).EPrecio ' Por defecto.
                         Dim lista2 As New List(Of ALMEntidadesPedidos.UnidadesMedidas)
                         Dim idMedida As Integer = lista(0).EIdUnidadMedida
@@ -1083,7 +1087,7 @@ Public Class Principal
                 fila = spPedidosCapturar.ActiveSheet.ActiveRowIndex
                 Dim cantidad As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("cantidad").Index).Value)
                 If (cantidad > 0) Then
-                    Dim valorPrecio As String = ALMLogicaPedidos.Funciones.ValidarLetra(spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precioUnitario").Index).Text)
+                    Dim valorPrecio As String = ALMLogicaPedidos.Funciones.ValidarLetra(spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precio").Index).Text)
                     If (String.IsNullOrEmpty(valorPrecio)) Then
                         Dim idAlmacen As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(cbAlmacenes.SelectedValue)
                         Dim idFamilia As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("idFamilia").Index).Value)
@@ -1097,7 +1101,7 @@ Public Class Principal
                         lista = articulos.ObtenerListado()
                         If (lista.Count = 1) Then
                             Dim precio As Double = lista(0).EPrecio
-                            spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precioUnitario").Index).Value = precio
+                            spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precio").Index).Value = precio
                             spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("total").Index).Value = cantidad * precio
                         End If
                     End If
@@ -1105,16 +1109,16 @@ Public Class Principal
                     spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("cantidad").Index).Value = String.Empty
                     spPedidosCapturar.ActiveSheet.SetActiveCell(fila, spPedidosCapturar.ActiveSheet.ActiveColumnIndex - 1)
                 End If
-            ElseIf (columnaActiva = spPedidosCapturar.ActiveSheet.Columns("precioUnitario").Index) Then
+            ElseIf (columnaActiva = spPedidosCapturar.ActiveSheet.Columns("precio").Index) Then
                 fila = spPedidosCapturar.ActiveSheet.ActiveRowIndex
                 Dim cantidad As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("cantidad").Index).Value)
-                Dim precio As Double = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precioUnitario").Index).Value)
+                Dim precio As Double = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precio").Index).Value)
                 If (cantidad > 0) Then
                     spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("total").Index).Value = cantidad * precio
                 ElseIf (precio = 0) Then
-                    spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precioUnitario").Index).Value = 0
+                    spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precio").Index).Value = 0
                 Else
-                    spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precioUnitario").Index).Value = String.Empty
+                    spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precio").Index).Value = String.Empty
                     spPedidosCapturar.ActiveSheet.SetActiveCell(fila, spPedidosCapturar.ActiveSheet.ActiveColumnIndex - 1)
                 End If
             ElseIf (columnaActiva = spPedidosCapturar.ActiveSheet.Columns("total").Index) Then
@@ -1122,7 +1126,7 @@ Public Class Principal
                 Dim cantidad As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("cantidad").Index).Value)
                 Dim total As Double = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("total").Index).Value)
                 If (cantidad > 0) Then
-                    spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precioUnitario").Index).Value = total / cantidad
+                    spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precio").Index).Value = total / cantidad
                 Else
                     spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("total").Index).Value = String.Empty
                     spPedidosCapturar.ActiveSheet.SetActiveCell(fila, spPedidosCapturar.ActiveSheet.ActiveColumnIndex - 1)
@@ -1152,7 +1156,7 @@ Public Class Principal
         ElseIf (spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("idSubFamilia").Index Or spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("nombreSubFamilia").Index) Then
             spPedidosCapturar.ActiveSheet.Cells(spPedidosCapturar.ActiveSheet.ActiveRowIndex, spPedidosCapturar.ActiveSheet.Columns("idSubFamilia").Index).Text = spCatalogos.ActiveSheet.Cells(filaCatalogos, spCatalogos.ActiveSheet.Columns("id").Index).Text
             spPedidosCapturar.ActiveSheet.Cells(spPedidosCapturar.ActiveSheet.ActiveRowIndex, spPedidosCapturar.ActiveSheet.Columns("nombreSubFamilia").Index).Text = spCatalogos.ActiveSheet.Cells(filaCatalogos, spCatalogos.ActiveSheet.Columns("nombre").Index).Text
-        ElseIf (spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("idArticulo").Index Or spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("nombreArticulo").Index Or spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("nombreUnidadMedida").Index Or spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("codigo").Index Or spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("pagina").Index Or spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("color").Index Or spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("talla").Index Or spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("modelo").Index Or spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("codigoInternet").Index Or spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("precioUnitario").Index) Then
+        ElseIf (spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("idArticulo").Index Or spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("nombreArticulo").Index Or spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("nombreUnidadMedida").Index Or spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("codigo").Index Or spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("pagina").Index Or spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("color").Index Or spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("talla").Index Or spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("modelo").Index Or spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("codigoInternet").Index Or spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("precio").Index) Then
             spPedidosCapturar.ActiveSheet.Cells(spPedidosCapturar.ActiveSheet.ActiveRowIndex, spPedidosCapturar.ActiveSheet.Columns("idArticulo").Index).Text = spCatalogos.ActiveSheet.Cells(filaCatalogos, spCatalogos.ActiveSheet.Columns("id").Index).Text
             spPedidosCapturar.ActiveSheet.Cells(spPedidosCapturar.ActiveSheet.ActiveRowIndex, spPedidosCapturar.ActiveSheet.Columns("nombreArticulo").Index).Text = spCatalogos.ActiveSheet.Cells(filaCatalogos, spCatalogos.ActiveSheet.Columns("nombre").Index).Text
             spPedidosCapturar.ActiveSheet.Cells(spPedidosCapturar.ActiveSheet.ActiveRowIndex, spPedidosCapturar.ActiveSheet.Columns("nombreUnidadMedida").Index).Text = spCatalogos.ActiveSheet.Cells(filaCatalogos, spCatalogos.ActiveSheet.Columns("unidadMedida").Index).Text
@@ -1162,7 +1166,7 @@ Public Class Principal
             spPedidosCapturar.ActiveSheet.Cells(spPedidosCapturar.ActiveSheet.ActiveRowIndex, spPedidosCapturar.ActiveSheet.Columns("talla").Index).Text = spCatalogos.ActiveSheet.Cells(filaCatalogos, spCatalogos.ActiveSheet.Columns("talla").Index).Text
             spPedidosCapturar.ActiveSheet.Cells(spPedidosCapturar.ActiveSheet.ActiveRowIndex, spPedidosCapturar.ActiveSheet.Columns("modelo").Index).Text = spCatalogos.ActiveSheet.Cells(filaCatalogos, spCatalogos.ActiveSheet.Columns("modelo").Index).Text
             spPedidosCapturar.ActiveSheet.Cells(spPedidosCapturar.ActiveSheet.ActiveRowIndex, spPedidosCapturar.ActiveSheet.Columns("codigoInternet").Index).Text = spCatalogos.ActiveSheet.Cells(filaCatalogos, spCatalogos.ActiveSheet.Columns("codigoInternet").Index).Text
-            spPedidosCapturar.ActiveSheet.Cells(spPedidosCapturar.ActiveSheet.ActiveRowIndex, spPedidosCapturar.ActiveSheet.Columns("precioUnitario").Index).Text = spCatalogos.ActiveSheet.Cells(filaCatalogos, spCatalogos.ActiveSheet.Columns("precio").Index).Text
+            spPedidosCapturar.ActiveSheet.Cells(spPedidosCapturar.ActiveSheet.ActiveRowIndex, spPedidosCapturar.ActiveSheet.Columns("precio").Index).Text = spCatalogos.ActiveSheet.Cells(filaCatalogos, spCatalogos.ActiveSheet.Columns("precio").Index).Text
         End If
 
     End Sub
@@ -1238,7 +1242,7 @@ Public Class Principal
                 spPedidosCapturar.Enabled = True
             End If
             FormatearSpreadCatalogo(OpcionPosicion.derecha)
-        ElseIf ((columna = spPedidosCapturar.ActiveSheet.Columns("idArticulo").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("nombreArticulo").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("nombreUnidadMedida").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("codigo").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("pagina").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("color").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("talla").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("modelo").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("codigoInternet").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("precioUnitario").Index)) Then
+        ElseIf ((columna = spPedidosCapturar.ActiveSheet.Columns("idArticulo").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("nombreArticulo").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("nombreUnidadMedida").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("codigo").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("pagina").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("color").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("talla").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("modelo").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("codigoInternet").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("precio").Index)) Then
             Me.opcionCatalogoSeleccionada = OpcionCatalogo.articulo
             Dim idAlmacen As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(cbAlmacenes.SelectedValue)
             Dim idFamilia As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosCapturar.ActiveSheet.Cells(spPedidosCapturar.ActiveSheet.ActiveRowIndex, spPedidosCapturar.ActiveSheet.Columns("idFamilia").Index).Text)
@@ -1450,7 +1454,7 @@ Public Class Principal
         spPedidosCapturar.ActiveSheet.Columns(numeracion).Tag = "talla" : numeracion += 1
         spPedidosCapturar.ActiveSheet.Columns(numeracion).Tag = "modelo" : numeracion += 1
         spPedidosCapturar.ActiveSheet.Columns(numeracion).Tag = "codigoInternet" : numeracion += 1
-        spPedidosCapturar.ActiveSheet.Columns(numeracion).Tag = "precioUnitario" : numeracion += 1
+        spPedidosCapturar.ActiveSheet.Columns(numeracion).Tag = "precio" : numeracion += 1
         spPedidosCapturar.ActiveSheet.Columns(numeracion).Tag = "cantidad" : numeracion += 1
         spPedidosCapturar.ActiveSheet.Columns(numeracion).Tag = "total" : numeracion += 1
         spPedidosCapturar.ActiveSheet.Columns(numeracion).Tag = "observaciones" : numeracion += 1
@@ -1470,7 +1474,7 @@ Public Class Principal
         spPedidosCapturar.ActiveSheet.Columns("talla").Width = 80
         spPedidosCapturar.ActiveSheet.Columns("modelo").Width = 100
         spPedidosCapturar.ActiveSheet.Columns("codigoInternet").Width = 100
-        spPedidosCapturar.ActiveSheet.Columns("precioUnitario").Width = 90
+        spPedidosCapturar.ActiveSheet.Columns("precio").Width = 90
         spPedidosCapturar.ActiveSheet.Columns("cantidad").Width = 110
         spPedidosCapturar.ActiveSheet.Columns("total").Width = 110
         spPedidosCapturar.ActiveSheet.Columns("observaciones").Width = 200
@@ -1489,7 +1493,7 @@ Public Class Principal
         spPedidosCapturar.ActiveSheet.Columns("talla").CellType = tipoTexto
         spPedidosCapturar.ActiveSheet.Columns("modelo").CellType = tipoTexto
         spPedidosCapturar.ActiveSheet.Columns("codigoInternet").CellType = tipoTexto
-        spPedidosCapturar.ActiveSheet.Columns("precioUnitario").CellType = tipoDoble
+        spPedidosCapturar.ActiveSheet.Columns("precio").CellType = tipoDoble
         spPedidosCapturar.ActiveSheet.Columns("cantidad").CellType = tipoEntero
         spPedidosCapturar.ActiveSheet.Columns("total").CellType = tipoDoble
         spPedidosCapturar.ActiveSheet.Columns("observaciones").CellType = tipoTexto
@@ -1516,7 +1520,7 @@ Public Class Principal
         spPedidosCapturar.ActiveSheet.ColumnHeader.Cells(1, spPedidosCapturar.ActiveSheet.Columns("talla").Index).Value = "Talla *".ToUpper()
         spPedidosCapturar.ActiveSheet.ColumnHeader.Cells(1, spPedidosCapturar.ActiveSheet.Columns("modelo").Index).Value = "Modelo *".ToUpper()
         spPedidosCapturar.ActiveSheet.ColumnHeader.Cells(1, spPedidosCapturar.ActiveSheet.Columns("codigoInternet").Index).Value = "Codigo Internet *".ToUpper()
-        spPedidosCapturar.ActiveSheet.ColumnHeader.Cells(1, spPedidosCapturar.ActiveSheet.Columns("precioUnitario").Index).Value = "Precio *".ToUpper()
+        spPedidosCapturar.ActiveSheet.ColumnHeader.Cells(1, spPedidosCapturar.ActiveSheet.Columns("precio").Index).Value = "Precio *".ToUpper()
         spPedidosCapturar.ActiveSheet.AddColumnHeaderSpanCell(0, spPedidosCapturar.ActiveSheet.Columns("cantidad").Index, 2, 1)
         spPedidosCapturar.ActiveSheet.ColumnHeader.Cells(0, spPedidosCapturar.ActiveSheet.Columns("cantidad").Index).Value = "Cantidad *".ToUpper()
         spPedidosCapturar.ActiveSheet.AddColumnHeaderSpanCell(0, spPedidosCapturar.ActiveSheet.Columns("total").Index, 2, 1)
@@ -1564,10 +1568,10 @@ Public Class Principal
                     spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("cantidad").Index).BackColor = Color.Orange
                     Me.esGuardadoValido = False
                 End If
-                Dim precioUnitario As String = spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precioUnitario").Index).Text
-                Dim precioUnitario2 As Double = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precioUnitario").Index).Text)
-                If (String.IsNullOrEmpty(precioUnitario) Or precioUnitario2 < 0) Then
-                    spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precioUnitario").Index).BackColor = Color.Orange
+                Dim precio As String = spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precio").Index).Text
+                Dim precio2 As Double = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precio").Index).Text)
+                If (String.IsNullOrEmpty(precio) Or precio2 < 0) Then
+                    spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precio").Index).BackColor = Color.Orange
                     Me.esGuardadoValido = False
                 End If
                 Dim total As String = spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("total").Index).Text
@@ -1583,8 +1587,7 @@ Public Class Principal
     End Sub
 
     Private Sub GuardarEditarPedidos()
-
-        Me.Cursor = Cursors.WaitCursor
+         
         EliminarPedidos(False)
         ' Parte superior.
         Dim idAlmacen As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(cbAlmacenes.SelectedValue)
@@ -1598,8 +1601,8 @@ Public Class Principal
             Dim idSubFamilia As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("idSubFamilia").Index).Text)
             Dim idArticulo As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("idArticulo").Index).Text)
             Dim cantidad As Integer = 1 'ALMLogicaPedidos.Funciones.ValidarNumeroACero(spEntradas.ActiveSheet.Cells(fila, spEntradas.ActiveSheet.Columns("cantidad").Index).Text)
-            Dim precioUnitario As Double = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precioUnitario").Index).Text)
-            Dim total As Double = precioUnitario * cantidad 'ALMLogicaPedidos.Funciones.ValidarNumeroACero(spEntradas.ActiveSheet.Cells(fila, spEntradas.ActiveSheet.Columns("total").Index).Text)
+            Dim precio As Double = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precio").Index).Text)
+            Dim total As Double = precio * cantidad 'ALMLogicaPedidos.Funciones.ValidarNumeroACero(spEntradas.ActiveSheet.Cells(fila, spEntradas.ActiveSheet.Columns("total").Index).Text)
             Dim orden As Integer = fila
             Dim observaciones As String = spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("observaciones").Index).Text
             Dim estaActualizado As Boolean = False
@@ -1612,7 +1615,7 @@ Public Class Principal
                 pedidos.EIdCliente = idCliente
                 pedidos.EFechaEnvio = fechaEnvio
                 pedidos.ECantidad = cantidad
-                pedidos.EPrecioUnitario = precioUnitario
+                pedidos.EPrecio = precio
                 pedidos.ETotal = total
                 pedidos.EOrden = orden
                 pedidos.EObservaciones = observaciones
@@ -1623,8 +1626,7 @@ Public Class Principal
         MessageBox.Show("Guardado finalizado.", "Finalizado.", MessageBoxButtons.OK)
         LimpiarPantalla()
         CargarIdConsecutivo()
-        AsignarFoco(txtId)
-        Me.Cursor = Cursors.Default
+        AsignarFoco(txtId) 
 
     End Sub
 
@@ -1709,7 +1711,7 @@ Public Class Principal
         spPedidosActualizar.ActiveSheet.Columns(numeracion).Tag = "talla" : numeracion += 1
         spPedidosActualizar.ActiveSheet.Columns(numeracion).Tag = "modelo" : numeracion += 1
         spPedidosActualizar.ActiveSheet.Columns(numeracion).Tag = "codigoInternet" : numeracion += 1
-        spPedidosActualizar.ActiveSheet.Columns(numeracion).Tag = "precioUnitario" : numeracion += 1
+        spPedidosActualizar.ActiveSheet.Columns(numeracion).Tag = "precio" : numeracion += 1
         spPedidosActualizar.ActiveSheet.Columns(numeracion).Tag = "cantidad" : numeracion += 1
         spPedidosActualizar.ActiveSheet.Columns(numeracion).Tag = "total" : numeracion += 1
         spPedidosActualizar.ActiveSheet.Columns(numeracion).Tag = "observaciones" : numeracion += 1
@@ -1741,7 +1743,7 @@ Public Class Principal
         spPedidosActualizar.ActiveSheet.Columns("talla").Width = 75
         spPedidosActualizar.ActiveSheet.Columns("modelo").Width = 90
         spPedidosActualizar.ActiveSheet.Columns("codigoInternet").Width = 100
-        spPedidosActualizar.ActiveSheet.Columns("precioUnitario").Width = 80
+        spPedidosActualizar.ActiveSheet.Columns("precio").Width = 80
         spPedidosActualizar.ActiveSheet.Columns("cantidad").Width = 110
         spPedidosActualizar.ActiveSheet.Columns("total").Width = 110
         spPedidosActualizar.ActiveSheet.Columns("observaciones").Width = 200
@@ -1772,7 +1774,7 @@ Public Class Principal
         spPedidosActualizar.ActiveSheet.Columns("talla").CellType = tipoTexto
         spPedidosActualizar.ActiveSheet.Columns("modelo").CellType = tipoTexto
         spPedidosActualizar.ActiveSheet.Columns("codigoInternet").CellType = tipoTexto
-        spPedidosActualizar.ActiveSheet.Columns("precioUnitario").CellType = tipoDoble
+        spPedidosActualizar.ActiveSheet.Columns("precio").CellType = tipoDoble
         spPedidosActualizar.ActiveSheet.Columns("cantidad").CellType = tipoEntero
         spPedidosActualizar.ActiveSheet.Columns("total").CellType = tipoDoble
         spPedidosActualizar.ActiveSheet.Columns("observaciones").CellType = tipoTexto
@@ -1817,7 +1819,7 @@ Public Class Principal
         spPedidosActualizar.ActiveSheet.ColumnHeader.Cells(1, spPedidosActualizar.ActiveSheet.Columns("talla").Index).Value = "Talla".ToUpper()
         spPedidosActualizar.ActiveSheet.ColumnHeader.Cells(1, spPedidosActualizar.ActiveSheet.Columns("modelo").Index).Value = "Modelo".ToUpper()
         spPedidosActualizar.ActiveSheet.ColumnHeader.Cells(1, spPedidosActualizar.ActiveSheet.Columns("codigoInternet").Index).Value = "Codigo Internet".ToUpper()
-        spPedidosActualizar.ActiveSheet.ColumnHeader.Cells(1, spPedidosActualizar.ActiveSheet.Columns("precioUnitario").Index).Value = "Precio".ToUpper()
+        spPedidosActualizar.ActiveSheet.ColumnHeader.Cells(1, spPedidosActualizar.ActiveSheet.Columns("precio").Index).Value = "Precio".ToUpper()
         spPedidosActualizar.ActiveSheet.AddColumnHeaderSpanCell(0, spPedidosActualizar.ActiveSheet.Columns("cantidad").Index, 2, 1)
         spPedidosActualizar.ActiveSheet.ColumnHeader.Cells(0, spPedidosActualizar.ActiveSheet.Columns("cantidad").Index).Value = "Cantidad".ToUpper()
         spPedidosActualizar.ActiveSheet.AddColumnHeaderSpanCell(0, spPedidosActualizar.ActiveSheet.Columns("total").Index, 2, 1)
@@ -1855,7 +1857,7 @@ Public Class Principal
     Private Sub ActualizarPedidosActualizar()
 
         GuardarEditarEntradasPedidosActualizar()
-        GuardarEditarSalidasPedidosActualizar()
+        'GuardarEditarSalidasPedidosActualizar()
         ' No capturables por el usuario.
         Dim estaActualizado As Boolean = True
         ' Parte inferior.
@@ -1941,7 +1943,7 @@ Public Class Principal
             End If
             Dim idProveedor As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("idProveedor").Index).Text)
             Dim cantidad As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("cantidad").Index).Text)
-            Dim precioUnitario As Double = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("precioUnitario").Index).Text)
+            Dim precio As Double = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("precio").Index).Text)
             Dim total As Double = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("total").Index).Text)
             Dim totalPesos As Double = total
             Dim orden As Integer = fila
@@ -1960,7 +1962,7 @@ Public Class Principal
                 entradas.ETipoCambio = tipoCambio
                 entradas.EFecha = fechaLlegada
                 entradas.ECantidad = cantidad
-                entradas.EPrecioUnitario = precioUnitario
+                entradas.EPrecio = precio
                 entradas.ETotal = total
                 entradas.ETotalPesos = totalPesos
                 entradas.EOrden = orden
@@ -2042,7 +2044,7 @@ Public Class Principal
             End If
             Dim idCliente As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("idCliente").Index).Text)
             Dim cantidad As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("cantidad").Index).Text)
-            Dim precioUnitario As Double = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("precioUnitario").Index).Text)
+            Dim precio As Double = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("precio").Index).Text)
             Dim total As Double = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("total").Index).Text)
             Dim totalPesos As Double = total
             Dim orden As Integer = fila
@@ -2061,7 +2063,7 @@ Public Class Principal
                 salidas.ETipoCambio = tipoCambio
                 salidas.EFecha = fechaLlegada
                 salidas.ECantidad = cantidad
-                salidas.EPrecioUnitario = precioUnitario
+                salidas.EPrecio = precio
                 salidas.ETotal = total
                 salidas.ETotalPesos = totalPesos
                 salidas.EOrden = orden

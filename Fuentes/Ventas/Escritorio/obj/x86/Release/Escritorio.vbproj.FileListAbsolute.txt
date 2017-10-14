@@ -182,3 +182,4 @@ C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\V
 C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Ventas\Escritorio\obj\x86\Release\ALM07.exe
 C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Ventas\Escritorio\obj\x86\Release\ALM07.xml
 C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Ventas\Escritorio\obj\x86\Release\ALM07.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Ventas\Escritorio\obj\x86\Release\ALMVentas.Impresoras.resources

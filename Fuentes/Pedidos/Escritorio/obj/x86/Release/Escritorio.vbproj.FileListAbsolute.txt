@@ -150,3 +150,17 @@ C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\P
 C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Escritorio\obj\x86\Release\ALM06.exe
 C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Escritorio\obj\x86\Release\ALM06.xml
 C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Escritorio\obj\x86\Release\ALM06.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Escritorio\bin\x86\Release\ALM06.exe
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Escritorio\bin\x86\Release\ALM06.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Escritorio\bin\x86\Release\ALM06.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Escritorio\bin\x86\Release\ALMEntidadesPedidos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Escritorio\bin\x86\Release\ALMLogicaPedidos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Escritorio\bin\x86\Release\ALMEntidadesPedidos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Escritorio\bin\x86\Release\ALMEntidadesPedidos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Escritorio\bin\x86\Release\ALMLogicaPedidos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Escritorio\bin\x86\Release\ALMLogicaPedidos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Escritorio\obj\x86\Release\Escritorio.vbprojResolveAssemblyReference.cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Escritorio\obj\x86\Release\ALMPedidos.Resources.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Escritorio\obj\x86\Release\ALMPedidos.Principal.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Escritorio\obj\x86\Release\Escritorio.vbproj.GenerateResource.Cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Escritorio\obj\x86\Release\ALM06.exe.licenses

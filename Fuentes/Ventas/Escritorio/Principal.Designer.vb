@@ -24,26 +24,46 @@ Partial Class Principal
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Principal))
+        Dim EnhancedScrollBarRenderer6 As FarPoint.Win.Spread.EnhancedScrollBarRenderer = New FarPoint.Win.Spread.EnhancedScrollBarRenderer()
+        Dim NamedStyle7 As FarPoint.Win.Spread.NamedStyle = New FarPoint.Win.Spread.NamedStyle("Style1")
+        Dim NamedStyle8 As FarPoint.Win.Spread.NamedStyle = New FarPoint.Win.Spread.NamedStyle("DataAreaGrayscale")
+        Dim GeneralCellType3 As FarPoint.Win.Spread.CellType.GeneralCellType = New FarPoint.Win.Spread.CellType.GeneralCellType()
+        Dim NamedStyle9 As FarPoint.Win.Spread.NamedStyle = New FarPoint.Win.Spread.NamedStyle("ColumnHeaderMidnight")
+        Dim NamedStyle10 As FarPoint.Win.Spread.NamedStyle = New FarPoint.Win.Spread.NamedStyle("RowHeaderMidnight")
+        Dim NamedStyle11 As FarPoint.Win.Spread.NamedStyle = New FarPoint.Win.Spread.NamedStyle("CornerMidnight")
+        Dim EnhancedCornerRenderer2 As FarPoint.Win.Spread.CellType.EnhancedCornerRenderer = New FarPoint.Win.Spread.CellType.EnhancedCornerRenderer()
+        Dim NamedStyle12 As FarPoint.Win.Spread.NamedStyle = New FarPoint.Win.Spread.NamedStyle("DataAreaMidnght")
+        Dim GeneralCellType4 As FarPoint.Win.Spread.CellType.GeneralCellType = New FarPoint.Win.Spread.CellType.GeneralCellType()
+        Dim SpreadSkin2 As FarPoint.Win.Spread.SpreadSkin = New FarPoint.Win.Spread.SpreadSkin()
+        Dim EnhancedFocusIndicatorRenderer2 As FarPoint.Win.Spread.EnhancedFocusIndicatorRenderer = New FarPoint.Win.Spread.EnhancedFocusIndicatorRenderer()
+        Dim EnhancedInterfaceRenderer2 As FarPoint.Win.Spread.EnhancedInterfaceRenderer = New FarPoint.Win.Spread.EnhancedInterfaceRenderer()
+        Dim EnhancedScrollBarRenderer7 As FarPoint.Win.Spread.EnhancedScrollBarRenderer = New FarPoint.Win.Spread.EnhancedScrollBarRenderer()
+        Dim EnhancedScrollBarRenderer10 As FarPoint.Win.Spread.EnhancedScrollBarRenderer = New FarPoint.Win.Spread.EnhancedScrollBarRenderer()
         Dim EnhancedScrollBarRenderer1 As FarPoint.Win.Spread.EnhancedScrollBarRenderer = New FarPoint.Win.Spread.EnhancedScrollBarRenderer()
-        Dim NamedStyle1 As FarPoint.Win.Spread.NamedStyle = New FarPoint.Win.Spread.NamedStyle("Style1")
-        Dim NamedStyle2 As FarPoint.Win.Spread.NamedStyle = New FarPoint.Win.Spread.NamedStyle("DataAreaGrayscale")
-        Dim GeneralCellType1 As FarPoint.Win.Spread.CellType.GeneralCellType = New FarPoint.Win.Spread.CellType.GeneralCellType()
-        Dim NamedStyle3 As FarPoint.Win.Spread.NamedStyle = New FarPoint.Win.Spread.NamedStyle("ColumnHeaderMidnight")
-        Dim NamedStyle4 As FarPoint.Win.Spread.NamedStyle = New FarPoint.Win.Spread.NamedStyle("RowHeaderMidnight")
-        Dim NamedStyle5 As FarPoint.Win.Spread.NamedStyle = New FarPoint.Win.Spread.NamedStyle("CornerMidnight")
-        Dim EnhancedCornerRenderer1 As FarPoint.Win.Spread.CellType.EnhancedCornerRenderer = New FarPoint.Win.Spread.CellType.EnhancedCornerRenderer()
-        Dim NamedStyle6 As FarPoint.Win.Spread.NamedStyle = New FarPoint.Win.Spread.NamedStyle("DataAreaMidnght")
-        Dim GeneralCellType2 As FarPoint.Win.Spread.CellType.GeneralCellType = New FarPoint.Win.Spread.CellType.GeneralCellType()
-        Dim SpreadSkin1 As FarPoint.Win.Spread.SpreadSkin = New FarPoint.Win.Spread.SpreadSkin()
-        Dim EnhancedFocusIndicatorRenderer1 As FarPoint.Win.Spread.EnhancedFocusIndicatorRenderer = New FarPoint.Win.Spread.EnhancedFocusIndicatorRenderer()
-        Dim EnhancedInterfaceRenderer1 As FarPoint.Win.Spread.EnhancedInterfaceRenderer = New FarPoint.Win.Spread.EnhancedInterfaceRenderer()
         Dim EnhancedScrollBarRenderer2 As FarPoint.Win.Spread.EnhancedScrollBarRenderer = New FarPoint.Win.Spread.EnhancedScrollBarRenderer()
-        Dim EnhancedScrollBarRenderer3 As FarPoint.Win.Spread.EnhancedScrollBarRenderer = New FarPoint.Win.Spread.EnhancedScrollBarRenderer()
-        Dim EnhancedScrollBarRenderer4 As FarPoint.Win.Spread.EnhancedScrollBarRenderer = New FarPoint.Win.Spread.EnhancedScrollBarRenderer()
-        Dim EnhancedScrollBarRenderer5 As FarPoint.Win.Spread.EnhancedScrollBarRenderer = New FarPoint.Win.Spread.EnhancedScrollBarRenderer()
+        Dim EnhancedScrollBarRenderer8 As FarPoint.Win.Spread.EnhancedScrollBarRenderer = New FarPoint.Win.Spread.EnhancedScrollBarRenderer()
+        Dim EnhancedScrollBarRenderer9 As FarPoint.Win.Spread.EnhancedScrollBarRenderer = New FarPoint.Win.Spread.EnhancedScrollBarRenderer()
         Me.pnlContenido = New System.Windows.Forms.Panel()
         Me.pnlCuerpo = New System.Windows.Forms.Panel()
+        Me.pnlTotales = New System.Windows.Forms.Panel()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.txtTotal = New System.Windows.Forms.TextBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.txtDescuento = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.txtSubTotal = New System.Windows.Forms.TextBox()
         Me.pnlCapturaSuperior = New System.Windows.Forms.Panel()
+        Me.cbVales2 = New System.Windows.Forms.ComboBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.cbVales1 = New System.Windows.Forms.ComboBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.txtImporteCambio = New System.Windows.Forms.TextBox()
+        Me.txtImportePagado = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.cbMetodosPagos = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.chkMostrarDetallado = New System.Windows.Forms.CheckBox()
         Me.cbClientes = New System.Windows.Forms.ComboBox()
         Me.btnMostrarOcultar = New System.Windows.Forms.Button()
         Me.btnIdSiguiente = New System.Windows.Forms.Button()
@@ -62,6 +82,8 @@ Partial Class Principal
         Me.spVentas = New FarPoint.Win.Spread.FpSpread()
         Me.spVentas_Sheet1 = New FarPoint.Win.Spread.SheetView()
         Me.pnlPie = New System.Windows.Forms.Panel()
+        Me.btnImprimir = New System.Windows.Forms.Button()
+        Me.btnConfigurarImpresion = New System.Windows.Forms.Button()
         Me.btnAyuda = New System.Windows.Forms.Button()
         Me.lblDescripcionTooltip = New System.Windows.Forms.Label()
         Me.btnEliminar = New System.Windows.Forms.Button()
@@ -73,9 +95,13 @@ Partial Class Principal
         Me.lblEncabezadoEmpresa = New System.Windows.Forms.Label()
         Me.lblEncabezadoPrograma = New System.Windows.Forms.Label()
         Me.temporizador = New System.Windows.Forms.Timer(Me.components)
-        Me.chkMostrarDetallado = New System.Windows.Forms.CheckBox()
+        Me.pdRecibo = New System.Drawing.Printing.PrintDocument()
+        Me.pdCaja = New System.Drawing.Printing.PrintDocument()
+        Me.spVales = New FarPoint.Win.Spread.FpSpread()
+        Me.spVales_Sheet1 = New FarPoint.Win.Spread.SheetView()
         Me.pnlContenido.SuspendLayout()
         Me.pnlCuerpo.SuspendLayout()
+        Me.pnlTotales.SuspendLayout()
         Me.pnlCapturaSuperior.SuspendLayout()
         Me.pnlCatalogos.SuspendLayout()
         CType(Me.spCatalogos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,6 +110,8 @@ Partial Class Principal
         CType(Me.spVentas_Sheet1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlPie.SuspendLayout()
         Me.pnlEncabezado.SuspendLayout()
+        CType(Me.spVales, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.spVales_Sheet1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pnlContenido
@@ -110,6 +138,8 @@ Partial Class Principal
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlCuerpo.AutoScroll = True
         Me.pnlCuerpo.BackColor = System.Drawing.Color.Transparent
+        Me.pnlCuerpo.Controls.Add(Me.spVales)
+        Me.pnlCuerpo.Controls.Add(Me.pnlTotales)
         Me.pnlCuerpo.Controls.Add(Me.pnlCapturaSuperior)
         Me.pnlCuerpo.Controls.Add(Me.pnlCatalogos)
         Me.pnlCuerpo.Controls.Add(Me.spVentas)
@@ -118,12 +148,103 @@ Partial Class Principal
         Me.pnlCuerpo.Size = New System.Drawing.Size(1028, 490)
         Me.pnlCuerpo.TabIndex = 9
         '
+        'pnlTotales
+        '
+        Me.pnlTotales.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnlTotales.BackColor = System.Drawing.Color.White
+        Me.pnlTotales.Controls.Add(Me.Label12)
+        Me.pnlTotales.Controls.Add(Me.txtTotal)
+        Me.pnlTotales.Controls.Add(Me.Label11)
+        Me.pnlTotales.Controls.Add(Me.txtDescuento)
+        Me.pnlTotales.Controls.Add(Me.Label9)
+        Me.pnlTotales.Controls.Add(Me.txtSubTotal)
+        Me.pnlTotales.Location = New System.Drawing.Point(803, 413)
+        Me.pnlTotales.Name = "pnlTotales"
+        Me.pnlTotales.Size = New System.Drawing.Size(224, 75)
+        Me.pnlTotales.TabIndex = 25
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Location = New System.Drawing.Point(43, 54)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(53, 15)
+        Me.Label12.TabIndex = 92
+        Me.Label12.Text = "TOTAL:"
+        '
+        'txtTotal
+        '
+        Me.txtTotal.BackColor = System.Drawing.Color.White
+        Me.txtTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtTotal.ForeColor = System.Drawing.Color.Black
+        Me.txtTotal.Location = New System.Drawing.Point(98, 50)
+        Me.txtTotal.Name = "txtTotal"
+        Me.txtTotal.ReadOnly = True
+        Me.txtTotal.Size = New System.Drawing.Size(123, 22)
+        Me.txtTotal.TabIndex = 91
+        Me.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.Location = New System.Drawing.Point(1, 30)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(95, 15)
+        Me.Label11.TabIndex = 90
+        Me.Label11.Text = "DESCUENTO:"
+        '
+        'txtDescuento
+        '
+        Me.txtDescuento.BackColor = System.Drawing.Color.White
+        Me.txtDescuento.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtDescuento.ForeColor = System.Drawing.Color.Black
+        Me.txtDescuento.Location = New System.Drawing.Point(98, 26)
+        Me.txtDescuento.Name = "txtDescuento"
+        Me.txtDescuento.ReadOnly = True
+        Me.txtDescuento.Size = New System.Drawing.Size(123, 22)
+        Me.txtDescuento.TabIndex = 89
+        Me.txtDescuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(15, 6)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(81, 15)
+        Me.Label9.TabIndex = 88
+        Me.Label9.Text = "SUBTOTAL:"
+        '
+        'txtSubTotal
+        '
+        Me.txtSubTotal.BackColor = System.Drawing.Color.White
+        Me.txtSubTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtSubTotal.ForeColor = System.Drawing.Color.Black
+        Me.txtSubTotal.Location = New System.Drawing.Point(98, 2)
+        Me.txtSubTotal.Name = "txtSubTotal"
+        Me.txtSubTotal.ReadOnly = True
+        Me.txtSubTotal.Size = New System.Drawing.Size(123, 22)
+        Me.txtSubTotal.TabIndex = 87
+        Me.txtSubTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'pnlCapturaSuperior
         '
         Me.pnlCapturaSuperior.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.pnlCapturaSuperior.AutoScroll = True
         Me.pnlCapturaSuperior.BackColor = System.Drawing.Color.White
+        Me.pnlCapturaSuperior.Controls.Add(Me.cbVales2)
+        Me.pnlCapturaSuperior.Controls.Add(Me.Label7)
+        Me.pnlCapturaSuperior.Controls.Add(Me.cbVales1)
+        Me.pnlCapturaSuperior.Controls.Add(Me.Label6)
+        Me.pnlCapturaSuperior.Controls.Add(Me.Label5)
+        Me.pnlCapturaSuperior.Controls.Add(Me.txtImporteCambio)
+        Me.pnlCapturaSuperior.Controls.Add(Me.txtImportePagado)
+        Me.pnlCapturaSuperior.Controls.Add(Me.Label4)
+        Me.pnlCapturaSuperior.Controls.Add(Me.cbMetodosPagos)
+        Me.pnlCapturaSuperior.Controls.Add(Me.Label1)
         Me.pnlCapturaSuperior.Controls.Add(Me.chkMostrarDetallado)
         Me.pnlCapturaSuperior.Controls.Add(Me.cbClientes)
         Me.pnlCapturaSuperior.Controls.Add(Me.btnMostrarOcultar)
@@ -137,8 +258,133 @@ Partial Class Principal
         Me.pnlCapturaSuperior.Controls.Add(Me.Label2)
         Me.pnlCapturaSuperior.Location = New System.Drawing.Point(0, 0)
         Me.pnlCapturaSuperior.Name = "pnlCapturaSuperior"
-        Me.pnlCapturaSuperior.Size = New System.Drawing.Size(392, 490)
+        Me.pnlCapturaSuperior.Size = New System.Drawing.Size(392, 492)
         Me.pnlCapturaSuperior.TabIndex = 23
+        '
+        'cbVales2
+        '
+        Me.cbVales2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cbVales2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cbVales2.BackColor = System.Drawing.Color.White
+        Me.cbVales2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbVales2.ForeColor = System.Drawing.Color.Black
+        Me.cbVales2.FormattingEnabled = True
+        Me.cbVales2.Location = New System.Drawing.Point(120, 205)
+        Me.cbVales2.Name = "cbVales2"
+        Me.cbVales2.Size = New System.Drawing.Size(230, 24)
+        Me.cbVales2.TabIndex = 90
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(63, 209)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(56, 15)
+        Me.Label7.TabIndex = 89
+        Me.Label7.Text = "VALE 2:"
+        '
+        'cbVales1
+        '
+        Me.cbVales1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cbVales1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cbVales1.BackColor = System.Drawing.Color.White
+        Me.cbVales1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbVales1.ForeColor = System.Drawing.Color.Black
+        Me.cbVales1.FormattingEnabled = True
+        Me.cbVales1.Location = New System.Drawing.Point(120, 175)
+        Me.cbVales1.Name = "cbVales1"
+        Me.cbVales1.Size = New System.Drawing.Size(230, 24)
+        Me.cbVales1.TabIndex = 88
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(63, 179)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(56, 15)
+        Me.Label6.TabIndex = 87
+        Me.Label6.Text = "VALE 1:"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(56, 266)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(63, 15)
+        Me.Label5.TabIndex = 86
+        Me.Label5.Text = "CAMBIO:"
+        '
+        'txtImporteCambio
+        '
+        Me.txtImporteCambio.BackColor = System.Drawing.Color.White
+        Me.txtImporteCambio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtImporteCambio.ForeColor = System.Drawing.Color.Black
+        Me.txtImporteCambio.Location = New System.Drawing.Point(120, 263)
+        Me.txtImporteCambio.Name = "txtImporteCambio"
+        Me.txtImporteCambio.ReadOnly = True
+        Me.txtImporteCambio.Size = New System.Drawing.Size(230, 22)
+        Me.txtImporteCambio.TabIndex = 85
+        Me.txtImporteCambio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtImportePagado
+        '
+        Me.txtImportePagado.BackColor = System.Drawing.Color.White
+        Me.txtImportePagado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtImportePagado.ForeColor = System.Drawing.Color.Black
+        Me.txtImportePagado.Location = New System.Drawing.Point(120, 235)
+        Me.txtImportePagado.Name = "txtImportePagado"
+        Me.txtImportePagado.Size = New System.Drawing.Size(230, 22)
+        Me.txtImportePagado.TabIndex = 84
+        Me.txtImportePagado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(5, 238)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(114, 15)
+        Me.Label4.TabIndex = 83
+        Me.Label4.Text = "IMPORTE PAGO:"
+        '
+        'cbMetodosPagos
+        '
+        Me.cbMetodosPagos.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cbMetodosPagos.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cbMetodosPagos.BackColor = System.Drawing.Color.White
+        Me.cbMetodosPagos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbMetodosPagos.ForeColor = System.Drawing.Color.Black
+        Me.cbMetodosPagos.FormattingEnabled = True
+        Me.cbMetodosPagos.Location = New System.Drawing.Point(120, 145)
+        Me.cbMetodosPagos.Name = "cbMetodosPagos"
+        Me.cbMetodosPagos.Size = New System.Drawing.Size(230, 24)
+        Me.cbMetodosPagos.TabIndex = 82
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(-2, 149)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(121, 15)
+        Me.Label1.TabIndex = 81
+        Me.Label1.Text = "MÉTODO PAGO: *"
+        '
+        'chkMostrarDetallado
+        '
+        Me.chkMostrarDetallado.AutoSize = True
+        Me.chkMostrarDetallado.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.chkMostrarDetallado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkMostrarDetallado.ForeColor = System.Drawing.Color.Black
+        Me.chkMostrarDetallado.Location = New System.Drawing.Point(81, 119)
+        Me.chkMostrarDetallado.Name = "chkMostrarDetallado"
+        Me.chkMostrarDetallado.Size = New System.Drawing.Size(151, 20)
+        Me.chkMostrarDetallado.TabIndex = 80
+        Me.chkMostrarDetallado.Text = "Mostrar Detallado"
+        Me.chkMostrarDetallado.UseVisualStyleBackColor = True
         '
         'cbClientes
         '
@@ -175,7 +421,7 @@ Partial Class Principal
         '
         Me.btnIdSiguiente.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnIdSiguiente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnIdSiguiente.Location = New System.Drawing.Point(178, 6)
+        Me.btnIdSiguiente.Location = New System.Drawing.Point(156, 9)
         Me.btnIdSiguiente.Name = "btnIdSiguiente"
         Me.btnIdSiguiente.Size = New System.Drawing.Size(25, 28)
         Me.btnIdSiguiente.TabIndex = 23
@@ -186,7 +432,7 @@ Partial Class Principal
         '
         Me.btnIdAnterior.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnIdAnterior.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnIdAnterior.Location = New System.Drawing.Point(154, 6)
+        Me.btnIdAnterior.Location = New System.Drawing.Point(132, 9)
         Me.btnIdAnterior.Name = "btnIdAnterior"
         Me.btnIdAnterior.Size = New System.Drawing.Size(25, 28)
         Me.btnIdAnterior.TabIndex = 22
@@ -201,7 +447,7 @@ Partial Class Principal
         Me.chkConservarDatos.Cursor = System.Windows.Forms.Cursors.Hand
         Me.chkConservarDatos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkConservarDatos.ForeColor = System.Drawing.Color.Black
-        Me.chkConservarDatos.Location = New System.Drawing.Point(119, 100)
+        Me.chkConservarDatos.Location = New System.Drawing.Point(81, 98)
         Me.chkConservarDatos.Name = "chkConservarDatos"
         Me.chkConservarDatos.Size = New System.Drawing.Size(214, 20)
         Me.chkConservarDatos.TabIndex = 18
@@ -223,7 +469,7 @@ Partial Class Principal
         Me.txtId.BackColor = System.Drawing.Color.White
         Me.txtId.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtId.ForeColor = System.Drawing.Color.Black
-        Me.txtId.Location = New System.Drawing.Point(103, 9)
+        Me.txtId.Location = New System.Drawing.Point(81, 12)
         Me.txtId.Name = "txtId"
         Me.txtId.Size = New System.Drawing.Size(50, 22)
         Me.txtId.TabIndex = 6
@@ -232,7 +478,7 @@ Partial Class Principal
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(61, 13)
+        Me.Label3.Location = New System.Drawing.Point(39, 16)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(41, 15)
         Me.Label3.TabIndex = 5
@@ -305,123 +551,123 @@ Partial Class Principal
         Me.spCatalogos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.spCatalogos.HorizontalScrollBar.Buttons = New FarPoint.Win.Spread.FpScrollBarButtonCollection("BackwardLineButton,ThumbTrack,ForwardLineButton")
         Me.spCatalogos.HorizontalScrollBar.Name = ""
-        EnhancedScrollBarRenderer1.ArrowColor = System.Drawing.Color.MidnightBlue
-        EnhancedScrollBarRenderer1.ArrowHoveredColor = System.Drawing.Color.MidnightBlue
-        EnhancedScrollBarRenderer1.ArrowSelectedColor = System.Drawing.Color.MidnightBlue
-        EnhancedScrollBarRenderer1.ButtonBackgroundColor = System.Drawing.Color.DarkSlateBlue
-        EnhancedScrollBarRenderer1.ButtonBorderColor = System.Drawing.Color.MidnightBlue
-        EnhancedScrollBarRenderer1.ButtonHoveredBackgroundColor = System.Drawing.Color.MidnightBlue
-        EnhancedScrollBarRenderer1.ButtonHoveredBorderColor = System.Drawing.Color.Black
-        EnhancedScrollBarRenderer1.ButtonSelectedBackgroundColor = System.Drawing.Color.SteelBlue
-        EnhancedScrollBarRenderer1.ButtonSelectedBorderColor = System.Drawing.Color.DarkSlateBlue
-        EnhancedScrollBarRenderer1.TrackBarBackgroundColor = System.Drawing.Color.SteelBlue
-        EnhancedScrollBarRenderer1.TrackBarSelectedBackgroundColor = System.Drawing.Color.DarkSlateBlue
-        Me.spCatalogos.HorizontalScrollBar.Renderer = EnhancedScrollBarRenderer1
+        EnhancedScrollBarRenderer6.ArrowColor = System.Drawing.Color.MidnightBlue
+        EnhancedScrollBarRenderer6.ArrowHoveredColor = System.Drawing.Color.MidnightBlue
+        EnhancedScrollBarRenderer6.ArrowSelectedColor = System.Drawing.Color.MidnightBlue
+        EnhancedScrollBarRenderer6.ButtonBackgroundColor = System.Drawing.Color.DarkSlateBlue
+        EnhancedScrollBarRenderer6.ButtonBorderColor = System.Drawing.Color.MidnightBlue
+        EnhancedScrollBarRenderer6.ButtonHoveredBackgroundColor = System.Drawing.Color.MidnightBlue
+        EnhancedScrollBarRenderer6.ButtonHoveredBorderColor = System.Drawing.Color.Black
+        EnhancedScrollBarRenderer6.ButtonSelectedBackgroundColor = System.Drawing.Color.SteelBlue
+        EnhancedScrollBarRenderer6.ButtonSelectedBorderColor = System.Drawing.Color.DarkSlateBlue
+        EnhancedScrollBarRenderer6.TrackBarBackgroundColor = System.Drawing.Color.SteelBlue
+        EnhancedScrollBarRenderer6.TrackBarSelectedBackgroundColor = System.Drawing.Color.DarkSlateBlue
+        Me.spCatalogos.HorizontalScrollBar.Renderer = EnhancedScrollBarRenderer6
         Me.spCatalogos.HorizontalScrollBar.TabIndex = 10
         Me.spCatalogos.HorizontalScrollBarPolicy = FarPoint.Win.Spread.ScrollBarPolicy.Never
         Me.spCatalogos.Location = New System.Drawing.Point(0, 0)
         Me.spCatalogos.Name = "spCatalogos"
-        NamedStyle1.ForeColor = System.Drawing.Color.White
-        NamedStyle1.HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Center
-        NamedStyle1.Locked = False
-        NamedStyle1.NoteIndicatorColor = System.Drawing.Color.Red
-        NamedStyle1.VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center
-        NamedStyle2.BackColor = System.Drawing.Color.Gainsboro
-        NamedStyle2.CellType = GeneralCellType1
-        NamedStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        NamedStyle2.Locked = False
-        NamedStyle2.NoteIndicatorColor = System.Drawing.Color.Red
-        NamedStyle2.Renderer = GeneralCellType1
-        NamedStyle3.BackColor = System.Drawing.Color.DarkSlateBlue
-        NamedStyle3.ForeColor = System.Drawing.SystemColors.ControlText
-        NamedStyle3.HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Center
-        NamedStyle3.NoteIndicatorColor = System.Drawing.Color.Red
-        NamedStyle3.VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center
-        NamedStyle4.BackColor = System.Drawing.Color.DarkSlateBlue
-        NamedStyle4.ForeColor = System.Drawing.SystemColors.ControlText
-        NamedStyle4.HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Center
-        NamedStyle4.NoteIndicatorColor = System.Drawing.Color.Red
-        NamedStyle4.VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center
-        NamedStyle5.BackColor = System.Drawing.Color.MidnightBlue
-        NamedStyle5.ForeColor = System.Drawing.SystemColors.ControlText
-        NamedStyle5.HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Center
-        NamedStyle5.NoteIndicatorColor = System.Drawing.Color.Red
-        EnhancedCornerRenderer1.ActiveBackgroundColor = System.Drawing.Color.DarkSlateBlue
-        EnhancedCornerRenderer1.GridLineColor = System.Drawing.Color.Empty
-        EnhancedCornerRenderer1.NormalBackgroundColor = System.Drawing.Color.MidnightBlue
-        NamedStyle5.Renderer = EnhancedCornerRenderer1
-        NamedStyle5.VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center
-        NamedStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(255, Byte), Integer))
-        NamedStyle6.CellType = GeneralCellType2
-        NamedStyle6.ForeColor = System.Drawing.SystemColors.WindowText
-        NamedStyle6.Locked = False
-        NamedStyle6.NoteIndicatorColor = System.Drawing.Color.Red
-        NamedStyle6.Renderer = GeneralCellType2
-        Me.spCatalogos.NamedStyles.AddRange(New FarPoint.Win.Spread.NamedStyle() {NamedStyle1, NamedStyle2, NamedStyle3, NamedStyle4, NamedStyle5, NamedStyle6})
+        NamedStyle7.ForeColor = System.Drawing.Color.White
+        NamedStyle7.HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Center
+        NamedStyle7.Locked = False
+        NamedStyle7.NoteIndicatorColor = System.Drawing.Color.Red
+        NamedStyle7.VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center
+        NamedStyle8.BackColor = System.Drawing.Color.Gainsboro
+        NamedStyle8.CellType = GeneralCellType3
+        NamedStyle8.ForeColor = System.Drawing.SystemColors.WindowText
+        NamedStyle8.Locked = False
+        NamedStyle8.NoteIndicatorColor = System.Drawing.Color.Red
+        NamedStyle8.Renderer = GeneralCellType3
+        NamedStyle9.BackColor = System.Drawing.Color.DarkSlateBlue
+        NamedStyle9.ForeColor = System.Drawing.SystemColors.ControlText
+        NamedStyle9.HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Center
+        NamedStyle9.NoteIndicatorColor = System.Drawing.Color.Red
+        NamedStyle9.VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center
+        NamedStyle10.BackColor = System.Drawing.Color.DarkSlateBlue
+        NamedStyle10.ForeColor = System.Drawing.SystemColors.ControlText
+        NamedStyle10.HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Center
+        NamedStyle10.NoteIndicatorColor = System.Drawing.Color.Red
+        NamedStyle10.VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center
+        NamedStyle11.BackColor = System.Drawing.Color.MidnightBlue
+        NamedStyle11.ForeColor = System.Drawing.SystemColors.ControlText
+        NamedStyle11.HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Center
+        NamedStyle11.NoteIndicatorColor = System.Drawing.Color.Red
+        EnhancedCornerRenderer2.ActiveBackgroundColor = System.Drawing.Color.DarkSlateBlue
+        EnhancedCornerRenderer2.GridLineColor = System.Drawing.Color.Empty
+        EnhancedCornerRenderer2.NormalBackgroundColor = System.Drawing.Color.MidnightBlue
+        NamedStyle11.Renderer = EnhancedCornerRenderer2
+        NamedStyle11.VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center
+        NamedStyle12.BackColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(255, Byte), Integer))
+        NamedStyle12.CellType = GeneralCellType4
+        NamedStyle12.ForeColor = System.Drawing.SystemColors.WindowText
+        NamedStyle12.Locked = False
+        NamedStyle12.NoteIndicatorColor = System.Drawing.Color.Red
+        NamedStyle12.Renderer = GeneralCellType4
+        Me.spCatalogos.NamedStyles.AddRange(New FarPoint.Win.Spread.NamedStyle() {NamedStyle7, NamedStyle8, NamedStyle9, NamedStyle10, NamedStyle11, NamedStyle12})
         Me.spCatalogos.Sheets.AddRange(New FarPoint.Win.Spread.SheetView() {Me.spCatalogos_Sheet1})
         Me.spCatalogos.Size = New System.Drawing.Size(260, 120)
-        SpreadSkin1.ColumnFooterDefaultStyle = NamedStyle3
-        SpreadSkin1.ColumnHeaderDefaultStyle = NamedStyle3
-        SpreadSkin1.CornerDefaultStyle = NamedStyle5
-        SpreadSkin1.DefaultStyle = NamedStyle6
-        SpreadSkin1.FocusRenderer = EnhancedFocusIndicatorRenderer1
-        EnhancedInterfaceRenderer1.ArrowColorEnabled = System.Drawing.Color.MidnightBlue
-        EnhancedInterfaceRenderer1.GrayAreaColor = System.Drawing.Color.LightSlateGray
-        EnhancedInterfaceRenderer1.RangeGroupBackgroundColor = System.Drawing.Color.DarkSlateBlue
-        EnhancedInterfaceRenderer1.RangeGroupButtonBorderColor = System.Drawing.Color.MidnightBlue
-        EnhancedInterfaceRenderer1.RangeGroupLineColor = System.Drawing.Color.MidnightBlue
-        EnhancedInterfaceRenderer1.ScrollBoxBackgroundColor = System.Drawing.Color.SteelBlue
-        EnhancedInterfaceRenderer1.SheetTabBorderColor = System.Drawing.Color.MidnightBlue
-        EnhancedInterfaceRenderer1.SheetTabLowerActiveColor = System.Drawing.Color.DarkGray
-        EnhancedInterfaceRenderer1.SheetTabLowerNormalColor = System.Drawing.Color.MidnightBlue
-        EnhancedInterfaceRenderer1.SheetTabUpperActiveColor = System.Drawing.Color.LightGray
-        EnhancedInterfaceRenderer1.SheetTabUpperNormalColor = System.Drawing.Color.DarkSlateBlue
-        EnhancedInterfaceRenderer1.SplitBarBackgroundColor = System.Drawing.Color.DarkSlateBlue
-        EnhancedInterfaceRenderer1.SplitBarDarkColor = System.Drawing.Color.MidnightBlue
-        EnhancedInterfaceRenderer1.SplitBarLightColor = System.Drawing.Color.DarkGray
-        EnhancedInterfaceRenderer1.SplitBoxBackgroundColor = System.Drawing.Color.DarkSlateBlue
-        EnhancedInterfaceRenderer1.SplitBoxBorderColor = System.Drawing.Color.MidnightBlue
-        EnhancedInterfaceRenderer1.TabStripBackgroundColor = System.Drawing.Color.SteelBlue
-        EnhancedInterfaceRenderer1.TabStripButtonBorderColor = System.Drawing.Color.MidnightBlue
-        EnhancedInterfaceRenderer1.TabStripButtonFlatStyle = System.Windows.Forms.FlatStyle.Flat
-        EnhancedInterfaceRenderer1.TabStripButtonLowerActiveColor = System.Drawing.Color.DarkSlateBlue
-        EnhancedInterfaceRenderer1.TabStripButtonLowerNormalColor = System.Drawing.Color.MidnightBlue
-        EnhancedInterfaceRenderer1.TabStripButtonLowerPressedColor = System.Drawing.Color.DimGray
-        EnhancedInterfaceRenderer1.TabStripButtonUpperActiveColor = System.Drawing.Color.DarkGray
-        EnhancedInterfaceRenderer1.TabStripButtonUpperNormalColor = System.Drawing.Color.SlateBlue
-        EnhancedInterfaceRenderer1.TabStripButtonUpperPressedColor = System.Drawing.Color.DarkSlateBlue
-        SpreadSkin1.InterfaceRenderer = EnhancedInterfaceRenderer1
-        SpreadSkin1.Name = "MidnightPersonalizado"
-        SpreadSkin1.RowHeaderDefaultStyle = NamedStyle4
-        EnhancedScrollBarRenderer2.ArrowColor = System.Drawing.Color.MidnightBlue
-        EnhancedScrollBarRenderer2.ArrowHoveredColor = System.Drawing.Color.MidnightBlue
-        EnhancedScrollBarRenderer2.ArrowSelectedColor = System.Drawing.Color.MidnightBlue
-        EnhancedScrollBarRenderer2.ButtonBackgroundColor = System.Drawing.Color.DarkSlateBlue
-        EnhancedScrollBarRenderer2.ButtonBorderColor = System.Drawing.Color.MidnightBlue
-        EnhancedScrollBarRenderer2.ButtonHoveredBackgroundColor = System.Drawing.Color.MidnightBlue
-        EnhancedScrollBarRenderer2.ButtonHoveredBorderColor = System.Drawing.Color.Black
-        EnhancedScrollBarRenderer2.ButtonSelectedBackgroundColor = System.Drawing.Color.SteelBlue
-        EnhancedScrollBarRenderer2.ButtonSelectedBorderColor = System.Drawing.Color.DarkSlateBlue
-        EnhancedScrollBarRenderer2.TrackBarBackgroundColor = System.Drawing.Color.SteelBlue
-        EnhancedScrollBarRenderer2.TrackBarSelectedBackgroundColor = System.Drawing.Color.DarkSlateBlue
-        SpreadSkin1.ScrollBarRenderer = EnhancedScrollBarRenderer2
-        SpreadSkin1.SelectionRenderer = New FarPoint.Win.Spread.GradientSelectionRenderer(System.Drawing.Color.MidnightBlue, System.Drawing.Color.MidnightBlue, System.Drawing.Drawing2D.LinearGradientMode.Horizontal, 80)
-        Me.spCatalogos.Skin = SpreadSkin1
+        SpreadSkin2.ColumnFooterDefaultStyle = NamedStyle9
+        SpreadSkin2.ColumnHeaderDefaultStyle = NamedStyle9
+        SpreadSkin2.CornerDefaultStyle = NamedStyle11
+        SpreadSkin2.DefaultStyle = NamedStyle12
+        SpreadSkin2.FocusRenderer = EnhancedFocusIndicatorRenderer2
+        EnhancedInterfaceRenderer2.ArrowColorEnabled = System.Drawing.Color.MidnightBlue
+        EnhancedInterfaceRenderer2.GrayAreaColor = System.Drawing.Color.LightSlateGray
+        EnhancedInterfaceRenderer2.RangeGroupBackgroundColor = System.Drawing.Color.DarkSlateBlue
+        EnhancedInterfaceRenderer2.RangeGroupButtonBorderColor = System.Drawing.Color.MidnightBlue
+        EnhancedInterfaceRenderer2.RangeGroupLineColor = System.Drawing.Color.MidnightBlue
+        EnhancedInterfaceRenderer2.ScrollBoxBackgroundColor = System.Drawing.Color.SteelBlue
+        EnhancedInterfaceRenderer2.SheetTabBorderColor = System.Drawing.Color.MidnightBlue
+        EnhancedInterfaceRenderer2.SheetTabLowerActiveColor = System.Drawing.Color.DarkGray
+        EnhancedInterfaceRenderer2.SheetTabLowerNormalColor = System.Drawing.Color.MidnightBlue
+        EnhancedInterfaceRenderer2.SheetTabUpperActiveColor = System.Drawing.Color.LightGray
+        EnhancedInterfaceRenderer2.SheetTabUpperNormalColor = System.Drawing.Color.DarkSlateBlue
+        EnhancedInterfaceRenderer2.SplitBarBackgroundColor = System.Drawing.Color.DarkSlateBlue
+        EnhancedInterfaceRenderer2.SplitBarDarkColor = System.Drawing.Color.MidnightBlue
+        EnhancedInterfaceRenderer2.SplitBarLightColor = System.Drawing.Color.DarkGray
+        EnhancedInterfaceRenderer2.SplitBoxBackgroundColor = System.Drawing.Color.DarkSlateBlue
+        EnhancedInterfaceRenderer2.SplitBoxBorderColor = System.Drawing.Color.MidnightBlue
+        EnhancedInterfaceRenderer2.TabStripBackgroundColor = System.Drawing.Color.SteelBlue
+        EnhancedInterfaceRenderer2.TabStripButtonBorderColor = System.Drawing.Color.MidnightBlue
+        EnhancedInterfaceRenderer2.TabStripButtonFlatStyle = System.Windows.Forms.FlatStyle.Flat
+        EnhancedInterfaceRenderer2.TabStripButtonLowerActiveColor = System.Drawing.Color.DarkSlateBlue
+        EnhancedInterfaceRenderer2.TabStripButtonLowerNormalColor = System.Drawing.Color.MidnightBlue
+        EnhancedInterfaceRenderer2.TabStripButtonLowerPressedColor = System.Drawing.Color.DimGray
+        EnhancedInterfaceRenderer2.TabStripButtonUpperActiveColor = System.Drawing.Color.DarkGray
+        EnhancedInterfaceRenderer2.TabStripButtonUpperNormalColor = System.Drawing.Color.SlateBlue
+        EnhancedInterfaceRenderer2.TabStripButtonUpperPressedColor = System.Drawing.Color.DarkSlateBlue
+        SpreadSkin2.InterfaceRenderer = EnhancedInterfaceRenderer2
+        SpreadSkin2.Name = "MidnightPersonalizado"
+        SpreadSkin2.RowHeaderDefaultStyle = NamedStyle10
+        EnhancedScrollBarRenderer7.ArrowColor = System.Drawing.Color.MidnightBlue
+        EnhancedScrollBarRenderer7.ArrowHoveredColor = System.Drawing.Color.MidnightBlue
+        EnhancedScrollBarRenderer7.ArrowSelectedColor = System.Drawing.Color.MidnightBlue
+        EnhancedScrollBarRenderer7.ButtonBackgroundColor = System.Drawing.Color.DarkSlateBlue
+        EnhancedScrollBarRenderer7.ButtonBorderColor = System.Drawing.Color.MidnightBlue
+        EnhancedScrollBarRenderer7.ButtonHoveredBackgroundColor = System.Drawing.Color.MidnightBlue
+        EnhancedScrollBarRenderer7.ButtonHoveredBorderColor = System.Drawing.Color.Black
+        EnhancedScrollBarRenderer7.ButtonSelectedBackgroundColor = System.Drawing.Color.SteelBlue
+        EnhancedScrollBarRenderer7.ButtonSelectedBorderColor = System.Drawing.Color.DarkSlateBlue
+        EnhancedScrollBarRenderer7.TrackBarBackgroundColor = System.Drawing.Color.SteelBlue
+        EnhancedScrollBarRenderer7.TrackBarSelectedBackgroundColor = System.Drawing.Color.DarkSlateBlue
+        SpreadSkin2.ScrollBarRenderer = EnhancedScrollBarRenderer7
+        SpreadSkin2.SelectionRenderer = New FarPoint.Win.Spread.GradientSelectionRenderer(System.Drawing.Color.MidnightBlue, System.Drawing.Color.MidnightBlue, System.Drawing.Drawing2D.LinearGradientMode.Horizontal, 80)
+        Me.spCatalogos.Skin = SpreadSkin2
         Me.spCatalogos.TabIndex = 22
         Me.spCatalogos.VerticalScrollBar.Buttons = New FarPoint.Win.Spread.FpScrollBarButtonCollection("BackwardLineButton,ThumbTrack,ForwardLineButton")
         Me.spCatalogos.VerticalScrollBar.Name = ""
-        EnhancedScrollBarRenderer3.ArrowColor = System.Drawing.Color.MidnightBlue
-        EnhancedScrollBarRenderer3.ArrowHoveredColor = System.Drawing.Color.MidnightBlue
-        EnhancedScrollBarRenderer3.ArrowSelectedColor = System.Drawing.Color.MidnightBlue
-        EnhancedScrollBarRenderer3.ButtonBackgroundColor = System.Drawing.Color.DarkSlateBlue
-        EnhancedScrollBarRenderer3.ButtonBorderColor = System.Drawing.Color.MidnightBlue
-        EnhancedScrollBarRenderer3.ButtonHoveredBackgroundColor = System.Drawing.Color.MidnightBlue
-        EnhancedScrollBarRenderer3.ButtonHoveredBorderColor = System.Drawing.Color.Black
-        EnhancedScrollBarRenderer3.ButtonSelectedBackgroundColor = System.Drawing.Color.SteelBlue
-        EnhancedScrollBarRenderer3.ButtonSelectedBorderColor = System.Drawing.Color.DarkSlateBlue
-        EnhancedScrollBarRenderer3.TrackBarBackgroundColor = System.Drawing.Color.SteelBlue
-        EnhancedScrollBarRenderer3.TrackBarSelectedBackgroundColor = System.Drawing.Color.DarkSlateBlue
-        Me.spCatalogos.VerticalScrollBar.Renderer = EnhancedScrollBarRenderer3
+        EnhancedScrollBarRenderer10.ArrowColor = System.Drawing.Color.MidnightBlue
+        EnhancedScrollBarRenderer10.ArrowHoveredColor = System.Drawing.Color.MidnightBlue
+        EnhancedScrollBarRenderer10.ArrowSelectedColor = System.Drawing.Color.MidnightBlue
+        EnhancedScrollBarRenderer10.ButtonBackgroundColor = System.Drawing.Color.DarkSlateBlue
+        EnhancedScrollBarRenderer10.ButtonBorderColor = System.Drawing.Color.MidnightBlue
+        EnhancedScrollBarRenderer10.ButtonHoveredBackgroundColor = System.Drawing.Color.MidnightBlue
+        EnhancedScrollBarRenderer10.ButtonHoveredBorderColor = System.Drawing.Color.Black
+        EnhancedScrollBarRenderer10.ButtonSelectedBackgroundColor = System.Drawing.Color.SteelBlue
+        EnhancedScrollBarRenderer10.ButtonSelectedBorderColor = System.Drawing.Color.DarkSlateBlue
+        EnhancedScrollBarRenderer10.TrackBarBackgroundColor = System.Drawing.Color.SteelBlue
+        EnhancedScrollBarRenderer10.TrackBarSelectedBackgroundColor = System.Drawing.Color.DarkSlateBlue
+        Me.spCatalogos.VerticalScrollBar.Renderer = EnhancedScrollBarRenderer10
         Me.spCatalogos.VerticalScrollBar.TabIndex = 11
         '
         'spCatalogos_Sheet1
@@ -453,39 +699,39 @@ Partial Class Principal
         Me.spVentas.BackColor = System.Drawing.Color.White
         Me.spVentas.HorizontalScrollBar.Buttons = New FarPoint.Win.Spread.FpScrollBarButtonCollection("BackwardLineButton,ThumbTrack,ForwardLineButton")
         Me.spVentas.HorizontalScrollBar.Name = ""
-        EnhancedScrollBarRenderer4.ArrowColor = System.Drawing.Color.DarkSlateGray
-        EnhancedScrollBarRenderer4.ArrowHoveredColor = System.Drawing.Color.DarkSlateGray
-        EnhancedScrollBarRenderer4.ArrowSelectedColor = System.Drawing.Color.DarkSlateGray
-        EnhancedScrollBarRenderer4.ButtonBackgroundColor = System.Drawing.Color.CadetBlue
-        EnhancedScrollBarRenderer4.ButtonBorderColor = System.Drawing.Color.SlateGray
-        EnhancedScrollBarRenderer4.ButtonHoveredBackgroundColor = System.Drawing.Color.SlateGray
-        EnhancedScrollBarRenderer4.ButtonHoveredBorderColor = System.Drawing.Color.DarkGray
-        EnhancedScrollBarRenderer4.ButtonSelectedBackgroundColor = System.Drawing.Color.DarkGray
-        EnhancedScrollBarRenderer4.ButtonSelectedBorderColor = System.Drawing.Color.CadetBlue
-        EnhancedScrollBarRenderer4.TrackBarBackgroundColor = System.Drawing.Color.CadetBlue
-        EnhancedScrollBarRenderer4.TrackBarSelectedBackgroundColor = System.Drawing.Color.SlateGray
-        Me.spVentas.HorizontalScrollBar.Renderer = EnhancedScrollBarRenderer4
+        EnhancedScrollBarRenderer1.ArrowColor = System.Drawing.Color.DarkSlateGray
+        EnhancedScrollBarRenderer1.ArrowHoveredColor = System.Drawing.Color.DarkSlateGray
+        EnhancedScrollBarRenderer1.ArrowSelectedColor = System.Drawing.Color.DarkSlateGray
+        EnhancedScrollBarRenderer1.ButtonBackgroundColor = System.Drawing.Color.CadetBlue
+        EnhancedScrollBarRenderer1.ButtonBorderColor = System.Drawing.Color.SlateGray
+        EnhancedScrollBarRenderer1.ButtonHoveredBackgroundColor = System.Drawing.Color.SlateGray
+        EnhancedScrollBarRenderer1.ButtonHoveredBorderColor = System.Drawing.Color.DarkGray
+        EnhancedScrollBarRenderer1.ButtonSelectedBackgroundColor = System.Drawing.Color.DarkGray
+        EnhancedScrollBarRenderer1.ButtonSelectedBorderColor = System.Drawing.Color.CadetBlue
+        EnhancedScrollBarRenderer1.TrackBarBackgroundColor = System.Drawing.Color.CadetBlue
+        EnhancedScrollBarRenderer1.TrackBarSelectedBackgroundColor = System.Drawing.Color.SlateGray
+        Me.spVentas.HorizontalScrollBar.Renderer = EnhancedScrollBarRenderer1
         Me.spVentas.HorizontalScrollBar.TabIndex = 10
         Me.spVentas.Location = New System.Drawing.Point(392, 0)
         Me.spVentas.Name = "spVentas"
         Me.spVentas.Sheets.AddRange(New FarPoint.Win.Spread.SheetView() {Me.spVentas_Sheet1})
-        Me.spVentas.Size = New System.Drawing.Size(636, 490)
+        Me.spVentas.Size = New System.Drawing.Size(635, 409)
         Me.spVentas.Skin = FarPoint.Win.Spread.DefaultSpreadSkins.Seashell
         Me.spVentas.TabIndex = 0
         Me.spVentas.VerticalScrollBar.Buttons = New FarPoint.Win.Spread.FpScrollBarButtonCollection("BackwardLineButton,ThumbTrack,ForwardLineButton")
         Me.spVentas.VerticalScrollBar.Name = ""
-        EnhancedScrollBarRenderer5.ArrowColor = System.Drawing.Color.DarkSlateGray
-        EnhancedScrollBarRenderer5.ArrowHoveredColor = System.Drawing.Color.DarkSlateGray
-        EnhancedScrollBarRenderer5.ArrowSelectedColor = System.Drawing.Color.DarkSlateGray
-        EnhancedScrollBarRenderer5.ButtonBackgroundColor = System.Drawing.Color.CadetBlue
-        EnhancedScrollBarRenderer5.ButtonBorderColor = System.Drawing.Color.SlateGray
-        EnhancedScrollBarRenderer5.ButtonHoveredBackgroundColor = System.Drawing.Color.SlateGray
-        EnhancedScrollBarRenderer5.ButtonHoveredBorderColor = System.Drawing.Color.DarkGray
-        EnhancedScrollBarRenderer5.ButtonSelectedBackgroundColor = System.Drawing.Color.DarkGray
-        EnhancedScrollBarRenderer5.ButtonSelectedBorderColor = System.Drawing.Color.CadetBlue
-        EnhancedScrollBarRenderer5.TrackBarBackgroundColor = System.Drawing.Color.CadetBlue
-        EnhancedScrollBarRenderer5.TrackBarSelectedBackgroundColor = System.Drawing.Color.SlateGray
-        Me.spVentas.VerticalScrollBar.Renderer = EnhancedScrollBarRenderer5
+        EnhancedScrollBarRenderer2.ArrowColor = System.Drawing.Color.DarkSlateGray
+        EnhancedScrollBarRenderer2.ArrowHoveredColor = System.Drawing.Color.DarkSlateGray
+        EnhancedScrollBarRenderer2.ArrowSelectedColor = System.Drawing.Color.DarkSlateGray
+        EnhancedScrollBarRenderer2.ButtonBackgroundColor = System.Drawing.Color.CadetBlue
+        EnhancedScrollBarRenderer2.ButtonBorderColor = System.Drawing.Color.SlateGray
+        EnhancedScrollBarRenderer2.ButtonHoveredBackgroundColor = System.Drawing.Color.SlateGray
+        EnhancedScrollBarRenderer2.ButtonHoveredBorderColor = System.Drawing.Color.DarkGray
+        EnhancedScrollBarRenderer2.ButtonSelectedBackgroundColor = System.Drawing.Color.DarkGray
+        EnhancedScrollBarRenderer2.ButtonSelectedBorderColor = System.Drawing.Color.CadetBlue
+        EnhancedScrollBarRenderer2.TrackBarBackgroundColor = System.Drawing.Color.CadetBlue
+        EnhancedScrollBarRenderer2.TrackBarSelectedBackgroundColor = System.Drawing.Color.SlateGray
+        Me.spVentas.VerticalScrollBar.Renderer = EnhancedScrollBarRenderer2
         Me.spVentas.VerticalScrollBar.TabIndex = 11
         '
         'spVentas_Sheet1
@@ -512,6 +758,8 @@ Partial Class Principal
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlPie.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.pnlPie.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnlPie.Controls.Add(Me.btnImprimir)
+        Me.pnlPie.Controls.Add(Me.btnConfigurarImpresion)
         Me.pnlPie.Controls.Add(Me.btnAyuda)
         Me.pnlPie.Controls.Add(Me.lblDescripcionTooltip)
         Me.pnlPie.Controls.Add(Me.btnEliminar)
@@ -522,6 +770,41 @@ Partial Class Principal
         Me.pnlPie.Name = "pnlPie"
         Me.pnlPie.Size = New System.Drawing.Size(1034, 60)
         Me.pnlPie.TabIndex = 8
+        '
+        'btnImprimir
+        '
+        Me.btnImprimir.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnImprimir.BackColor = System.Drawing.Color.White
+        Me.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnImprimir.Enabled = False
+        Me.btnImprimir.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.btnImprimir.FlatAppearance.BorderSize = 3
+        Me.btnImprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumAquamarine
+        Me.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
+        Me.btnImprimir.Location = New System.Drawing.Point(783, 0)
+        Me.btnImprimir.Name = "btnImprimir"
+        Me.btnImprimir.Size = New System.Drawing.Size(60, 60)
+        Me.btnImprimir.TabIndex = 52
+        Me.btnImprimir.UseVisualStyleBackColor = False
+        '
+        'btnConfigurarImpresion
+        '
+        Me.btnConfigurarImpresion.BackColor = System.Drawing.Color.White
+        Me.btnConfigurarImpresion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btnConfigurarImpresion.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnConfigurarImpresion.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.btnConfigurarImpresion.FlatAppearance.BorderSize = 3
+        Me.btnConfigurarImpresion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumAquamarine
+        Me.btnConfigurarImpresion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnConfigurarImpresion.ForeColor = System.Drawing.Color.Black
+        Me.btnConfigurarImpresion.Image = CType(resources.GetObject("btnConfigurarImpresion.Image"), System.Drawing.Image)
+        Me.btnConfigurarImpresion.Location = New System.Drawing.Point(63, 0)
+        Me.btnConfigurarImpresion.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnConfigurarImpresion.Name = "btnConfigurarImpresion"
+        Me.btnConfigurarImpresion.Size = New System.Drawing.Size(60, 60)
+        Me.btnConfigurarImpresion.TabIndex = 27
+        Me.btnConfigurarImpresion.UseVisualStyleBackColor = False
         '
         'btnAyuda
         '
@@ -546,7 +829,7 @@ Partial Class Principal
         Me.lblDescripcionTooltip.AutoSize = True
         Me.lblDescripcionTooltip.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDescripcionTooltip.ForeColor = System.Drawing.Color.White
-        Me.lblDescripcionTooltip.Location = New System.Drawing.Point(101, 17)
+        Me.lblDescripcionTooltip.Location = New System.Drawing.Point(150, 17)
         Me.lblDescripcionTooltip.Name = "lblDescripcionTooltip"
         Me.lblDescripcionTooltip.Size = New System.Drawing.Size(0, 31)
         Me.lblDescripcionTooltip.TabIndex = 4
@@ -674,18 +957,70 @@ Partial Class Principal
         '
         Me.temporizador.Interval = 1
         '
-        'chkMostrarDetallado
+        'pdRecibo
         '
-        Me.chkMostrarDetallado.AutoSize = True
-        Me.chkMostrarDetallado.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.chkMostrarDetallado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkMostrarDetallado.ForeColor = System.Drawing.Color.Black
-        Me.chkMostrarDetallado.Location = New System.Drawing.Point(119, 121)
-        Me.chkMostrarDetallado.Name = "chkMostrarDetallado"
-        Me.chkMostrarDetallado.Size = New System.Drawing.Size(151, 20)
-        Me.chkMostrarDetallado.TabIndex = 80
-        Me.chkMostrarDetallado.Text = "Mostrar Detallado"
-        Me.chkMostrarDetallado.UseVisualStyleBackColor = True
+        '
+        'spVales
+        '
+        Me.spVales.AccessibleDescription = ""
+        Me.spVales.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.spVales.BackColor = System.Drawing.Color.White
+        Me.spVales.HorizontalScrollBar.Buttons = New FarPoint.Win.Spread.FpScrollBarButtonCollection("BackwardLineButton,ThumbTrack,ForwardLineButton")
+        Me.spVales.HorizontalScrollBar.Name = ""
+        EnhancedScrollBarRenderer8.ArrowColor = System.Drawing.Color.DarkSlateGray
+        EnhancedScrollBarRenderer8.ArrowHoveredColor = System.Drawing.Color.DarkSlateGray
+        EnhancedScrollBarRenderer8.ArrowSelectedColor = System.Drawing.Color.DarkSlateGray
+        EnhancedScrollBarRenderer8.ButtonBackgroundColor = System.Drawing.Color.CadetBlue
+        EnhancedScrollBarRenderer8.ButtonBorderColor = System.Drawing.Color.SlateGray
+        EnhancedScrollBarRenderer8.ButtonHoveredBackgroundColor = System.Drawing.Color.SlateGray
+        EnhancedScrollBarRenderer8.ButtonHoveredBorderColor = System.Drawing.Color.DarkGray
+        EnhancedScrollBarRenderer8.ButtonSelectedBackgroundColor = System.Drawing.Color.DarkGray
+        EnhancedScrollBarRenderer8.ButtonSelectedBorderColor = System.Drawing.Color.CadetBlue
+        EnhancedScrollBarRenderer8.TrackBarBackgroundColor = System.Drawing.Color.CadetBlue
+        EnhancedScrollBarRenderer8.TrackBarSelectedBackgroundColor = System.Drawing.Color.SlateGray
+        Me.spVales.HorizontalScrollBar.Renderer = EnhancedScrollBarRenderer8
+        Me.spVales.HorizontalScrollBar.TabIndex = 10
+        Me.spVales.Location = New System.Drawing.Point(392, 413)
+        Me.spVales.Name = "spVales"
+        Me.spVales.Sheets.AddRange(New FarPoint.Win.Spread.SheetView() {Me.spVales_Sheet1})
+        Me.spVales.Size = New System.Drawing.Size(408, 75)
+        Me.spVales.Skin = FarPoint.Win.Spread.DefaultSpreadSkins.Seashell
+        Me.spVales.TabIndex = 26
+        Me.spVales.VerticalScrollBar.Buttons = New FarPoint.Win.Spread.FpScrollBarButtonCollection("BackwardLineButton,ThumbTrack,ForwardLineButton")
+        Me.spVales.VerticalScrollBar.Name = ""
+        EnhancedScrollBarRenderer9.ArrowColor = System.Drawing.Color.DarkSlateGray
+        EnhancedScrollBarRenderer9.ArrowHoveredColor = System.Drawing.Color.DarkSlateGray
+        EnhancedScrollBarRenderer9.ArrowSelectedColor = System.Drawing.Color.DarkSlateGray
+        EnhancedScrollBarRenderer9.ButtonBackgroundColor = System.Drawing.Color.CadetBlue
+        EnhancedScrollBarRenderer9.ButtonBorderColor = System.Drawing.Color.SlateGray
+        EnhancedScrollBarRenderer9.ButtonHoveredBackgroundColor = System.Drawing.Color.SlateGray
+        EnhancedScrollBarRenderer9.ButtonHoveredBorderColor = System.Drawing.Color.DarkGray
+        EnhancedScrollBarRenderer9.ButtonSelectedBackgroundColor = System.Drawing.Color.DarkGray
+        EnhancedScrollBarRenderer9.ButtonSelectedBorderColor = System.Drawing.Color.CadetBlue
+        EnhancedScrollBarRenderer9.TrackBarBackgroundColor = System.Drawing.Color.CadetBlue
+        EnhancedScrollBarRenderer9.TrackBarSelectedBackgroundColor = System.Drawing.Color.SlateGray
+        Me.spVales.VerticalScrollBar.Renderer = EnhancedScrollBarRenderer9
+        Me.spVales.VerticalScrollBar.TabIndex = 11
+        Me.spVales.Visible = False
+        '
+        'spVales_Sheet1
+        '
+        Me.spVales_Sheet1.Reset()
+        spVales_Sheet1.SheetName = "Sheet1"
+        'Formulas and custom names must be loaded with R1C1 reference style
+        Me.spVales_Sheet1.ReferenceStyle = FarPoint.Win.Spread.Model.ReferenceStyle.R1C1
+        Me.spVales_Sheet1.ColumnFooter.DefaultStyle.NoteIndicatorColor = System.Drawing.Color.Red
+        Me.spVales_Sheet1.ColumnFooter.DefaultStyle.Parent = "ColumnHeaderSeashell"
+        Me.spVales_Sheet1.ColumnFooterSheetCornerStyle.NoteIndicatorColor = System.Drawing.Color.Red
+        Me.spVales_Sheet1.ColumnFooterSheetCornerStyle.Parent = "CornerSeashell"
+        Me.spVales_Sheet1.ColumnHeader.DefaultStyle.NoteIndicatorColor = System.Drawing.Color.Red
+        Me.spVales_Sheet1.ColumnHeader.DefaultStyle.Parent = "ColumnHeaderSeashell"
+        Me.spVales_Sheet1.RowHeader.DefaultStyle.NoteIndicatorColor = System.Drawing.Color.Red
+        Me.spVales_Sheet1.RowHeader.DefaultStyle.Parent = "RowHeaderSeashell"
+        Me.spVales_Sheet1.SheetCornerStyle.NoteIndicatorColor = System.Drawing.Color.Red
+        Me.spVales_Sheet1.SheetCornerStyle.Parent = "CornerSeashell"
+        Me.spVales_Sheet1.ReferenceStyle = FarPoint.Win.Spread.Model.ReferenceStyle.A1
         '
         'Principal
         '
@@ -702,6 +1037,8 @@ Partial Class Principal
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.pnlContenido.ResumeLayout(False)
         Me.pnlCuerpo.ResumeLayout(False)
+        Me.pnlTotales.ResumeLayout(False)
+        Me.pnlTotales.PerformLayout()
         Me.pnlCapturaSuperior.ResumeLayout(False)
         Me.pnlCapturaSuperior.PerformLayout()
         Me.pnlCatalogos.ResumeLayout(False)
@@ -714,6 +1051,8 @@ Partial Class Principal
         Me.pnlPie.PerformLayout()
         Me.pnlEncabezado.ResumeLayout(False)
         Me.pnlEncabezado.PerformLayout()
+        CType(Me.spVales, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.spVales_Sheet1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -750,4 +1089,27 @@ Partial Class Principal
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents cbClientes As System.Windows.Forms.ComboBox
     Friend WithEvents chkMostrarDetallado As System.Windows.Forms.CheckBox
+    Private WithEvents btnConfigurarImpresion As System.Windows.Forms.Button
+    Friend WithEvents pdRecibo As System.Drawing.Printing.PrintDocument
+    Friend WithEvents pdCaja As System.Drawing.Printing.PrintDocument
+    Friend WithEvents btnImprimir As System.Windows.Forms.Button
+    Friend WithEvents cbMetodosPagos As System.Windows.Forms.ComboBox
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents txtImportePagado As System.Windows.Forms.TextBox
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents txtImporteCambio As System.Windows.Forms.TextBox
+    Friend WithEvents cbVales2 As System.Windows.Forms.ComboBox
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents cbVales1 As System.Windows.Forms.ComboBox
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents pnlTotales As System.Windows.Forms.Panel
+    Friend WithEvents Label12 As System.Windows.Forms.Label
+    Friend WithEvents txtTotal As System.Windows.Forms.TextBox
+    Friend WithEvents Label11 As System.Windows.Forms.Label
+    Friend WithEvents txtDescuento As System.Windows.Forms.TextBox
+    Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents txtSubTotal As System.Windows.Forms.TextBox
+    Friend WithEvents spVales As FarPoint.Win.Spread.FpSpread
+    Friend WithEvents spVales_Sheet1 As FarPoint.Win.Spread.SheetView
 End Class

@@ -10,7 +10,7 @@ Public Class Pedidos
     Private idCliente As Integer
     Private fechaEnvio As Date
     Private cantidad As Integer
-    Private precioUnitario As Double
+    Private precio As Double
     Private total As Double
     Private orden As Integer
     Private observaciones As String
@@ -88,12 +88,12 @@ Public Class Pedidos
             cantidad = value
         End Set
     End Property
-    Public Property EPrecioUnitario() As Double
+    Public Property EPrecio() As Double
         Get
-            Return precioUnitario
+            Return precio
         End Get
         Set(value As Double)
-            precioUnitario = value
+            precio = value
         End Set
     End Property
     Public Property ETotal() As Double
@@ -198,7 +198,7 @@ Public Class Pedidos
         Try
             Dim comando As New SqlCommand()
             comando.Connection = BaseDatos.conexionAlmacen
-            comando.CommandText = String.Format("INSERT INTO Pedidos (IdAlmacen, IdFamilia, IdSubFamilia, IdArticulo, Id, IdCliente, FechaEnvio, Cantidad, PrecioUnitario, Total, Orden, Observaciones, EstaActualizado, EstaIntegradoAlmacen) VALUES (@idAlmacen, @idFamilia, @idSubFamilia, @idArticulo, @id, @idCliente, @fechaEnvio, @cantidad, @precioUnitario, @total, @orden, @observaciones, @estaActualizado, @estaIntegradoAlmacen)")
+            comando.CommandText = String.Format("INSERT INTO Pedidos (IdAlmacen, IdFamilia, IdSubFamilia, IdArticulo, Id, IdCliente, FechaEnvio, Cantidad, Precio, Total, Orden, Observaciones, EstaActualizado, EstaIntegradoAlmacen) VALUES (@idAlmacen, @idFamilia, @idSubFamilia, @idArticulo, @id, @idCliente, @fechaEnvio, @cantidad, @precio, @total, @orden, @observaciones, @estaActualizado, @estaIntegradoAlmacen)")
             comando.Parameters.AddWithValue("@idAlmacen", Me.EIdAlmacen)
             comando.Parameters.AddWithValue("@idFamilia", Me.EIdFamilia)
             comando.Parameters.AddWithValue("@idSubFamilia", Me.EIdSubFamilia)
@@ -207,7 +207,7 @@ Public Class Pedidos
             comando.Parameters.AddWithValue("@idCliente", Me.EIdCliente)
             comando.Parameters.AddWithValue("@fechaEnvio", Me.EFechaEnvio)
             comando.Parameters.AddWithValue("@cantidad", Me.ECantidad)
-            comando.Parameters.AddWithValue("@precioUnitario", Me.EPrecioUnitario)
+            comando.Parameters.AddWithValue("@precio", Me.EPrecio)
             comando.Parameters.AddWithValue("@total", Me.ETotal)
             comando.Parameters.AddWithValue("@orden", Me.EOrden)
             comando.Parameters.AddWithValue("@observaciones", Me.EObservaciones)
@@ -343,7 +343,7 @@ Public Class Pedidos
                 tabla.idCliente = lectorDatos("IdCliente").ToString()
                 tabla.fechaEnvio = Convert.ToDateTime(lectorDatos("FechaEnvio").ToString())
                 tabla.cantidad = Convert.ToInt32(lectorDatos("Cantidad").ToString())
-                tabla.precioUnitario = Convert.ToDouble(lectorDatos("PrecioUnitario").ToString())
+                tabla.precio = Convert.ToDouble(lectorDatos("Precio").ToString())
                 tabla.total = Convert.ToDouble(lectorDatos("Total").ToString())
                 tabla.orden = Convert.ToInt32(lectorDatos("Orden").ToString())
                 tabla.observaciones = lectorDatos("Observaciones").ToString()

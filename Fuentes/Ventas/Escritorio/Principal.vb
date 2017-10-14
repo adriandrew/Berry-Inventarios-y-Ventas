@@ -7,12 +7,15 @@ Public Class Principal
     ' Variables de objetos de entidades.
     Public usuarios As New ALMEntidadesVentas.Usuarios()
     Public ventas As New ALMEntidadesVentas.Ventas()
+    Public salidas As New ALMEntidadesVentas.Salidas()
     Public almacenes As New ALMEntidadesVentas.Almacenes()
     Public familias As New ALMEntidadesVentas.Familias()
     Public subFamilias As New ALMEntidadesVentas.SubFamilias()
     Public articulos As New ALMEntidadesVentas.Articulos()
     Public unidadesMedidas As New ALMEntidadesVentas.UnidadesMedidas()
     Public clientes As New ALMEntidadesVentas.Clientes()
+    Public metodosPagos As New ALMEntidadesVentas.MetodosPagos()
+    Public empresas As New ALMEntidadesVentas.Empresas()
     ' Variables de tipos de datos de spread.
     Public tipoTexto As New FarPoint.Win.Spread.CellType.TextCellType()
     Public tipoTextoContrasena As New FarPoint.Win.Spread.CellType.TextCellType()
@@ -44,8 +47,15 @@ Public Class Principal
     Public esGuardadoValido As Boolean = True
     Public esIzquierda As Boolean = False
     Public datosCatalogo As New DataTable
+    Public opcionTipoSeleccionada As Integer = -1
+    Public opcionEtiquetaTarimaSeleccionada As Integer = -1 : Public opcionEtiquetaCajaSeleccionada As Integer = 0
+    Public datosRecibosParaImprimir As New DataTable
+    Public contadorRecibosParaImprimir As Integer = 0 : Public listaRecibosParaImprimir As New List(Of System.Data.DataRow)
+    Public datosCajasParaImprimir As New DataTable
+    Public contadorCajasParaImprimir As Integer = 0 : Public listaCajasParaImprimir As New List(Of System.Data.DataRow)
+    Public estaImprimiendo As Boolean = False
     ' Variables fijas.
-    Public idOrigen As Integer = 1 ' Siempre será 1 para almacén.
+    Public idOrigen As Integer = 3 ' Siempre será 3 para ventas.
     ' Hilos para carga rápida.
     Public hiloCentrar As New Thread(AddressOf Centrar)
     Public hiloNombrePrograma As New Thread(AddressOf CargarNombrePrograma)
@@ -76,6 +86,8 @@ Public Class Principal
         FormatearSpread()
         FormatearSpreadVentas()
         CargarClientes()
+        CargarMetodosPago()
+        CargarOpcionesImpresion()
         CargarIdConsecutivo()
         AsignarFoco(txtId)
         Me.estaMostrado = True
@@ -139,12 +151,12 @@ Public Class Principal
 
     Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
 
+        Me.Cursor = Cursors.WaitCursor
         ValidarGuardado()
         If (Me.esGuardadoValido) Then
-            Me.Cursor = Cursors.WaitCursor
             GuardarEditarVentas()
-            Me.Cursor = Cursors.Default
         End If
+        Me.Cursor = Cursors.Default
 
     End Sub
 
@@ -316,11 +328,13 @@ Public Class Principal
 
     Private Sub txtBuscarCatalogo_TextChanged(sender As Object, e As EventArgs) Handles txtBuscarCatalogo.TextChanged
 
+        Me.Cursor = Cursors.WaitCursor
         If (Me.opcionCatalogoSeleccionada = OpcionCatalogo.articulo) Then
             BuscarCatalogosRapidoArticulos()
         Else
             BuscarCatalogos()
         End If
+        Me.Cursor = Cursors.Default
 
     End Sub
 
@@ -331,6 +345,131 @@ Public Class Principal
         ElseIf (e.KeyCode = Keys.Escape) Then
             VolverFocoDeCatalogos()
         End If
+
+    End Sub
+
+    Private Sub chkMostrarDetallado_CheckedChanged(sender As Object, e As EventArgs) Handles chkMostrarDetallado.CheckedChanged
+
+        Me.Cursor = Cursors.WaitCursor
+        If (Me.estaMostrado) Then
+            If (chkMostrarDetallado.Checked) Then
+                MostrarOcultarDetalleVentas(True)
+            Else
+                MostrarOcultarDetalleVentas(False)
+            End If
+        End If
+        Me.Cursor = Cursors.Default
+
+    End Sub
+
+    Private Sub btnConfigurarImpresion_Click(sender As Object, e As EventArgs) Handles btnConfigurarImpresion.Click
+
+        Me.Cursor = Cursors.WaitCursor
+        Impresoras.Show()
+        Impresoras.BringToFront()
+        Me.Enabled = False
+        Me.Cursor = Cursors.Default
+
+    End Sub
+
+    Private Sub pdRecibo_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles pdRecibo.PrintPage
+
+        CrearRecibo(e)
+
+    End Sub
+
+    Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
+
+        Me.Cursor = Cursors.WaitCursor
+        ImprimirManualmente()
+        Me.Cursor = Cursors.Default
+
+    End Sub
+
+    Private Sub cbMetodosPagos_KeyDown(sender As Object, e As KeyEventArgs) Handles cbMetodosPagos.KeyDown
+
+        If (e.KeyData = Keys.Enter) Then
+            e.SuppressKeyPress = True
+            If (cbMetodosPagos.SelectedValue > 0) Then
+                AsignarFoco(cbVales1)
+            Else
+                cbMetodosPagos.SelectedIndex = 0
+            End If
+        ElseIf (e.KeyData = Keys.Escape) Then
+            e.SuppressKeyPress = True
+            AsignarFoco(spVentas)
+            'ElseIf (e.KeyData = Keys.F5) Then ' Abrir catalogos.
+            '    Me.opcionCatalogoSeleccionada = OpcionCatalogo.metodosPagos
+            '    CargarCatalogoEnOtros()
+        End If
+
+    End Sub
+
+    Private Sub cbVales1_KeyDown(sender As Object, e As KeyEventArgs) Handles cbVales1.KeyDown
+
+        If (e.KeyData = Keys.Enter) Then
+            e.SuppressKeyPress = True
+            If (cbVales1.SelectedValue > 0) Then
+                AsignarFoco(cbVales2)
+            Else
+                cbVales1.SelectedIndex = 0
+            End If
+        ElseIf (e.KeyData = Keys.Escape) Then
+            e.SuppressKeyPress = True
+            AsignarFoco(cbMetodosPagos)
+        End If
+
+    End Sub
+
+    Private Sub cbVales2_KeyDown(sender As Object, e As KeyEventArgs) Handles cbVales2.KeyDown
+
+        If (e.KeyData = Keys.Enter) Then
+            e.SuppressKeyPress = True
+            If (cbVales2.SelectedValue > 0) Then
+                AsignarFoco(txtImportePagado)
+            Else
+                cbVales2.SelectedIndex = 0
+            End If
+        ElseIf (e.KeyData = Keys.Escape) Then
+            e.SuppressKeyPress = True
+            AsignarFoco(cbMetodosPagos)
+        End If
+
+    End Sub
+
+    Private Sub txtImportePagado_KeyDown(sender As Object, e As KeyEventArgs) Handles txtImportePagado.KeyDown
+
+        If (e.KeyData = Keys.Enter) Then
+            e.SuppressKeyPress = True
+            Dim importePagado As Double = ALMLogicaVentas.Funciones.ValidarNumeroACero(txtImportePagado.Text)
+            Dim total As Double = ALMLogicaVentas.Funciones.ValidarNumeroACero(txtTotal.Text)
+            If (importePagado > 0) Then
+                txtImportePagado.Text = importePagado.ToString("###,###.00")
+            Else
+                txtImportePagado.Text = total.ToString("###,###.00")
+                importePagado = total
+            End If
+            Dim importeCambio As Double = importePagado - total
+            txtImporteCambio.Text = (importeCambio).ToString("###,###.00")
+            If (importeCambio < 0) Then
+                txtImporteCambio.BackColor = Color.Orange
+            End If
+        ElseIf (e.KeyData = Keys.Escape) Then
+            e.SuppressKeyPress = True
+            AsignarFoco(cbVales2)
+        End If
+
+    End Sub
+
+    Private Sub btnImprimir_MouseEnter(sender As Object, e As EventArgs) Handles btnImprimir.MouseEnter
+
+        AsignarTooltips("Imprimir.")
+
+    End Sub
+
+    Private Sub btnConfigurarImpresion_MouseEnter(sender As Object, e As EventArgs) Handles btnConfigurarImpresion.MouseEnter
+
+        AsignarTooltips("Configurar Impresoras.")
 
     End Sub
 
@@ -547,6 +686,8 @@ Public Class Principal
         tp.SetToolTip(Me.btnSalir, "Salir.")
         tp.SetToolTip(Me.btnGuardar, "Guardar.")
         tp.SetToolTip(Me.btnEliminar, "Eliminar.")
+        tp.SetToolTip(Me.btnConfigurarImpresion, "Configurar Impresoras.")
+        tp.SetToolTip(Me.btnImprimir, "Imprimir.")
 
     End Sub
 
@@ -709,7 +850,13 @@ Public Class Principal
         If (Not chkConservarDatos.Checked) Then
             dtpFecha.Value = Today
             cbClientes.SelectedIndex = 0
+            cbMetodosPagos.SelectedIndex = 0
         End If
+        txtSubTotal.Text = String.Empty
+        txtDescuento.Text = String.Empty
+        txtTotal.Text = String.Empty
+        txtImportePagado.Text = String.Empty
+        txtImporteCambio.Text = String.Empty
         spVentas.ActiveSheet.DataSource = Nothing
         spVentas.ActiveSheet.Rows.Count = 1
         spVentas.ActiveSheet.SetActiveCell(0, 0)
@@ -728,6 +875,14 @@ Public Class Principal
         cbClientes.DataSource = clientes.ObtenerListadoReporte()
         cbClientes.DisplayMember = "IdNombre"
         cbClientes.ValueMember = "Id"
+
+    End Sub
+
+    Private Sub CargarMetodosPago()
+
+        cbMetodosPagos.DataSource = metodosPagos.ObtenerListadoReporte()
+        cbMetodosPagos.DisplayMember = "IdNombre"
+        cbMetodosPagos.ValueMember = "Id"
 
     End Sub
 
@@ -898,7 +1053,10 @@ Public Class Principal
                 fila = spVentas.ActiveSheet.ActiveRowIndex
                 Dim cantidad As Integer = ALMLogicaVentas.Funciones.ValidarNumeroACero(spVentas.ActiveSheet.Cells(fila, spVentas.ActiveSheet.Columns("cantidad").Index).Value)
                 If (cantidad > 0) Then
-                    Dim valorPrecio As String = ALMLogicaVentas.Funciones.ValidarLetra(spVentas.ActiveSheet.Cells(fila, spVentas.ActiveSheet.Columns("precio").Index).Text)
+                    Dim precio As Double = ALMLogicaVentas.Funciones.ValidarNumeroACero(spVentas.ActiveSheet.Cells(fila, spVentas.ActiveSheet.Columns("precio").Index).Text)
+                    spVentas.ActiveSheet.Cells(fila, spVentas.ActiveSheet.Columns("subtotal").Index).Value = cantidad * precio
+                    Dim descuento As Double = ALMLogicaVentas.Funciones.ValidarNumeroACero(spVentas.ActiveSheet.Cells(fila, spVentas.ActiveSheet.Columns("descuento").Index).Text)
+                    spVentas.ActiveSheet.Cells(fila, spVentas.ActiveSheet.Columns("total").Index).Value = (cantidad * precio) - descuento 
                     Dim idAlmacen As Integer = ALMLogicaVentas.Funciones.ValidarNumeroACero(spVentas.ActiveSheet.Cells(fila, spVentas.ActiveSheet.Columns("idAlmacen").Index).Value)
                     Dim idFamilia As Integer = ALMLogicaVentas.Funciones.ValidarNumeroACero(spVentas.ActiveSheet.Cells(fila, spVentas.ActiveSheet.Columns("idFamilia").Index).Value)
                     Dim idSubFamilia As Integer = ALMLogicaVentas.Funciones.ValidarNumeroACero(spVentas.ActiveSheet.Cells(fila, spVentas.ActiveSheet.Columns("idSubFamilia").Index).Value)
@@ -974,7 +1132,26 @@ Public Class Principal
                 '        spVentas.ActiveSheet.SetActiveCell(fila, spVentas.ActiveSheet.ActiveColumnIndex - 1)
                 '    End If
             End If
+            CalcularTotales()
         End If
+
+    End Sub
+
+    Private Sub CalcularTotales()
+
+        Dim subTotal As Double = 0
+        Dim descuento As Double = 0
+        Dim total As Double = 0
+        Dim importePagado As Double = ALMLogicaVentas.Funciones.ValidarNumeroACero(txtImportePagado.Text)
+        For fila = 0 To spVentas.ActiveSheet.Rows.Count - 1
+            subTotal += ALMLogicaVentas.Funciones.ValidarNumeroACero(spVentas.ActiveSheet.Cells(fila, spVentas.ActiveSheet.Columns("subtotal").Index).Value)
+            descuento += ALMLogicaVentas.Funciones.ValidarNumeroACero(spVentas.ActiveSheet.Cells(fila, spVentas.ActiveSheet.Columns("descuento").Index).Value)
+            total += ALMLogicaVentas.Funciones.ValidarNumeroACero(spVentas.ActiveSheet.Cells(fila, spVentas.ActiveSheet.Columns("total").Index).Value)
+        Next
+        txtSubTotal.Text = subTotal.ToString("###,###.00")
+        txtDescuento.Text = descuento.ToString("###,###.00")
+        txtTotal.Text = total.ToString("###,###.00")
+        txtImporteCambio.Text = (importePagado - total).ToString("###,###.00")
 
     End Sub
 
@@ -1269,11 +1446,19 @@ Public Class Principal
             If (datos.Rows.Count > 0) Then
                 dtpFecha.Value = datos.Rows(0).Item("Fecha")
                 cbClientes.SelectedValue = datos.Rows(0).Item("IdCliente")
+                cbMetodosPagos.SelectedValue = datos.Rows(0).Item("IdMetodoPago")
+                cbVales1.SelectedValue = datos.Rows(0).Item("IdVale1")
+                cbVales2.SelectedValue = datos.Rows(0).Item("IdVale2")
+                txtImportePagado.Text = ALMLogicaVentas.Funciones.ValidarNumeroACero(datos.Rows(0).Item("ImportePagado").ToString).ToString("###,###.00")
+                txtImporteCambio.Text = ALMLogicaVentas.Funciones.ValidarNumeroACero(datos.Rows(0).Item("ImporteCambio").ToString).ToString("###,###.00")
                 spVentas.ActiveSheet.DataSource = ventas.ObtenerListadoReporte()
                 Me.cantidadFilas = spVentas.ActiveSheet.Rows.Count + 1
                 FormatearSpreadVentas()
+                CalcularTotales()
+                btnImprimir.Enabled = True
             Else
                 LimpiarPantalla()
+                btnImprimir.Enabled = False
             End If
         End If
         AsignarFoco(dtpFecha)
@@ -1311,7 +1496,7 @@ Public Class Principal
         spVentas.ActiveSheet.Columns(numeracion).Tag = "precio" : numeracion += 1
         spVentas.ActiveSheet.Columns(numeracion).Tag = "subtotal" : numeracion += 1
         spVentas.ActiveSheet.Columns(numeracion).Tag = "descuento" : numeracion += 1
-        spVentas.ActiveSheet.Columns(numeracion).Tag = "total" : numeracion += 1 
+        spVentas.ActiveSheet.Columns(numeracion).Tag = "total" : numeracion += 1
         spVentas.ActiveSheet.Columns.Count = numeracion
         spVentas.ActiveSheet.Columns("idAlmacen").Width = 50
         spVentas.ActiveSheet.Columns("nombreAlmacen").Width = 140
@@ -1322,17 +1507,17 @@ Public Class Principal
         spVentas.ActiveSheet.Columns("idArticulo").Width = 50
         spVentas.ActiveSheet.Columns("nombreArticulo").Width = 200
         spVentas.ActiveSheet.Columns("nombreUnidadMedida").Width = 80
-        spVentas.ActiveSheet.Columns("codigo").Width = 140
+        spVentas.ActiveSheet.Columns("codigo").Width = 130
         spVentas.ActiveSheet.Columns("pagina").Width = 70
         spVentas.ActiveSheet.Columns("color").Width = 100
         spVentas.ActiveSheet.Columns("talla").Width = 70
         spVentas.ActiveSheet.Columns("modelo").Width = 80
-        spVentas.ActiveSheet.Columns("codigoInternet").Width = 90
-        spVentas.ActiveSheet.Columns("cantidad").Width = 90
+        spVentas.ActiveSheet.Columns("codigoInternet").Width = 80
+        spVentas.ActiveSheet.Columns("cantidad").Width = 85
         spVentas.ActiveSheet.Columns("precio").Width = 70
         spVentas.ActiveSheet.Columns("subtotal").Width = 90
         spVentas.ActiveSheet.Columns("descuento").Width = 100
-        spVentas.ActiveSheet.Columns("total").Width = 75 
+        spVentas.ActiveSheet.Columns("total").Width = 75
         spVentas.ActiveSheet.Columns("idAlmacen").CellType = tipoEntero
         spVentas.ActiveSheet.Columns("nombreAlmacen").CellType = tipoTexto
         spVentas.ActiveSheet.Columns("idFamilia").CellType = tipoEntero
@@ -1352,7 +1537,7 @@ Public Class Principal
         spVentas.ActiveSheet.Columns("precio").CellType = tipoDoble
         spVentas.ActiveSheet.Columns("subtotal").CellType = tipoDoble
         spVentas.ActiveSheet.Columns("descuento").CellType = tipoDoble
-        spVentas.ActiveSheet.Columns("total").CellType = tipoDoble 
+        spVentas.ActiveSheet.Columns("total").CellType = tipoDoble
         spVentas.ActiveSheet.AddColumnHeaderSpanCell(0, spVentas.ActiveSheet.Columns("idAlmacen").Index, 1, 2)
         spVentas.ActiveSheet.ColumnHeader.Cells(0, spVentas.ActiveSheet.Columns("idAlmacen").Index).Value = "A l m a c é n".ToUpper()
         spVentas.ActiveSheet.ColumnHeader.Cells(1, spVentas.ActiveSheet.Columns("idAlmacen").Index).Value = "No. *".ToUpper()
@@ -1385,7 +1570,7 @@ Public Class Principal
         spVentas.ActiveSheet.AddColumnHeaderSpanCell(0, spVentas.ActiveSheet.Columns("descuento").Index, 2, 1)
         spVentas.ActiveSheet.ColumnHeader.Cells(0, spVentas.ActiveSheet.Columns("descuento").Index).Value = "Descuento *".ToUpper()
         spVentas.ActiveSheet.AddColumnHeaderSpanCell(0, spVentas.ActiveSheet.Columns("total").Index, 2, 1)
-        spVentas.ActiveSheet.ColumnHeader.Cells(0, spVentas.ActiveSheet.Columns("total").Index).Value = "Total *".ToUpper() 
+        spVentas.ActiveSheet.ColumnHeader.Cells(0, spVentas.ActiveSheet.Columns("total").Index).Value = "Total *".ToUpper()
         spVentas.ActiveSheet.Columns(spVentas.ActiveSheet.Columns("esCapturado").Index).Visible = False
         MostrarOcultarDetalleVentas(False)
         spVentas.Refresh()
@@ -1396,7 +1581,7 @@ Public Class Principal
 
         spVentas.ActiveSheet.Columns(spVentas.ActiveSheet.Columns("idAlmacen").Index, spVentas.ActiveSheet.Columns("nombreSubFamilia").Index).Visible = valor
         spVentas.ActiveSheet.Columns(spVentas.ActiveSheet.Columns("nombreArticulo").Index).Visible = valor
-        spVentas.ActiveSheet.Columns(spVentas.ActiveSheet.Columns("nombreUnidadMedida").Index).Visible = valor 
+        spVentas.ActiveSheet.Columns(spVentas.ActiveSheet.Columns("nombreUnidadMedida").Index).Visible = valor
 
     End Sub
 
@@ -1413,6 +1598,12 @@ Public Class Principal
         Dim idCliente As Integer = ALMLogicaVentas.Funciones.ValidarNumeroACero(cbClientes.SelectedValue)
         If (idCliente <= 0) Then
             cbClientes.BackColor = Color.Orange
+            Me.esGuardadoValido = False
+        End If 
+        Dim importeCambio As Double = ALMLogicaVentas.Funciones.ValidarNumeroACero(txtImporteCambio.Text)
+        If (importeCambio < 0) Then
+            txtImportePagado.BackColor = Color.Orange
+            txtImporteCambio.BackColor = Color.Orange
             Me.esGuardadoValido = False
         End If
         ' Parte inferior.
@@ -1459,11 +1650,17 @@ Public Class Principal
 
     Private Sub GuardarEditarVentas()
 
+        Dim hiloImpresion As New Thread(AddressOf MandarImprimir)
         EliminarVentas(False)
         ' Parte superior.
         Dim id As Integer = ALMLogicaVentas.Funciones.ValidarNumeroACero(txtId.Text)
         Dim fecha As Date = dtpFecha.Value
         Dim idCliente As Integer = ALMLogicaVentas.Funciones.ValidarNumeroACero(cbClientes.SelectedValue)
+        Dim idMetodoPago As Integer = ALMLogicaVentas.Funciones.ValidarNumeroACero(cbMetodosPagos.SelectedValue)
+        Dim idVale1 As Integer = ALMLogicaVentas.Funciones.ValidarNumeroACero(cbVales1.SelectedValue)
+        Dim idVale2 As Integer = ALMLogicaVentas.Funciones.ValidarNumeroACero(cbVales2.SelectedValue)
+        Dim importePagado As Double = ALMLogicaVentas.Funciones.ValidarNumeroACero(txtImportePagado.Text)
+        Dim importeCambio As Double = ALMLogicaVentas.Funciones.ValidarNumeroACero(txtImporteCambio.Text)
         ' Parte inferior.
         For fila As Integer = 0 To spVentas.ActiveSheet.Rows.Count - 1
             Dim idAlmacen As Integer = ALMLogicaVentas.Funciones.ValidarNumeroACero(spVentas.ActiveSheet.Cells(fila, spVentas.ActiveSheet.Columns("idAlmacen").Index).Text)
@@ -1492,14 +1689,324 @@ Public Class Principal
                 ventas.ETotal = total
                 ventas.EOrden = orden
                 ventas.EObservaciones = observaciones
+                ventas.EIdMetodoPago = idMetodoPago
+                ventas.EIdVale1 = idVale1
+                ventas.EIdVale2 = idVale2
+                ventas.EImportePagado = importePagado
+                ventas.EImporteCambio = importeCambio
                 ventas.Guardar()
             End If
         Next
+        GuardarSalidasAlmacen()
+        Me.opcionTipoSeleccionada = OpcionTipoEtiqueta.recibo
+        PrepararImpresion(id)
+        Me.opcionTipoSeleccionada = OpcionTipoEtiqueta.vale
+        PrepararImpresion(id)
+        hiloImpresion.Start()
         MessageBox.Show("Guardado finalizado.", "Finalizado.", MessageBoxButtons.OK)
         LimpiarPantalla()
         CargarIdConsecutivo()
         AsignarFoco(txtId)
         txtId.SelectAll()
+        If (Not Me.estaImprimiendo) Then
+            hiloImpresion.Abort()
+        End If
+
+    End Sub
+
+    Private Sub GuardarSalidasAlmacen()
+
+        ' No capturables por el usuario.
+        Dim idExterno As String = String.Empty
+        Dim idMoneda As Integer = 1 ' Pesos
+        Dim tipoCambio As Double = 1 ' 1
+        Dim idTipoSalida As Integer = 1 ' Normal o venta.
+        Dim factura As String = String.Empty
+        Dim chofer As String = String.Empty
+        Dim camion As String = String.Empty
+        Dim noEconomico As String = String.Empty
+        Dim id As Integer = ALMLogicaVentas.Funciones.ValidarNumeroACero(txtId.Text)
+        ' Se eliminan todas las salidas de acuerdo al idorigen, idalmacen y idsalida.
+        Dim datos As New DataTable
+        ventas.EId = ALMLogicaVentas.Funciones.ValidarNumeroACero(txtId.Text)
+        datos = ventas.ObtenerListadoParaAlmacen()
+        For fila = 0 To datos.Rows.Count - 1
+            Dim idAlmacen As Integer = datos.Rows(fila).Item("IdAlmacen")
+            EliminarSalidasAlmacen(False, idAlmacen, id)
+        Next
+        datos.Clear()
+        datos = ventas.ObtenerListado()
+        ' Parte inferior.
+        For fila As Integer = 0 To datos.Rows.Count - 1
+            Dim idAlmacen As Integer = datos.Rows(fila).Item("IdAlmacen")
+            Dim idFamilia As Integer = datos.Rows(fila).Item("IdFamilia")
+            Dim idSubFamilia As Integer = datos.Rows(fila).Item("IdSubFamilia")
+            Dim idArticulo As Integer = datos.Rows(fila).Item("IdArticulo")
+            Dim fecha As Date = datos.Rows(fila).Item("Fecha")
+            Dim idCliente As Integer = datos.Rows(fila).Item("IdCliente")
+            Dim cantidad As Integer = datos.Rows(fila).Item("Cantidad")
+            Dim precio As Double = datos.Rows(fila).Item("Precio")
+            Dim total As Double = datos.Rows(fila).Item("Total")
+            Dim totalPesos As Double = total
+            Dim orden As Integer = fila
+            Dim observaciones As String = datos.Rows(fila).Item("Observaciones")
+            If (Me.idOrigen > 0 AndAlso id > 0 AndAlso idAlmacen > 0 AndAlso idFamilia > 0 AndAlso idSubFamilia > 0 AndAlso idArticulo > 0 AndAlso idMoneda > 0 AndAlso idTipoSalida > 0 AndAlso idCliente > 0) Then
+                salidas.EIdOrigen = Me.idOrigen
+                salidas.EIdAlmacen = idAlmacen
+                salidas.EId = id
+                salidas.EIdFamilia = idFamilia
+                salidas.EIdSubFamilia = idSubFamilia
+                salidas.EIdArticulo = idArticulo
+                salidas.EIdExterno = idExterno
+                salidas.EIdTipoSalida = idTipoSalida
+                salidas.EIdCliente = idCliente
+                salidas.EIdMoneda = idMoneda
+                salidas.ETipoCambio = tipoCambio
+                salidas.EFecha = fecha
+                salidas.ECantidad = cantidad
+                salidas.EPrecio = precio
+                salidas.ETotal = total
+                salidas.ETotalPesos = totalPesos
+                salidas.EOrden = orden
+                salidas.EObservaciones = observaciones
+                salidas.EFactura = factura
+                salidas.EChofer = chofer
+                salidas.ECamion = camion
+                salidas.ENoEconomico = noEconomico
+                salidas.Guardar()
+            End If
+        Next
+
+    End Sub
+
+    Private Sub EliminarSalidasAlmacen(ByVal conMensaje As Boolean, ByVal idAlmacen As Integer, ByVal id As Integer)
+
+        Dim respuestaSi As Boolean = False
+        If (conMensaje) Then
+            If (MessageBox.Show("Confirmas que deseas eliminar esta salida?", "Confirmación.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes) Then
+                respuestaSi = True
+            End If
+        End If
+        If ((respuestaSi) Or (Not conMensaje)) Then
+            salidas.EIdOrigen = Me.idOrigen
+            salidas.EIdAlmacen = idAlmacen
+            salidas.EId = id
+            salidas.Eliminar()
+        End If
+        If (conMensaje And respuestaSi) Then
+            MessageBox.Show("Eliminado finalizado.", "Finalizado.", MessageBoxButtons.OK)
+            LimpiarPantalla()
+            CargarIdConsecutivo()
+            AsignarFoco(txtId)
+        End If
+
+    End Sub
+
+    Private Sub ImprimirManualmente()
+
+        Dim id As Integer = ALMLogicaVentas.Funciones.ValidarNumeroACero(txtId.Text)
+        Me.opcionTipoSeleccionada = OpcionTipoEtiqueta.recibo
+        PrepararImpresion(id)
+        Me.opcionTipoSeleccionada = OpcionTipoEtiqueta.vale
+        PrepararImpresion(id)
+        MandarImprimir()
+
+    End Sub
+
+    Private Sub CargarOpcionesImpresion()
+
+        Impresoras.CargarImpresoras(True)
+
+    End Sub
+
+    Private Sub PrepararImpresion(ByVal id As Integer)
+
+        ventas.EId = id
+        If (Me.opcionTipoSeleccionada = OpcionTipoEtiqueta.recibo) Then ' Aquí se obtienen datos del recibo.
+            Me.datosRecibosParaImprimir = ventas.ObtenerListadoReporteImpresionRecibos()
+            For fila As Integer = 0 To Me.datosRecibosParaImprimir.Rows.Count - 1
+                ' Se agrega al listado.
+                Me.listaRecibosParaImprimir.Add(Me.datosRecibosParaImprimir.Rows(fila))
+            Next
+            'ElseIf (Me.opcionTipoSeleccionada = OpcionTipoEtiqueta.vale) Then
+            '    Me.datosCajasParaImprimir = ventas.ObtenerListadoReporteImpresionCajas()
+            '    For fila As Integer = 0 To Me.datosCajasParaImprimir.Rows.Count - 1
+            '        ' Se agrega al listado.
+            '        Me.listaCajasParaImprimir.Add(Me.datosCajasParaImprimir.Rows(fila))
+            '    Next
+        End If
+
+    End Sub
+
+    Private Sub MandarImprimir()
+
+        Me.estaImprimiendo = True
+        ' Impresión de etiquetas de tarima. 
+        ' Si hay datos para imprimir.
+        If (Me.listaRecibosParaImprimir.Count > 0) Then
+            pdRecibo.PrinterSettings.PrinterName = Impresoras.nombreImpresoraRecibo
+            If (Impresoras.habilitarImpresoraRecibo) Then
+                Try
+                    pdRecibo.Print()
+                Catch ex As Exception
+                    MsgBox("Hay un error al imprimir. " & ex.Message, MsgBoxStyle.Critical, "Error.")
+                End Try
+            End If
+        End If
+        ' Se reinician los valores para la próxima impresión.
+        Me.contadorRecibosParaImprimir = 0
+        Me.listaRecibosParaImprimir.Clear()
+        Me.datosRecibosParaImprimir.Clear()
+        '' Impresion de etiquetas de caja. 
+        '' Si hay datos para imprimir.
+        'If (Me.listaCajasParaImprimir.Count > 0) Then
+        '    pdCaja.PrinterSettings.PrinterName = Impresion.nombreImpresoraCaja
+        '    If (Impresion.habilitarImpresoraCaja) Then
+        '        Try
+        '            pdCaja.Print()
+        '        Catch ex As Exception
+        '            MsgBox("Hay un error al imprimir. " & ex.Message, MsgBoxStyle.Critical, "Error.")
+        '        End Try
+        '    End If
+        'End If
+        '' Se reinician los valores para la próxima impresión.
+        'Me.contadorCajasParaImprimir = 0
+        'Me.listaCajasParaImprimir.Clear()
+        'Me.datosCajasParaImprimir.Clear() 
+        Me.estaImprimiendo = False
+
+    End Sub
+
+    Private Sub CrearRecibo(ByRef e As System.Drawing.Printing.PrintPageEventArgs)
+
+        Dim fuenteDescripcion4 As New Font(Principal.tipoLetraSpread, 4, FontStyle.Bold)
+        Dim fuenteDescripcion6 As New Font(Principal.tipoLetraSpread, 6, FontStyle.Bold)
+        Dim fuenteDescripcion8 As New Font(Principal.tipoLetraSpread, 8, FontStyle.Bold)
+        Dim imagen As System.Drawing.Image = Nothing
+        Dim margenIzquierdoRecibo As Integer = Impresoras.margenIzquierdoRecibo : Dim margenSuperiorRecibo As Integer = Impresoras.margenSuperiorRecibo
+        Dim formato As New StringFormat()
+        formato.Alignment = StringAlignment.Center
+        Dim altura As Integer = 0
+        ' Se obtienen los datos generales. 
+        ' Información de la empresa.
+        Dim empresa As String = String.Empty
+        Dim representante As String = String.Empty
+        Dim rfc As String = String.Empty
+        Dim domicilio As String = String.Empty
+        Dim telefono As String = String.Empty
+        Dim municipio As String = String.Empty
+        Dim estado As String = String.Empty
+        Dim pais As String = String.Empty
+        Dim datos As New DataTable
+        empresas.EId = 0 ' Se busca la primer empresa.
+        datos = empresas.ObtenerListado(True)
+        If (datos.Rows.Count > 0) Then
+            empresa = ALMLogicaVentas.Funciones.ValidarLetra(datos.Rows(0).Item("Nombre"))
+            representante = ALMLogicaVentas.Funciones.ValidarLetra(datos.Rows(0).Item("RepresentanteLegal"))
+            rfc = ALMLogicaVentas.Funciones.ValidarLetra(datos.Rows(0).Item("Rfc"))
+            domicilio = ALMLogicaVentas.Funciones.ValidarLetra(datos.Rows(0).Item("Domicilio"))
+            telefono = ALMLogicaVentas.Funciones.ValidarLetra(datos.Rows(0).Item("Telefono"))
+            municipio = ALMLogicaVentas.Funciones.ValidarLetra(datos.Rows(0).Item("Municipio"))
+            estado = ALMLogicaVentas.Funciones.ValidarLetra(datos.Rows(0).Item("Estado"))
+            pais = ALMLogicaVentas.Funciones.ValidarLetra(datos.Rows(0).Item("Pais"))
+        End If
+        ' Información de recibo de venta.
+        Dim id As String = ALMLogicaVentas.Funciones.ValidarLetra(Me.listaRecibosParaImprimir.Item(Me.contadorRecibosParaImprimir).Item("Id")).PadLeft(6, "0")
+        Dim fecha As String = ALMLogicaVentas.Funciones.ValidarLetra(Me.listaRecibosParaImprimir.Item(Me.contadorRecibosParaImprimir).Item("Fecha"))
+        Dim hora As String = Now.ToShortTimeString
+        Dim nombreCliente As String = ALMLogicaVentas.Funciones.ValidarLetra(Me.listaRecibosParaImprimir.Item(Me.contadorRecibosParaImprimir).Item("NombreCliente"))
+        Dim metodoPago As String = "Indefinido"
+        'metodoPago = ALMLogicaVentas.Funciones.ValidarLetra(Me.listaRecibosParaImprimir.Item(Me.contadorRecibosParaImprimir).Item("MetodoPago")) ' TODO. Pendiente.
+        ' Formato de recibo.
+        altura = 5
+        e.Graphics.DrawString(empresa, fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 0, margenSuperiorRecibo + altura) ' Empresa.
+        altura += 12
+        e.Graphics.DrawString(representante, fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 0, margenSuperiorRecibo + altura) ' Representante.
+        altura += 12
+        e.Graphics.DrawString(rfc, fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 0, margenSuperiorRecibo + altura) ' Rfc.
+        altura += 12
+        e.Graphics.DrawString(domicilio, fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 0, margenSuperiorRecibo + altura) ' Domicilio.
+        altura += 12
+        e.Graphics.DrawString(telefono, fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 0, margenSuperiorRecibo + altura) ' Telefono.
+        altura += 12
+        e.Graphics.DrawString(municipio & ", " & estado & ", " & pais, fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 0, margenSuperiorRecibo + altura) ' Localidad.
+        altura += 20
+        e.Graphics.DrawString(id, fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 0, margenSuperiorRecibo + altura) ' Id.
+        e.Graphics.DrawString(fecha, fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 175, margenSuperiorRecibo + altura) ' Fecha.
+        e.Graphics.DrawString(hora, fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 235, margenSuperiorRecibo + altura) ' Hora.
+        altura += 20
+        e.Graphics.DrawString("Cliente: ", fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 0, margenSuperiorRecibo + altura) ' Cliente.
+        altura += 12
+        e.Graphics.DrawString(nombreCliente, fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 0, margenSuperiorRecibo + altura) ' Cliente.
+        altura += 20
+        e.Graphics.DrawLine(Pens.Black, margenIzquierdoRecibo + 0, margenSuperiorRecibo + altura, margenIzquierdoRecibo + 300, margenSuperiorRecibo + altura) ' Linea.
+        e.Graphics.DrawString("Cant.", fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 0, margenSuperiorRecibo + altura) ' Cantidad.
+        e.Graphics.DrawString("Modelo", fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 50, margenSuperiorRecibo + altura) ' Modelo.
+        e.Graphics.DrawString("Color", fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 120, margenSuperiorRecibo + altura) ' Color.
+        e.Graphics.DrawString("Núm.", fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 200, margenSuperiorRecibo + altura) ' Numero.
+        e.Graphics.DrawString("Precio", fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 260, margenSuperiorRecibo + altura) ' Precio.
+        altura += 12
+        Dim total As Double = 0
+        For indice = 0 To Me.listaRecibosParaImprimir.Count - 1
+            Dim cantidad As String = ALMLogicaVentas.Funciones.ValidarLetra(Me.listaRecibosParaImprimir.Item(indice).Item("Cantidad"))
+            Dim modelo As String = ALMLogicaVentas.Funciones.ValidarLetra(Me.listaRecibosParaImprimir.Item(indice).Item("Modelo"))
+            Dim color As String = ALMLogicaVentas.Funciones.ValidarLetra(Me.listaRecibosParaImprimir.Item(indice).Item("Color"))
+            Dim talla As String = ALMLogicaVentas.Funciones.ValidarLetra(Me.listaRecibosParaImprimir.Item(indice).Item("Talla"))
+            Dim precio As Double = ALMLogicaVentas.Funciones.ValidarNumeroACero(Me.listaRecibosParaImprimir.Item(indice).Item("Precio"))
+            Dim descuento As Double = ALMLogicaVentas.Funciones.ValidarNumeroACero(Me.listaRecibosParaImprimir.Item(indice).Item("Descuento"))
+            total += ALMLogicaVentas.Funciones.ValidarNumeroACero(Me.listaRecibosParaImprimir.Item(indice).Item("Total"))
+            e.Graphics.DrawString(cantidad, fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 0, margenSuperiorRecibo + altura) ' Cantidad.
+            e.Graphics.DrawString(modelo, fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 50, margenSuperiorRecibo + altura) ' Modelo.
+            e.Graphics.DrawString(color, fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 120, margenSuperiorRecibo + altura) ' Color.
+            e.Graphics.DrawString(talla, fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 200, margenSuperiorRecibo + altura) ' Numero.
+            e.Graphics.DrawString(precio.ToString("###,###.00"), fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 260, margenSuperiorRecibo + altura) ' Precio.
+            altura += 12
+            If (descuento > 0) Then
+                e.Graphics.DrawString("Descto.", fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 120, margenSuperiorRecibo + altura) ' Descuento.
+                e.Graphics.DrawString(descuento.ToString("###,###.00"), fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 260, margenSuperiorRecibo + altura) ' Descuento.
+                altura += 12
+            End If
+        Next
+        e.Graphics.DrawLine(Pens.Black, margenIzquierdoRecibo + 0, margenSuperiorRecibo + altura, margenIzquierdoRecibo + 300, margenSuperiorRecibo + altura) ' Linea. 
+        e.Graphics.DrawString("Total", fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 120, margenSuperiorRecibo + altura) ' Total.
+        e.Graphics.DrawString(total.ToString("###,###.00"), fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 260, margenSuperiorRecibo + altura) ' Total.
+        altura += 20
+        Dim idVale As String = "." ' String.Empty ' TODO. Pendiente.
+        Dim idVale2 As String = "." 'String.Empty ' TODO. Pendiente.
+        Dim precioVale As Double = 0 ' TODO. Pendiente.
+        Dim precioVale2 As Double = 0 ' TODO. Pendiente.
+        Dim diferencia As Double = total - precioVale - precioVale2 ' TODO. Pendiente.
+        e.Graphics.DrawString("Vale No.", fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 50, margenSuperiorRecibo + altura) ' Vale. 
+        e.Graphics.DrawString(idVale, fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 120, margenSuperiorRecibo + altura) ' Vale 1.
+        e.Graphics.DrawString(precioVale.ToString("###,###.00"), fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 260, margenSuperiorRecibo + altura) ' Vale 1.
+        altura += 12
+        e.Graphics.DrawString(idVale2, fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 120, margenSuperiorRecibo + altura) ' Vale 2.
+        e.Graphics.DrawString(precioVale2.ToString("###,###.00"), fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 260, margenSuperiorRecibo + altura) ' Vale 2.
+        altura += 12
+        e.Graphics.DrawString("Diferencia", fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 120, margenSuperiorRecibo + altura) ' Diferencia.
+        e.Graphics.DrawString(diferencia.ToString("###,###.00"), fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 260, margenSuperiorRecibo + altura) ' Diferencia.
+        altura += 20
+        e.Graphics.DrawString("Método de pago:", fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 0, margenSuperiorRecibo + altura) ' Metodo pago.
+        altura += 12
+        e.Graphics.DrawString(metodoPago, fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 0, margenSuperiorRecibo + altura) ' Metodo pago.
+        altura += 20
+        e.Graphics.DrawString("Le atendió:", fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 0, margenSuperiorRecibo + altura) ' Atendio.
+        altura += 12
+        e.Graphics.DrawString(Me.usuarios.ENombre, fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 0, margenSuperiorRecibo + altura) ' Atendio.
+        altura += 20
+        e.Graphics.DrawString("Gracias por su preferencia!", fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 0, margenSuperiorRecibo + altura) ' Gracias.
+        altura += 20
+        e.Graphics.DrawString("Garantia válida hasta:", fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 0, margenSuperiorRecibo + altura) ' Garantia.
+        altura += 12
+        e.Graphics.DrawString(Convert.ToDateTime(fecha).AddDays(15), fuenteDescripcion8, Brushes.Black, margenIzquierdoRecibo + 0, margenSuperiorRecibo + altura) ' Garantia.
+        '' Se aumenta el contador de recibos.
+        'Me.contadorRecibosParaImprimir += 1
+        '' Se verifica si tiene mas impresiones pendientes de acuerdo a las recibos.
+        'If (Me.contadorRecibosParaImprimir < Me.listaRecibosParaImprimir.Count) Then
+        '    e.HasMorePages = True
+        'Else
+        '    e.HasMorePages = False
+        'End If
 
     End Sub
 
@@ -1605,18 +2112,14 @@ Public Class Principal
 
     End Enum
 
+    Enum OpcionTipoEtiqueta
+
+        ' Este listado debe corresponder a la tabla TiposEtiquetas (no es configurable por el usuario).
+        recibo = 1
+        vale = 2
+
+    End Enum
+
 #End Region
      
-    Private Sub chkMostrarDetallado_CheckedChanged(sender As Object, e As EventArgs) Handles chkMostrarDetallado.CheckedChanged
-
-        If (Me.estaMostrado) Then
-            If (chkMostrarDetallado.Checked) Then
-                MostrarOcultarDetalleVentas(True)
-            Else
-                MostrarOcultarDetalleVentas(False)
-            End If
-        End If
-
-    End Sub
-
 End Class

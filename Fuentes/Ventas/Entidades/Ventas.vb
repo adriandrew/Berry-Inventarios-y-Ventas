@@ -15,7 +15,12 @@ Public Class Ventas
     Private descuento As Double
     Private total As Double
     Private orden As Integer
-    Private observaciones As String 
+    Private observaciones As String
+    Private idMetodoPago As Integer
+    Private idVale1 As Integer
+    Private idVale2 As Integer
+    Private importePagado As Double
+    Private importeCambio As Double
      
     Public Property EIdAlmacen() As Integer
         Get
@@ -128,14 +133,54 @@ Public Class Ventas
         Set(value As String)
             observaciones = value
         End Set
-    End Property   
+    End Property
+    Public Property EIdMetodoPago() As Integer
+        Get
+            Return idMetodoPago
+        End Get
+        Set(value As Integer)
+            idMetodoPago = value
+        End Set
+    End Property
+    Public Property EIdVale1() As Integer
+        Get
+            Return idVale1
+        End Get
+        Set(value As Integer)
+            idVale1 = value
+        End Set
+    End Property
+    Public Property EIdVale2() As Integer
+        Get
+            Return idVale2
+        End Get
+        Set(value As Integer)
+            idVale2 = value
+        End Set
+    End Property
+    Public Property EImportePagado() As Double
+        Get
+            Return importePagado
+        End Get
+        Set(value As Double)
+            importePagado = value
+        End Set
+    End Property
+    Public Property EImporteCambio() As Double
+        Get
+            Return importeCambio
+        End Get
+        Set(value As Double)
+            importeCambio = value
+        End Set
+    End Property
 
     Public Sub Guardar()
 
         Try
             Dim comando As New SqlCommand()
             comando.Connection = BaseDatos.conexionAlmacen
-            comando.CommandText = String.Format("INSERT INTO Ventas (IdAlmacen, IdFamilia, IdSubFamilia, IdArticulo, Id, IdCliente, Fecha, Cantidad, Precio, SubTotal, Descuento, Total, Orden, Observaciones) VALUES (@idAlmacen, @idFamilia, @idSubFamilia, @idArticulo, @id, @idCliente, @fecha, @cantidad, @precio, @subtotal, @descuento, @total, @orden, @observaciones)")
+            comando.CommandText = String.Format("INSERT INTO Ventas (IdAlmacen, IdFamilia, IdSubFamilia, IdArticulo, Id, IdCliente, Fecha, Cantidad, Precio, SubTotal, Descuento, Total, Orden, Observaciones, IdMetodoPago, IdVale1, IdVale2, ImportePagado, ImporteCambio) VALUES (@idAlmacen, @idFamilia, @idSubFamilia, @idArticulo, @id, @idCliente, @fecha, @cantidad, @precio, @subtotal, @descuento, @total, @orden, @observaciones, @idMetodoPago, @idVale1, @idVale2, @importePagado, @importeCambio)")
             comando.Parameters.AddWithValue("@idAlmacen", Me.EIdAlmacen)
             comando.Parameters.AddWithValue("@idFamilia", Me.EIdFamilia)
             comando.Parameters.AddWithValue("@idSubFamilia", Me.EIdSubFamilia)
@@ -149,7 +194,12 @@ Public Class Ventas
             comando.Parameters.AddWithValue("@descuento", Me.EDescuento)
             comando.Parameters.AddWithValue("@total", Me.ETotal) 
             comando.Parameters.AddWithValue("@orden", Me.EOrden)
-            comando.Parameters.AddWithValue("@observaciones", Me.EObservaciones) 
+            comando.Parameters.AddWithValue("@observaciones", Me.EObservaciones)
+            comando.Parameters.AddWithValue("@idMetodoPago", Me.EIdMetodoPago)
+            comando.Parameters.AddWithValue("@idVale1", Me.EIdVale1)
+            comando.Parameters.AddWithValue("@idVale2", Me.EIdVale2)
+            comando.Parameters.AddWithValue("@importePagado", Me.EImportePagado)
+            comando.Parameters.AddWithValue("@importeCambio", Me.EImporteCambio)
             BaseDatos.conexionAlmacen.Open()
             comando.ExecuteNonQuery()
             BaseDatos.conexionAlmacen.Close()
@@ -250,6 +300,66 @@ Public Class Ventas
                 condicion &= " AND Id=@id"
             End If
             comando.CommandText = String.Format("SELECT * FROM Ventas WHERE 0=0 {0} ORDER BY Orden ASC", condicion)
+            comando.Parameters.AddWithValue("@id", Me.EId)
+            BaseDatos.conexionAlmacen.Open()
+            Dim lectorDatos As SqlDataReader
+            lectorDatos = comando.ExecuteReader()
+            datos.Load(lectorDatos)
+            BaseDatos.conexionAlmacen.Close()
+            Return datos
+        Catch ex As Exception
+            Throw ex
+        Finally
+            BaseDatos.conexionAlmacen.Close()
+        End Try
+
+    End Function
+
+    Public Function ObtenerListadoReporteImpresionRecibos() As DataTable
+
+        Try
+            Dim datos As New DataTable
+            Dim comando As New SqlCommand()
+            comando.Connection = BaseDatos.conexionAlmacen
+            Dim condicion As String = String.Empty
+            If (Me.EId > 0) Then
+                condicion &= " AND V.Id=@id"
+            End If
+            comando.CommandText = String.Format("SELECT V.Id, V.IdAlmacen, A.Nombre AS NombreAlmacen, V.IdFamilia, F.Nombre AS NombreFamilia, V.IdSubFamilia, SF.Nombre AS NombreSubFamilia, V.IdArticulo, A2.Nombre AS NombreArticulo, UM.Nombre AS NombreUnidad, A2.Codigo, A2.Pagina, A2.Color, A2.Talla, A2.Modelo, A2.CodigoInternet, V.Fecha, V.Cantidad, V.Precio, V.SubTotal, V.Descuento, V.Total, V.IdCliente, C.Nombre AS NombreCliente " & _
+            " FROM Ventas AS V " & _
+            " LEFT JOIN {0}Almacenes AS A ON V.IdAlmacen = A.Id" & _
+            " LEFT JOIN {0}Familias AS F ON V.IdFamilia = F.Id AND V.IdAlmacen = F.IdAlmacen" & _
+            " LEFT JOIN {0}SubFamilias AS SF ON V.IdSubFamilia = SF.Id AND V.IdFamilia = SF.IdFamilia AND V.IdAlmacen = SF.IdAlmacen" & _
+            " LEFT JOIN {0}Articulos AS A2 ON V.IdArticulo = A2.Id AND V.IdSubFamilia = A2.IdSubFamilia AND V.IdFamilia = A2.IdFamilia AND V.IdAlmacen = A2.IdAlmacen" & _
+            " LEFT JOIN {0}UnidadesMedidas AS UM ON A2.IdUnidadMedida = UM.Id" & _
+            " LEFT JOIN {0}Clientes AS C ON V.IdCliente = C.Id" & _
+            " WHERE 0=0 {1} ORDER BY V.Orden ASC", ALMLogicaVentas.Programas.bdCatalogo & ".dbo." & ALMLogicaVentas.Programas.prefijoBaseDatosAlmacen, condicion)
+            comando.Parameters.AddWithValue("@id", Me.EId)
+            BaseDatos.conexionAlmacen.Open()
+            Dim lectorDatos As SqlDataReader
+            lectorDatos = comando.ExecuteReader()
+            datos.Load(lectorDatos)
+            BaseDatos.conexionAlmacen.Close()
+            Return datos
+        Catch ex As Exception
+            Throw ex
+        Finally
+            BaseDatos.conexionAlmacen.Close()
+        End Try
+
+    End Function
+
+    Public Function ObtenerListadoParaAlmacen() As DataTable
+
+        Try
+            Dim datos As New DataTable
+            Dim comando As New SqlCommand()
+            comando.Connection = BaseDatos.conexionAlmacen
+            Dim condicion As String = String.Empty
+            If (Me.EId > 0) Then
+                condicion &= " AND Id=@id"
+            End If
+            comando.CommandText = String.Format("SELECT IdAlmacen, Id FROM Ventas WHERE 0=0 {0} GROUP BY IdAlmacen, Id", condicion)
             comando.Parameters.AddWithValue("@id", Me.EId)
             BaseDatos.conexionAlmacen.Open()
             Dim lectorDatos As SqlDataReader

@@ -22,3 +22,15 @@ C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\M
 C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Pedidos\Entidades\obj\Release\ALMEntidadesPedidos.dll
 C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Pedidos\Entidades\obj\Release\ALMEntidadesPedidos.xml
 C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Pedidos\Entidades\obj\Release\ALMEntidadesPedidos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\bin\Release\ALMEntidadesPedidos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\bin\Release\ALMEntidadesPedidos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\bin\Release\ALMEntidadesPedidos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\bin\Release\ALMLogicaPedidos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\bin\Release\ALMLogicaPedidos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\bin\Release\ALMLogicaPedidos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\obj\Release\Entidades.vbprojResolveAssemblyReference.cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\obj\Release\ALMEntidadesPedidos.Resources.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\obj\Release\Entidades.vbproj.GenerateResource.Cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\obj\Release\ALMEntidadesPedidos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\obj\Release\ALMEntidadesPedidos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\obj\Release\ALMEntidadesPedidos.pdb
