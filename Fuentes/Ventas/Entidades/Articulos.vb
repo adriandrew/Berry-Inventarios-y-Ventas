@@ -121,7 +121,7 @@ Public Class Articulos
         End Set
     End Property
 
-    Public Function ObtenerListadoReporte() As DataTable
+    Public Function ObtenerListadoCatalogos() As DataTable
 
         Try
             Dim datos As New DataTable
@@ -129,24 +129,26 @@ Public Class Articulos
             comando.Connection = BaseDatos.conexionCatalogo
             Dim condicion As String = String.Empty
             If (Me.EIdAlmacen > 0) Then
-                condicion &= " AND A2.IdAlmacen=@idAlmacen"
+                condicion &= " AND A.IdAlmacen=@idAlmacen"
             End If
             If (Me.EIdFamilia > 0) Then
-                condicion &= " AND A2.IdFamilia=@idFamilia"
+                condicion &= " AND A.IdFamilia=@idFamilia"
             End If
             If (Me.EIdSubFamilia > 0) Then
-                condicion &= " AND A2.IdSubFamilia=@idSubFamilia"
+                condicion &= " AND A.IdSubFamilia=@idSubFamilia"
             End If
             If (Me.EId > 0) Then
-                condicion &= " AND A2.Id=@id"
+                condicion &= " AND A.Id=@id"
             End If
-            comando.CommandText = String.Format("SELECT A2.IdAlmacen, A.Nombre, A2.IdFamilia, F.Nombre, A2.IdSubFamilia, SF.Nombre, A2.Id, A2.Nombre, A2.IdProveedor, P.Nombre,UM.Nombre, A2.Codigo, A2.Pagina, A2.Color, A2.Talla, A2.Modelo, A2.CodigoInternet, A2.Precio FROM {0}Articulos AS A2 " & _
-            " LEFT JOIN {0}Almacenes AS A ON A2.IdAlmacen=A.Id " & _
-            " LEFT JOIN {0}Familias AS F ON A2.IdAlmacen=F.IdAlmacen AND A2.IdFamilia=F.Id " & _
-            " LEFT JOIN {0}SubFamilias AS SF ON A2.IdAlmacen=SF.IdAlmacen AND A2.IdFamilia=SF.IdFamilia AND A2.IdSubFamilia=SF.Id " & _
-            " LEFT JOIN {0}UnidadesMedidas AS UM ON A2.IdUnidadMedida=UM.Id " & _
-            " LEFT JOIN {0}Proveedores AS P ON A2.IdProveedor=P.Id " & _
-            " WHERE 0=0 {1} ORDER BY A2.IdAlmacen, A2.IdFamilia, A2.IdSubFamilia, A2.Id ASC", ALMLogicaVentas.Programas.prefijoBaseDatosAlmacen, condicion)
+            comando.CommandText = String.Format("SELECT A.IdAlmacen, A2.Nombre, A.IdFamilia, F.Nombre, A.IdSubFamilia, SF.Nombre, A.Id, A.Nombre, A.IdProveedor, P.Nombre, UM.Nombre, A.Codigo, A.Pagina, A.Color, A.Talla, A.Modelo, A.CodigoInternet, A.Precio " & _
+            " FROM {0}Articulos AS A " & _
+            " LEFT JOIN {0}Almacenes AS A2 ON A.IdAlmacen=A2.Id " & _
+            " LEFT JOIN {0}Familias AS F ON A.IdAlmacen=F.IdAlmacen AND A.IdFamilia=F.Id " & _
+            " LEFT JOIN {0}SubFamilias AS SF ON A.IdAlmacen=SF.IdAlmacen AND A.IdFamilia=SF.IdFamilia AND A.IdSubFamilia=SF.Id " & _
+            " LEFT JOIN {0}UnidadesMedidas AS UM ON A.IdUnidadMedida=UM.Id " & _
+            " LEFT JOIN {0}Proveedores AS P ON A.IdProveedor=P.Id " & _
+            " WHERE 0=0 {1} " & _
+            " ORDER BY A.IdAlmacen, A.IdFamilia, A.IdSubFamilia, A.Id ASC", ALMLogicaVentas.Programas.prefijoBaseDatosAlmacen, condicion)
             comando.Parameters.AddWithValue("@idAlmacen", Me.EIdAlmacen)
             comando.Parameters.AddWithValue("@idFamilia", Me.EIdFamilia)
             comando.Parameters.AddWithValue("@idSubFamilia", Me.EIdSubFamilia)
@@ -184,7 +186,7 @@ Public Class Articulos
             If (Me.EId > 0) Then
                 condicion &= " AND Id=@id"
             End If
-            comando.CommandText = String.Format("SELECT IdAlmacen, IdFamilia, IdSubFamilia, Id, Nombre, NombreComercial, IdUnidadMedida, CantidadMinima, CantidadMaxima, Precio, Seccion, Estante, Nivel FROM {0}Articulos WHERE 0=0 {1}", ALMLogicaVentas.Programas.prefijoBaseDatosAlmacen, condicion)
+            comando.CommandText = String.Format("SELECT * FROM {0}Articulos WHERE 0=0 {1}", ALMLogicaVentas.Programas.prefijoBaseDatosAlmacen, condicion)
             comando.Parameters.AddWithValue("@idAlmacen", Me.EIdAlmacen)
             comando.Parameters.AddWithValue("@idFamilia", Me.EIdFamilia)
             comando.Parameters.AddWithValue("@idSubFamilia", Me.EIdSubFamilia)

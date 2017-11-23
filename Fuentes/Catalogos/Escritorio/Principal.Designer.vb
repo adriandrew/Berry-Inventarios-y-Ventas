@@ -23,6 +23,7 @@ Partial Class Principal
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Principal))
         Dim EnhancedScrollBarRenderer11 As FarPoint.Win.Spread.EnhancedScrollBarRenderer = New FarPoint.Win.Spread.EnhancedScrollBarRenderer()
         Dim NamedStyle1 As FarPoint.Win.Spread.NamedStyle = New FarPoint.Win.Spread.NamedStyle("Style1")
         Dim NamedStyle2 As FarPoint.Win.Spread.NamedStyle = New FarPoint.Win.Spread.NamedStyle("DataAreaGrayscale")
@@ -48,9 +49,14 @@ Partial Class Principal
         Dim EnhancedScrollBarRenderer6 As FarPoint.Win.Spread.EnhancedScrollBarRenderer = New FarPoint.Win.Spread.EnhancedScrollBarRenderer()
         Dim EnhancedScrollBarRenderer7 As FarPoint.Win.Spread.EnhancedScrollBarRenderer = New FarPoint.Win.Spread.EnhancedScrollBarRenderer()
         Dim EnhancedScrollBarRenderer8 As FarPoint.Win.Spread.EnhancedScrollBarRenderer = New FarPoint.Win.Spread.EnhancedScrollBarRenderer()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Principal))
         Me.pnlContenido = New System.Windows.Forms.Panel()
         Me.pnlCuerpo = New System.Windows.Forms.Panel()
+        Me.pnlImpresión = New System.Windows.Forms.Panel()
+        Me.btnImprimir = New System.Windows.Forms.Button()
+        Me.cbHasta = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.cbDesde = New System.Windows.Forms.ComboBox()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.pnlCatalogos = New System.Windows.Forms.Panel()
         Me.txtBuscarCatalogo = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -79,21 +85,26 @@ Partial Class Principal
         Me.spVarios = New FarPoint.Win.Spread.FpSpread()
         Me.spVarios_Sheet1 = New FarPoint.Win.Spread.SheetView()
         Me.pnlPie = New System.Windows.Forms.Panel()
+        Me.btnConfigurarImpresion = New System.Windows.Forms.Button()
+        Me.btnPreImprimir = New System.Windows.Forms.Button()
+        Me.btnImportar = New System.Windows.Forms.Button()
         Me.btnEliminar = New System.Windows.Forms.Button()
         Me.btnAyuda = New System.Windows.Forms.Button()
         Me.btnGuardar = New System.Windows.Forms.Button()
         Me.lblDescripcionTooltip = New System.Windows.Forms.Label()
         Me.btnSalir = New System.Windows.Forms.Button()
         Me.pnlEncabezado = New System.Windows.Forms.Panel()
+        Me.pbMarca = New System.Windows.Forms.PictureBox()
         Me.lblEncabezadoArea = New System.Windows.Forms.Label()
         Me.lblEncabezadoUsuario = New System.Windows.Forms.Label()
         Me.lblEncabezadoEmpresa = New System.Windows.Forms.Label()
         Me.lblEncabezadoPrograma = New System.Windows.Forms.Label()
         Me.temporizador = New System.Windows.Forms.Timer(Me.components)
-        Me.btnImportar = New System.Windows.Forms.Button()
         Me.opdArchivos = New System.Windows.Forms.OpenFileDialog()
+        Me.pdArticulo = New System.Drawing.Printing.PrintDocument()
         Me.pnlContenido.SuspendLayout()
         Me.pnlCuerpo.SuspendLayout()
+        Me.pnlImpresión.SuspendLayout()
         Me.pnlCatalogos.SuspendLayout()
         CType(Me.spCatalogos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.spCatalogos_Sheet1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,6 +121,7 @@ Partial Class Principal
         CType(Me.spVarios_Sheet1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlPie.SuspendLayout()
         Me.pnlEncabezado.SuspendLayout()
+        CType(Me.pbMarca, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pnlContenido
@@ -126,7 +138,7 @@ Partial Class Principal
         Me.pnlContenido.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.pnlContenido.Location = New System.Drawing.Point(0, 0)
         Me.pnlContenido.Name = "pnlContenido"
-        Me.pnlContenido.Size = New System.Drawing.Size(1034, 630)
+        Me.pnlContenido.Size = New System.Drawing.Size(1039, 661)
         Me.pnlContenido.TabIndex = 2
         '
         'pnlCuerpo
@@ -136,6 +148,7 @@ Partial Class Principal
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlCuerpo.AutoScroll = True
         Me.pnlCuerpo.BackColor = System.Drawing.Color.Transparent
+        Me.pnlCuerpo.Controls.Add(Me.pnlImpresión)
         Me.pnlCuerpo.Controls.Add(Me.pnlCatalogos)
         Me.pnlCuerpo.Controls.Add(Me.pnlMenu)
         Me.pnlCuerpo.Controls.Add(Me.spAlmacenes)
@@ -143,10 +156,88 @@ Partial Class Principal
         Me.pnlCuerpo.Controls.Add(Me.spSubFamilias)
         Me.pnlCuerpo.Controls.Add(Me.spArticulos)
         Me.pnlCuerpo.Controls.Add(Me.spVarios)
-        Me.pnlCuerpo.Location = New System.Drawing.Point(3, 77)
+        Me.pnlCuerpo.Location = New System.Drawing.Point(0, 77)
         Me.pnlCuerpo.Name = "pnlCuerpo"
-        Me.pnlCuerpo.Size = New System.Drawing.Size(1028, 490)
+        Me.pnlCuerpo.Size = New System.Drawing.Size(1039, 521)
         Me.pnlCuerpo.TabIndex = 9
+        '
+        'pnlImpresión
+        '
+        Me.pnlImpresión.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnlImpresión.BackColor = System.Drawing.Color.White
+        Me.pnlImpresión.Controls.Add(Me.btnImprimir)
+        Me.pnlImpresión.Controls.Add(Me.cbHasta)
+        Me.pnlImpresión.Controls.Add(Me.Label1)
+        Me.pnlImpresión.Controls.Add(Me.cbDesde)
+        Me.pnlImpresión.Controls.Add(Me.Label8)
+        Me.pnlImpresión.Location = New System.Drawing.Point(0, 41)
+        Me.pnlImpresión.Name = "pnlImpresión"
+        Me.pnlImpresión.Size = New System.Drawing.Size(1039, 480)
+        Me.pnlImpresión.TabIndex = 29
+        Me.pnlImpresión.Visible = False
+        '
+        'btnImprimir
+        '
+        Me.btnImprimir.BackColor = System.Drawing.Color.White
+        Me.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnImprimir.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.btnImprimir.FlatAppearance.BorderSize = 3
+        Me.btnImprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumAquamarine
+        Me.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
+        Me.btnImprimir.Location = New System.Drawing.Point(259, 59)
+        Me.btnImprimir.Name = "btnImprimir"
+        Me.btnImprimir.Size = New System.Drawing.Size(60, 60)
+        Me.btnImprimir.TabIndex = 84
+        Me.btnImprimir.UseVisualStyleBackColor = False
+        '
+        'cbHasta
+        '
+        Me.cbHasta.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cbHasta.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cbHasta.BackColor = System.Drawing.Color.White
+        Me.cbHasta.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbHasta.ForeColor = System.Drawing.Color.Black
+        Me.cbHasta.FormattingEnabled = True
+        Me.cbHasta.Location = New System.Drawing.Point(104, 32)
+        Me.cbHasta.Name = "cbHasta"
+        Me.cbHasta.Size = New System.Drawing.Size(215, 21)
+        Me.cbHasta.TabIndex = 83
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(10, 36)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(91, 13)
+        Me.Label1.TabIndex = 82
+        Me.Label1.Text = "HASTA NO. : *"
+        '
+        'cbDesde
+        '
+        Me.cbDesde.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cbDesde.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cbDesde.BackColor = System.Drawing.Color.White
+        Me.cbDesde.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbDesde.ForeColor = System.Drawing.Color.Black
+        Me.cbDesde.FormattingEnabled = True
+        Me.cbDesde.Location = New System.Drawing.Point(104, 5)
+        Me.cbDesde.Name = "cbDesde"
+        Me.cbDesde.Size = New System.Drawing.Size(215, 21)
+        Me.cbDesde.TabIndex = 81
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(10, 9)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(92, 13)
+        Me.Label8.TabIndex = 80
+        Me.Label8.Text = "DESDE NO. : *"
         '
         'pnlCatalogos
         '
@@ -165,12 +256,12 @@ Partial Class Principal
         Me.txtBuscarCatalogo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtBuscarCatalogo.BackColor = System.Drawing.Color.White
-        Me.txtBuscarCatalogo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtBuscarCatalogo.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtBuscarCatalogo.ForeColor = System.Drawing.Color.Black
-        Me.txtBuscarCatalogo.Location = New System.Drawing.Point(79, 121)
+        Me.txtBuscarCatalogo.Location = New System.Drawing.Point(64, 127)
         Me.txtBuscarCatalogo.MaxLength = 300
         Me.txtBuscarCatalogo.Name = "txtBuscarCatalogo"
-        Me.txtBuscarCatalogo.Size = New System.Drawing.Size(178, 26)
+        Me.txtBuscarCatalogo.Size = New System.Drawing.Size(195, 20)
         Me.txtBuscarCatalogo.TabIndex = 55
         '
         'Label10
@@ -178,11 +269,11 @@ Partial Class Principal
         Me.Label10.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label10.AutoSize = True
-        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.White
-        Me.Label10.Location = New System.Drawing.Point(0, 125)
+        Me.Label10.Location = New System.Drawing.Point(0, 131)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(81, 18)
+        Me.Label10.Size = New System.Drawing.Size(61, 13)
         Me.Label10.TabIndex = 54
         Me.Label10.Text = "BUSCAR:"
         '
@@ -352,7 +443,7 @@ Partial Class Principal
         Me.pnlMenu.Controls.Add(Me.rbtnArticulos)
         Me.pnlMenu.Location = New System.Drawing.Point(0, 0)
         Me.pnlMenu.Name = "pnlMenu"
-        Me.pnlMenu.Size = New System.Drawing.Size(1028, 40)
+        Me.pnlMenu.Size = New System.Drawing.Size(1039, 40)
         Me.pnlMenu.TabIndex = 24
         '
         'rbtnClientes
@@ -366,11 +457,11 @@ Partial Class Principal
         Me.rbtnClientes.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine
         Me.rbtnClientes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Turquoise
         Me.rbtnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.rbtnClientes.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbtnClientes.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnClientes.ForeColor = System.Drawing.Color.Black
-        Me.rbtnClientes.Location = New System.Drawing.Point(588, 5)
+        Me.rbtnClientes.Location = New System.Drawing.Point(496, 5)
         Me.rbtnClientes.Name = "rbtnClientes"
-        Me.rbtnClientes.Size = New System.Drawing.Size(95, 30)
+        Me.rbtnClientes.Size = New System.Drawing.Size(81, 27)
         Me.rbtnClientes.TabIndex = 11
         Me.rbtnClientes.TabStop = True
         Me.rbtnClientes.Text = "CLIENTES"
@@ -388,11 +479,11 @@ Partial Class Principal
         Me.rbtnTiposCambios.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine
         Me.rbtnTiposCambios.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Turquoise
         Me.rbtnTiposCambios.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.rbtnTiposCambios.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbtnTiposCambios.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnTiposCambios.ForeColor = System.Drawing.Color.Black
-        Me.rbtnTiposCambios.Location = New System.Drawing.Point(786, 5)
+        Me.rbtnTiposCambios.Location = New System.Drawing.Point(663, 5)
         Me.rbtnTiposCambios.Name = "rbtnTiposCambios"
-        Me.rbtnTiposCambios.Size = New System.Drawing.Size(163, 30)
+        Me.rbtnTiposCambios.Size = New System.Drawing.Size(138, 27)
         Me.rbtnTiposCambios.TabIndex = 10
         Me.rbtnTiposCambios.TabStop = True
         Me.rbtnTiposCambios.Text = "TIPOS DE CAMBIOS"
@@ -410,11 +501,11 @@ Partial Class Principal
         Me.rbtnUnidadesMedidas.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine
         Me.rbtnUnidadesMedidas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Turquoise
         Me.rbtnUnidadesMedidas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.rbtnUnidadesMedidas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbtnUnidadesMedidas.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnUnidadesMedidas.ForeColor = System.Drawing.Color.Black
-        Me.rbtnUnidadesMedidas.Location = New System.Drawing.Point(1296, 5)
+        Me.rbtnUnidadesMedidas.Location = New System.Drawing.Point(1092, 5)
         Me.rbtnUnidadesMedidas.Name = "rbtnUnidadesMedidas"
-        Me.rbtnUnidadesMedidas.Size = New System.Drawing.Size(197, 30)
+        Me.rbtnUnidadesMedidas.Size = New System.Drawing.Size(166, 27)
         Me.rbtnUnidadesMedidas.TabIndex = 9
         Me.rbtnUnidadesMedidas.TabStop = True
         Me.rbtnUnidadesMedidas.Text = "UNIDADES DE MEDIDAS"
@@ -432,11 +523,11 @@ Partial Class Principal
         Me.rbtnTiposSalidas.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine
         Me.rbtnTiposSalidas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Turquoise
         Me.rbtnTiposSalidas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.rbtnTiposSalidas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbtnTiposSalidas.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnTiposSalidas.ForeColor = System.Drawing.Color.Black
-        Me.rbtnTiposSalidas.Location = New System.Drawing.Point(1134, 5)
+        Me.rbtnTiposSalidas.Location = New System.Drawing.Point(955, 5)
         Me.rbtnTiposSalidas.Name = "rbtnTiposSalidas"
-        Me.rbtnTiposSalidas.Size = New System.Drawing.Size(159, 30)
+        Me.rbtnTiposSalidas.Size = New System.Drawing.Size(135, 27)
         Me.rbtnTiposSalidas.TabIndex = 8
         Me.rbtnTiposSalidas.TabStop = True
         Me.rbtnTiposSalidas.Text = "TIPOS DE SALIDAS"
@@ -454,11 +545,11 @@ Partial Class Principal
         Me.rbtnTiposEntradas.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine
         Me.rbtnTiposEntradas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Turquoise
         Me.rbtnTiposEntradas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.rbtnTiposEntradas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbtnTiposEntradas.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnTiposEntradas.ForeColor = System.Drawing.Color.Black
-        Me.rbtnTiposEntradas.Location = New System.Drawing.Point(952, 5)
+        Me.rbtnTiposEntradas.Location = New System.Drawing.Point(803, 5)
         Me.rbtnTiposEntradas.Name = "rbtnTiposEntradas"
-        Me.rbtnTiposEntradas.Size = New System.Drawing.Size(179, 30)
+        Me.rbtnTiposEntradas.Size = New System.Drawing.Size(150, 27)
         Me.rbtnTiposEntradas.TabIndex = 7
         Me.rbtnTiposEntradas.TabStop = True
         Me.rbtnTiposEntradas.Text = "TIPOS DE ENTRADAS"
@@ -476,11 +567,11 @@ Partial Class Principal
         Me.rbtnMonedas.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine
         Me.rbtnMonedas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Turquoise
         Me.rbtnMonedas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.rbtnMonedas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbtnMonedas.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnMonedas.ForeColor = System.Drawing.Color.Black
-        Me.rbtnMonedas.Location = New System.Drawing.Point(686, 5)
+        Me.rbtnMonedas.Location = New System.Drawing.Point(579, 5)
         Me.rbtnMonedas.Name = "rbtnMonedas"
-        Me.rbtnMonedas.Size = New System.Drawing.Size(97, 30)
+        Me.rbtnMonedas.Size = New System.Drawing.Size(82, 27)
         Me.rbtnMonedas.TabIndex = 6
         Me.rbtnMonedas.TabStop = True
         Me.rbtnMonedas.Text = "MONEDAS"
@@ -498,11 +589,11 @@ Partial Class Principal
         Me.rbtnProveedores.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine
         Me.rbtnProveedores.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Turquoise
         Me.rbtnProveedores.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.rbtnProveedores.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbtnProveedores.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnProveedores.ForeColor = System.Drawing.Color.Black
-        Me.rbtnProveedores.Location = New System.Drawing.Point(448, 5)
+        Me.rbtnProveedores.Location = New System.Drawing.Point(380, 5)
         Me.rbtnProveedores.Name = "rbtnProveedores"
-        Me.rbtnProveedores.Size = New System.Drawing.Size(137, 30)
+        Me.rbtnProveedores.Size = New System.Drawing.Size(114, 27)
         Me.rbtnProveedores.TabIndex = 5
         Me.rbtnProveedores.TabStop = True
         Me.rbtnProveedores.Text = "PROVEEDORES"
@@ -520,11 +611,11 @@ Partial Class Principal
         Me.rbtnSubFamilias.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine
         Me.rbtnSubFamilias.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Turquoise
         Me.rbtnSubFamilias.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.rbtnSubFamilias.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbtnSubFamilias.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnSubFamilias.ForeColor = System.Drawing.Color.Black
-        Me.rbtnSubFamilias.Location = New System.Drawing.Point(215, 5)
+        Me.rbtnSubFamilias.Location = New System.Drawing.Point(183, 5)
         Me.rbtnSubFamilias.Name = "rbtnSubFamilias"
-        Me.rbtnSubFamilias.Size = New System.Drawing.Size(120, 30)
+        Me.rbtnSubFamilias.Size = New System.Drawing.Size(102, 27)
         Me.rbtnSubFamilias.TabIndex = 4
         Me.rbtnSubFamilias.TabStop = True
         Me.rbtnSubFamilias.Text = "SUBFAMILIAS"
@@ -542,11 +633,11 @@ Partial Class Principal
         Me.rbtnAlmacenes.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine
         Me.rbtnAlmacenes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Turquoise
         Me.rbtnAlmacenes.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.rbtnAlmacenes.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbtnAlmacenes.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnAlmacenes.ForeColor = System.Drawing.Color.Black
         Me.rbtnAlmacenes.Location = New System.Drawing.Point(7, 5)
         Me.rbtnAlmacenes.Name = "rbtnAlmacenes"
-        Me.rbtnAlmacenes.Size = New System.Drawing.Size(113, 30)
+        Me.rbtnAlmacenes.Size = New System.Drawing.Size(95, 27)
         Me.rbtnAlmacenes.TabIndex = 3
         Me.rbtnAlmacenes.TabStop = True
         Me.rbtnAlmacenes.Text = "ALMACENES"
@@ -564,11 +655,11 @@ Partial Class Principal
         Me.rbtnFamilias.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine
         Me.rbtnFamilias.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Turquoise
         Me.rbtnFamilias.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.rbtnFamilias.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbtnFamilias.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnFamilias.ForeColor = System.Drawing.Color.Black
-        Me.rbtnFamilias.Location = New System.Drawing.Point(123, 5)
+        Me.rbtnFamilias.Location = New System.Drawing.Point(104, 5)
         Me.rbtnFamilias.Name = "rbtnFamilias"
-        Me.rbtnFamilias.Size = New System.Drawing.Size(89, 30)
+        Me.rbtnFamilias.Size = New System.Drawing.Size(77, 27)
         Me.rbtnFamilias.TabIndex = 2
         Me.rbtnFamilias.TabStop = True
         Me.rbtnFamilias.Text = "FAMILIAS"
@@ -586,11 +677,11 @@ Partial Class Principal
         Me.rbtnArticulos.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine
         Me.rbtnArticulos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Turquoise
         Me.rbtnArticulos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.rbtnArticulos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbtnArticulos.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.rbtnArticulos.ForeColor = System.Drawing.Color.Black
-        Me.rbtnArticulos.Location = New System.Drawing.Point(338, 5)
+        Me.rbtnArticulos.Location = New System.Drawing.Point(287, 5)
         Me.rbtnArticulos.Name = "rbtnArticulos"
-        Me.rbtnArticulos.Size = New System.Drawing.Size(107, 30)
+        Me.rbtnArticulos.Size = New System.Drawing.Size(91, 27)
         Me.rbtnArticulos.TabIndex = 0
         Me.rbtnArticulos.TabStop = True
         Me.rbtnArticulos.Text = "ARTÍCULOS"
@@ -622,7 +713,7 @@ Partial Class Principal
         Me.spAlmacenes.Location = New System.Drawing.Point(5, 42)
         Me.spAlmacenes.Name = "spAlmacenes"
         Me.spAlmacenes.Sheets.AddRange(New FarPoint.Win.Spread.SheetView() {Me.spAlmacenes_Sheet1})
-        Me.spAlmacenes.Size = New System.Drawing.Size(334, 212)
+        Me.spAlmacenes.Size = New System.Drawing.Size(345, 214)
         Me.spAlmacenes.Skin = FarPoint.Win.Spread.DefaultSpreadSkins.Seashell
         Me.spAlmacenes.TabIndex = 0
         Me.spAlmacenes.VerticalScrollBar.Buttons = New FarPoint.Win.Spread.FpScrollBarButtonCollection("BackwardLineButton,ThumbTrack,ForwardLineButton")
@@ -681,10 +772,10 @@ Partial Class Principal
         Me.spFamilias.HorizontalScrollBar.Renderer = EnhancedScrollBarRenderer1
         Me.spFamilias.HorizontalScrollBar.TabIndex = 2
         Me.spFamilias.HorizontalScrollBarPolicy = FarPoint.Win.Spread.ScrollBarPolicy.AsNeeded
-        Me.spFamilias.Location = New System.Drawing.Point(345, 43)
+        Me.spFamilias.Location = New System.Drawing.Point(356, 43)
         Me.spFamilias.Name = "spFamilias"
         Me.spFamilias.Sheets.AddRange(New FarPoint.Win.Spread.SheetView() {Me.spFamilias_Sheet1})
-        Me.spFamilias.Size = New System.Drawing.Size(335, 211)
+        Me.spFamilias.Size = New System.Drawing.Size(335, 213)
         Me.spFamilias.Skin = FarPoint.Win.Spread.DefaultSpreadSkins.Seashell
         Me.spFamilias.TabIndex = 23
         Me.spFamilias.VerticalScrollBar.Buttons = New FarPoint.Win.Spread.FpScrollBarButtonCollection("BackwardLineButton,ThumbTrack,ForwardLineButton")
@@ -744,10 +835,10 @@ Partial Class Principal
         Me.spSubFamilias.HorizontalScrollBar.Renderer = EnhancedScrollBarRenderer3
         Me.spSubFamilias.HorizontalScrollBar.TabIndex = 2
         Me.spSubFamilias.HorizontalScrollBarPolicy = FarPoint.Win.Spread.ScrollBarPolicy.AsNeeded
-        Me.spSubFamilias.Location = New System.Drawing.Point(687, 43)
+        Me.spSubFamilias.Location = New System.Drawing.Point(698, 43)
         Me.spSubFamilias.Name = "spSubFamilias"
         Me.spSubFamilias.Sheets.AddRange(New FarPoint.Win.Spread.SheetView() {Me.spSubFamilias_Sheet1})
-        Me.spSubFamilias.Size = New System.Drawing.Size(335, 211)
+        Me.spSubFamilias.Size = New System.Drawing.Size(335, 213)
         Me.spSubFamilias.Skin = FarPoint.Win.Spread.DefaultSpreadSkins.Seashell
         Me.spSubFamilias.TabIndex = 25
         Me.spSubFamilias.VerticalScrollBar.Buttons = New FarPoint.Win.Spread.FpScrollBarButtonCollection("BackwardLineButton,ThumbTrack,ForwardLineButton")
@@ -810,7 +901,7 @@ Partial Class Principal
         Me.spArticulos.Location = New System.Drawing.Point(5, 262)
         Me.spArticulos.Name = "spArticulos"
         Me.spArticulos.Sheets.AddRange(New FarPoint.Win.Spread.SheetView() {Me.spArticulos_Sheet1})
-        Me.spArticulos.Size = New System.Drawing.Size(505, 224)
+        Me.spArticulos.Size = New System.Drawing.Size(505, 255)
         Me.spArticulos.Skin = FarPoint.Win.Spread.DefaultSpreadSkins.Seashell
         Me.spArticulos.TabIndex = 26
         Me.spArticulos.VerticalScrollBar.Buttons = New FarPoint.Win.Spread.FpScrollBarButtonCollection("BackwardLineButton,ThumbTrack,ForwardLineButton")
@@ -868,12 +959,12 @@ Partial Class Principal
         EnhancedScrollBarRenderer7.TrackBarBackgroundColor = System.Drawing.Color.CadetBlue
         EnhancedScrollBarRenderer7.TrackBarSelectedBackgroundColor = System.Drawing.Color.SlateGray
         Me.spVarios.HorizontalScrollBar.Renderer = EnhancedScrollBarRenderer7
-        Me.spVarios.HorizontalScrollBar.TabIndex = 2
+        Me.spVarios.HorizontalScrollBar.TabIndex = 0
         Me.spVarios.HorizontalScrollBarPolicy = FarPoint.Win.Spread.ScrollBarPolicy.AsNeeded
-        Me.spVarios.Location = New System.Drawing.Point(517, 262)
+        Me.spVarios.Location = New System.Drawing.Point(528, 262)
         Me.spVarios.Name = "spVarios"
         Me.spVarios.Sheets.AddRange(New FarPoint.Win.Spread.SheetView() {Me.spVarios_Sheet1})
-        Me.spVarios.Size = New System.Drawing.Size(505, 224)
+        Me.spVarios.Size = New System.Drawing.Size(505, 255)
         Me.spVarios.Skin = FarPoint.Win.Spread.DefaultSpreadSkins.Seashell
         Me.spVarios.TabIndex = 27
         Me.spVarios.VerticalScrollBar.Buttons = New FarPoint.Win.Spread.FpScrollBarButtonCollection("BackwardLineButton,ThumbTrack,ForwardLineButton")
@@ -916,24 +1007,79 @@ Partial Class Principal
         '
         Me.pnlPie.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.pnlPie.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.pnlPie.BackColor = System.Drawing.Color.White
         Me.pnlPie.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnlPie.Controls.Add(Me.btnConfigurarImpresion)
+        Me.pnlPie.Controls.Add(Me.btnPreImprimir)
         Me.pnlPie.Controls.Add(Me.btnImportar)
         Me.pnlPie.Controls.Add(Me.btnEliminar)
         Me.pnlPie.Controls.Add(Me.btnAyuda)
         Me.pnlPie.Controls.Add(Me.btnGuardar)
         Me.pnlPie.Controls.Add(Me.lblDescripcionTooltip)
         Me.pnlPie.Controls.Add(Me.btnSalir)
-        Me.pnlPie.ForeColor = System.Drawing.Color.White
-        Me.pnlPie.Location = New System.Drawing.Point(0, 570)
+        Me.pnlPie.ForeColor = System.Drawing.Color.Black
+        Me.pnlPie.Location = New System.Drawing.Point(0, 600)
         Me.pnlPie.Name = "pnlPie"
-        Me.pnlPie.Size = New System.Drawing.Size(1034, 60)
+        Me.pnlPie.Size = New System.Drawing.Size(1039, 60)
         Me.pnlPie.TabIndex = 8
+        '
+        'btnConfigurarImpresion
+        '
+        Me.btnConfigurarImpresion.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.btnConfigurarImpresion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btnConfigurarImpresion.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnConfigurarImpresion.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.btnConfigurarImpresion.FlatAppearance.BorderSize = 3
+        Me.btnConfigurarImpresion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumAquamarine
+        Me.btnConfigurarImpresion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnConfigurarImpresion.ForeColor = System.Drawing.Color.Black
+        Me.btnConfigurarImpresion.Image = CType(resources.GetObject("btnConfigurarImpresion.Image"), System.Drawing.Image)
+        Me.btnConfigurarImpresion.Location = New System.Drawing.Point(62, 0)
+        Me.btnConfigurarImpresion.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnConfigurarImpresion.Name = "btnConfigurarImpresion"
+        Me.btnConfigurarImpresion.Size = New System.Drawing.Size(60, 60)
+        Me.btnConfigurarImpresion.TabIndex = 54
+        Me.btnConfigurarImpresion.UseVisualStyleBackColor = False
+        '
+        'btnPreImprimir
+        '
+        Me.btnPreImprimir.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnPreImprimir.BackColor = System.Drawing.Color.White
+        Me.btnPreImprimir.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnPreImprimir.Enabled = False
+        Me.btnPreImprimir.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.btnPreImprimir.FlatAppearance.BorderSize = 3
+        Me.btnPreImprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumAquamarine
+        Me.btnPreImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnPreImprimir.Image = CType(resources.GetObject("btnPreImprimir.Image"), System.Drawing.Image)
+        Me.btnPreImprimir.Location = New System.Drawing.Point(789, 0)
+        Me.btnPreImprimir.Name = "btnPreImprimir"
+        Me.btnPreImprimir.Size = New System.Drawing.Size(60, 60)
+        Me.btnPreImprimir.TabIndex = 53
+        Me.btnPreImprimir.UseVisualStyleBackColor = False
+        '
+        'btnImportar
+        '
+        Me.btnImportar.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.btnImportar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btnImportar.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnImportar.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.btnImportar.FlatAppearance.BorderSize = 3
+        Me.btnImportar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumAquamarine
+        Me.btnImportar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnImportar.ForeColor = System.Drawing.Color.Black
+        Me.btnImportar.Image = CType(resources.GetObject("btnImportar.Image"), System.Drawing.Image)
+        Me.btnImportar.Location = New System.Drawing.Point(124, 0)
+        Me.btnImportar.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnImportar.Name = "btnImportar"
+        Me.btnImportar.Size = New System.Drawing.Size(60, 60)
+        Me.btnImportar.TabIndex = 19
+        Me.btnImportar.UseVisualStyleBackColor = False
         '
         'btnEliminar
         '
         Me.btnEliminar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnEliminar.BackColor = System.Drawing.Color.White
+        Me.btnEliminar.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.btnEliminar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnEliminar.FlatAppearance.BorderColor = System.Drawing.Color.Black
@@ -942,7 +1088,7 @@ Partial Class Principal
         Me.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnEliminar.ForeColor = System.Drawing.Color.Black
         Me.btnEliminar.Image = CType(resources.GetObject("btnEliminar.Image"), System.Drawing.Image)
-        Me.btnEliminar.Location = New System.Drawing.Point(847, 0)
+        Me.btnEliminar.Location = New System.Drawing.Point(851, 0)
         Me.btnEliminar.Margin = New System.Windows.Forms.Padding(0)
         Me.btnEliminar.Name = "btnEliminar"
         Me.btnEliminar.Size = New System.Drawing.Size(60, 60)
@@ -951,7 +1097,7 @@ Partial Class Principal
         '
         'btnAyuda
         '
-        Me.btnAyuda.BackColor = System.Drawing.Color.White
+        Me.btnAyuda.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.btnAyuda.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.btnAyuda.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnAyuda.FlatAppearance.BorderColor = System.Drawing.Color.Black
@@ -970,7 +1116,7 @@ Partial Class Principal
         'btnGuardar
         '
         Me.btnGuardar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnGuardar.BackColor = System.Drawing.Color.White
+        Me.btnGuardar.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.btnGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnGuardar.FlatAppearance.BorderColor = System.Drawing.Color.Black
@@ -979,7 +1125,7 @@ Partial Class Principal
         Me.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnGuardar.ForeColor = System.Drawing.Color.Black
         Me.btnGuardar.Image = CType(resources.GetObject("btnGuardar.Image"), System.Drawing.Image)
-        Me.btnGuardar.Location = New System.Drawing.Point(908, 0)
+        Me.btnGuardar.Location = New System.Drawing.Point(913, 0)
         Me.btnGuardar.Margin = New System.Windows.Forms.Padding(0)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(60, 60)
@@ -989,9 +1135,10 @@ Partial Class Principal
         'lblDescripcionTooltip
         '
         Me.lblDescripcionTooltip.AutoSize = True
+        Me.lblDescripcionTooltip.BackColor = System.Drawing.Color.FromArgb(CType(CType(99, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(162, Byte), Integer))
         Me.lblDescripcionTooltip.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDescripcionTooltip.ForeColor = System.Drawing.Color.White
-        Me.lblDescripcionTooltip.Location = New System.Drawing.Point(150, 17)
+        Me.lblDescripcionTooltip.ForeColor = System.Drawing.Color.Black
+        Me.lblDescripcionTooltip.Location = New System.Drawing.Point(200, 13)
         Me.lblDescripcionTooltip.Name = "lblDescripcionTooltip"
         Me.lblDescripcionTooltip.Size = New System.Drawing.Size(0, 31)
         Me.lblDescripcionTooltip.TabIndex = 4
@@ -999,7 +1146,7 @@ Partial Class Principal
         'btnSalir
         '
         Me.btnSalir.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnSalir.BackColor = System.Drawing.Color.White
+        Me.btnSalir.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.btnSalir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.btnSalir.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSalir.FlatAppearance.BorderColor = System.Drawing.Color.Black
@@ -1008,7 +1155,7 @@ Partial Class Principal
         Me.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSalir.ForeColor = System.Drawing.Color.Black
         Me.btnSalir.Image = CType(resources.GetObject("btnSalir.Image"), System.Drawing.Image)
-        Me.btnSalir.Location = New System.Drawing.Point(972, 0)
+        Me.btnSalir.Location = New System.Drawing.Point(977, 0)
         Me.btnSalir.Margin = New System.Windows.Forms.Padding(0)
         Me.btnSalir.Name = "btnSalir"
         Me.btnSalir.Size = New System.Drawing.Size(60, 60)
@@ -1021,6 +1168,7 @@ Partial Class Principal
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlEncabezado.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.pnlEncabezado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnlEncabezado.Controls.Add(Me.pbMarca)
         Me.pnlEncabezado.Controls.Add(Me.lblEncabezadoArea)
         Me.pnlEncabezado.Controls.Add(Me.lblEncabezadoUsuario)
         Me.pnlEncabezado.Controls.Add(Me.lblEncabezadoEmpresa)
@@ -1028,8 +1176,23 @@ Partial Class Principal
         Me.pnlEncabezado.ForeColor = System.Drawing.Color.White
         Me.pnlEncabezado.Location = New System.Drawing.Point(0, 0)
         Me.pnlEncabezado.Name = "pnlEncabezado"
-        Me.pnlEncabezado.Size = New System.Drawing.Size(1034, 75)
+        Me.pnlEncabezado.Size = New System.Drawing.Size(1039, 75)
         Me.pnlEncabezado.TabIndex = 7
+        '
+        'pbMarca
+        '
+        Me.pbMarca.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pbMarca.BackColor = System.Drawing.Color.Transparent
+        Me.pbMarca.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.pbMarca.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.pbMarca.Image = Global.ALMCatalogos.My.Resources.Resources.Producido_por
+        Me.pbMarca.ImageLocation = ""
+        Me.pbMarca.Location = New System.Drawing.Point(962, 0)
+        Me.pbMarca.Name = "pbMarca"
+        Me.pbMarca.Size = New System.Drawing.Size(75, 75)
+        Me.pbMarca.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbMarca.TabIndex = 8
+        Me.pbMarca.TabStop = False
         '
         'lblEncabezadoArea
         '
@@ -1038,7 +1201,7 @@ Partial Class Principal
         Me.lblEncabezadoArea.BackColor = System.Drawing.Color.Transparent
         Me.lblEncabezadoArea.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblEncabezadoArea.ForeColor = System.Drawing.Color.White
-        Me.lblEncabezadoArea.Location = New System.Drawing.Point(599, 0)
+        Me.lblEncabezadoArea.Location = New System.Drawing.Point(604, 0)
         Me.lblEncabezadoArea.Name = "lblEncabezadoArea"
         Me.lblEncabezadoArea.Size = New System.Drawing.Size(0, 33)
         Me.lblEncabezadoArea.TabIndex = 5
@@ -1050,7 +1213,7 @@ Partial Class Principal
         Me.lblEncabezadoUsuario.BackColor = System.Drawing.Color.Transparent
         Me.lblEncabezadoUsuario.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblEncabezadoUsuario.ForeColor = System.Drawing.Color.White
-        Me.lblEncabezadoUsuario.Location = New System.Drawing.Point(599, 35)
+        Me.lblEncabezadoUsuario.Location = New System.Drawing.Point(604, 35)
         Me.lblEncabezadoUsuario.Name = "lblEncabezadoUsuario"
         Me.lblEncabezadoUsuario.Size = New System.Drawing.Size(0, 33)
         Me.lblEncabezadoUsuario.TabIndex = 4
@@ -1081,34 +1244,19 @@ Partial Class Principal
         '
         Me.temporizador.Interval = 1
         '
-        'btnImportar
-        '
-        Me.btnImportar.BackColor = System.Drawing.Color.White
-        Me.btnImportar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.btnImportar.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnImportar.FlatAppearance.BorderColor = System.Drawing.Color.Black
-        Me.btnImportar.FlatAppearance.BorderSize = 3
-        Me.btnImportar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumAquamarine
-        Me.btnImportar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnImportar.ForeColor = System.Drawing.Color.Black
-        Me.btnImportar.Image = CType(resources.GetObject("btnImportar.Image"), System.Drawing.Image)
-        Me.btnImportar.Location = New System.Drawing.Point(62, 0)
-        Me.btnImportar.Margin = New System.Windows.Forms.Padding(0)
-        Me.btnImportar.Name = "btnImportar"
-        Me.btnImportar.Size = New System.Drawing.Size(60, 60)
-        Me.btnImportar.TabIndex = 19
-        Me.btnImportar.UseVisualStyleBackColor = False
-        '
         'opdArchivos
         '
         Me.opdArchivos.FileName = "OpenFileDialog1"
+        '
+        'pdArticulo
+        '
         '
         'Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(1034, 631)
+        Me.ClientSize = New System.Drawing.Size(1039, 661)
         Me.Controls.Add(Me.pnlContenido)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.Black
@@ -1118,6 +1266,8 @@ Partial Class Principal
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.pnlContenido.ResumeLayout(False)
         Me.pnlCuerpo.ResumeLayout(False)
+        Me.pnlImpresión.ResumeLayout(False)
+        Me.pnlImpresión.PerformLayout()
         Me.pnlCatalogos.ResumeLayout(False)
         Me.pnlCatalogos.PerformLayout()
         CType(Me.spCatalogos, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1138,6 +1288,7 @@ Partial Class Principal
         Me.pnlPie.PerformLayout()
         Me.pnlEncabezado.ResumeLayout(False)
         Me.pnlEncabezado.PerformLayout()
+        CType(Me.pbMarca, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1184,4 +1335,14 @@ Partial Class Principal
     Private WithEvents spCatalogos_Sheet1 As FarPoint.Win.Spread.SheetView
     Private WithEvents btnImportar As System.Windows.Forms.Button
     Friend WithEvents opdArchivos As System.Windows.Forms.OpenFileDialog
+    Friend WithEvents pbMarca As System.Windows.Forms.PictureBox
+    Friend WithEvents btnPreImprimir As System.Windows.Forms.Button
+    Private WithEvents btnConfigurarImpresion As System.Windows.Forms.Button
+    Friend WithEvents pdArticulo As System.Drawing.Printing.PrintDocument
+    Friend WithEvents pnlImpresión As System.Windows.Forms.Panel
+    Friend WithEvents cbHasta As System.Windows.Forms.ComboBox
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents cbDesde As System.Windows.Forms.ComboBox
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents btnImprimir As System.Windows.Forms.Button
 End Class

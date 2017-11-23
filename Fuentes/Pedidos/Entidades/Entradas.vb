@@ -21,9 +21,6 @@ Public Class Entradas
     Private orden As Integer
     Private observaciones As String
     Private factura As String
-    Private chofer As String
-    Private camion As String
-    Private noEconomico As String
 
     Public Property EIdOrigen() As Integer
         Get
@@ -177,37 +174,13 @@ Public Class Entradas
             factura = value
         End Set
     End Property
-    Public Property EChofer() As String
-        Get
-            Return chofer
-        End Get
-        Set(value As String)
-            chofer = value
-        End Set
-    End Property
-    Public Property ECamion() As String
-        Get
-            Return camion
-        End Get
-        Set(value As String)
-            camion = value
-        End Set
-    End Property
-    Public Property ENoEconomico() As String
-        Get
-            Return noEconomico
-        End Get
-        Set(value As String)
-            noEconomico = value
-        End Set
-    End Property
 
     Public Sub Guardar()
 
         Try
             Dim comando As New SqlCommand()
             comando.Connection = BaseDatos.conexionAlmacen
-            comando.CommandText = String.Format("INSERT INTO Entradas (IdOrigen, IdAlmacen, IdFamilia, IdSubFamilia, IdArticulo, Id, IdExterno, IdTipoEntrada, IdProveedor, IdMoneda, TipoCambio, Fecha, Cantidad, Precio, Total, TotalPesos, Orden, Observaciones, Factura, Chofer, Camion, NoEconomico) VALUES (@idOrigen, @idAlmacen, @idFamilia, @idSubFamilia, @idArticulo, @id, @idExterno, @idTipoEntrada, @idProveedor, @idMoneda, @tipoCambio, @fecha, @cantidad, @precio, @total, @totalPesos, @orden, @observaciones, @factura, @chofer, @camion, @noEconomico)")
+            comando.CommandText = String.Format("INSERT INTO Entradas (IdOrigen, IdAlmacen, IdFamilia, IdSubFamilia, IdArticulo, Id, IdExterno, IdTipoEntrada, IdProveedor, IdMoneda, TipoCambio, Fecha, Cantidad, Precio, Total, TotalPesos, Orden, Observaciones, Factura) VALUES (@idOrigen, @idAlmacen, @idFamilia, @idSubFamilia, @idArticulo, @id, @idExterno, @idTipoEntrada, @idProveedor, @idMoneda, @tipoCambio, @fecha, @cantidad, @precio, @total, @totalPesos, @orden, @observaciones, @factura)")
             comando.Parameters.AddWithValue("@idOrigen", Me.EIdOrigen)
             comando.Parameters.AddWithValue("@idAlmacen", Me.EIdAlmacen)
             comando.Parameters.AddWithValue("@idFamilia", Me.EIdFamilia)
@@ -227,9 +200,6 @@ Public Class Entradas
             comando.Parameters.AddWithValue("@orden", Me.EOrden)
             comando.Parameters.AddWithValue("@observaciones", Me.EObservaciones)
             comando.Parameters.AddWithValue("@factura", Me.EFactura)
-            comando.Parameters.AddWithValue("@chofer", Me.EChofer)
-            comando.Parameters.AddWithValue("@camion", Me.ECamion)
-            comando.Parameters.AddWithValue("@noEconomico", Me.ENoEconomico)
             BaseDatos.conexionAlmacen.Open()
             comando.ExecuteNonQuery()
             BaseDatos.conexionAlmacen.Close()

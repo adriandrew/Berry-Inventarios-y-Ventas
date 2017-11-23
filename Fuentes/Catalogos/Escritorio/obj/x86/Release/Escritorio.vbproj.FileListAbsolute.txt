@@ -146,3 +146,23 @@ C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\C
 C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Release\ALM01.exe
 C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Release\ALM01.xml
 C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Release\ALM01.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Release\ALM01.exe.config
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Release\ALM01.exe
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Release\ALM01.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Release\ALM01.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Release\ALMEntidadesCatalogos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Release\ALMLogicaCatalogos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Release\itextsharp.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Release\ALMEntidadesCatalogos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Release\ALMEntidadesCatalogos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Release\ALMLogicaCatalogos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Catalogos\Escritorio\bin\x86\Release\ALMLogicaCatalogos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Release\Escritorio.vbprojResolveAssemblyReference.cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Release\ALMCatalogos.Impresoras.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Release\ALMCatalogos.Resources.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Release\ALMCatalogos.Principal.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Release\Escritorio.vbproj.GenerateResource.Cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Release\ALM01.exe.licenses
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Release\ALM01.exe
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Release\ALM01.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Catalogos\Escritorio\obj\x86\Release\ALM01.pdb

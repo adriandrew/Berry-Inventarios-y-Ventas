@@ -14,3 +14,11 @@ C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\M
 C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Pedidos\Logica\obj\Release\ALMLogicaPedidos.dll
 C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Pedidos\Logica\obj\Release\ALMLogicaPedidos.xml
 C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Pedidos\Logica\obj\Release\ALMLogicaPedidos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Pedidos\Logica\bin\Release\ALMLogicaPedidos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Pedidos\Logica\bin\Release\ALMLogicaPedidos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Pedidos\Logica\bin\Release\ALMLogicaPedidos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Pedidos\Logica\obj\Release\ALMLogicaPedidos.Resources.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Pedidos\Logica\obj\Release\Logica.vbproj.GenerateResource.Cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Pedidos\Logica\obj\Release\ALMLogicaPedidos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Pedidos\Logica\obj\Release\ALMLogicaPedidos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Pedidos\Logica\obj\Release\ALMLogicaPedidos.pdb

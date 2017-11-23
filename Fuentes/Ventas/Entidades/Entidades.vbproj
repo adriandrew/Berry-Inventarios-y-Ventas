@@ -108,10 +108,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Salidas.vb" />
+    <Compile Include="Vales.vb" />
     <Compile Include="Ventas.vb" />
     <Compile Include="SubFamilias.vb" />
     <Compile Include="UnidadesMedidas.vb" />
     <Compile Include="Usuarios.vb" />
+    <Compile Include="VentasDetalle.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

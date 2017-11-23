@@ -22,6 +22,7 @@ Public Class Articulos
     Private modelo As String
     Private codigoInternet As String
     Private idProveedor As Integer
+    Private idHasta As Long
 
     Public Property EIdAlmacen() As Integer
         Get
@@ -183,6 +184,14 @@ Public Class Articulos
         Set(value As Integer)
             idProveedor = value
         End Set
+    End Property 
+    Public Property EIdHasta() As Long
+        Get
+            Return idHasta
+        End Get
+        Set(value As Long)
+            idHasta = value
+        End Set
     End Property
 
     Public Sub Guardar()
@@ -256,7 +265,7 @@ Public Class Articulos
 
     End Sub
 
-    Public Function ObtenerListadoReporte() As DataTable
+    Public Function ObtenerListadoDetallado() As DataTable
 
         Try
             Dim datos As New DataTable
@@ -279,6 +288,90 @@ Public Class Articulos
             " FROM {0}Articulos AS A " & _
             " LEFT JOIN {0}UnidadesMedidas AS UM ON A.IdUnidadMedida=UM.Id " & _
             " WHERE 0=0 {1} ORDER BY A.IdAlmacen, A.IdFamilia, A.IdSubFamilia, A.Id ASC", ALMLogicaCatalogos.Programas.prefijoBaseDatosAlmacen, condicion)
+            comando.Parameters.AddWithValue("@idAlmacen", Me.EIdAlmacen)
+            comando.Parameters.AddWithValue("@idFamilia", Me.EIdFamilia)
+            comando.Parameters.AddWithValue("@idSubFamilia", Me.EIdSubFamilia)
+            comando.Parameters.AddWithValue("@id", Me.EId)
+            BaseDatos.conexionCatalogo.Open()
+            Dim dataReader As SqlDataReader
+            dataReader = comando.ExecuteReader()
+            datos.Load(dataReader)
+            BaseDatos.conexionCatalogo.Close()
+            Return datos
+        Catch ex As Exception
+            Throw ex
+        Finally
+            BaseDatos.conexionCatalogo.Close()
+        End Try
+
+    End Function
+
+    Public Function ObtenerListadoImpresion() As DataTable
+
+        Try
+            Dim datos As New DataTable
+            Dim comando As New SqlCommand()
+            comando.Connection = BaseDatos.conexionCatalogo
+            Dim condicion As String = String.Empty
+            If (Me.EIdAlmacen > 0) Then
+                condicion &= " AND IdAlmacen=@idAlmacen"
+            End If
+            If (Me.EIdFamilia > 0) Then
+                condicion &= " AND IdFamilia=@idFamilia"
+            End If
+            If (Me.EIdSubFamilia > 0) Then
+                condicion &= " AND IdSubFamilia=@idSubFamilia"
+            End If
+            If (Me.EId > 0) Then
+                condicion &= " AND Id>=@id"
+            End If
+            If (Me.EIdHasta > 0) Then
+                condicion &= " AND Id<=@idHasta"
+            End If
+            comando.CommandText = String.Format("SELECT Id " & _
+            " FROM {0}Articulos " & _
+            " WHERE 0=0 {1} ORDER BY Id ASC", ALMLogicaCatalogos.Programas.prefijoBaseDatosAlmacen, condicion)
+            comando.Parameters.AddWithValue("@idAlmacen", Me.EIdAlmacen)
+            comando.Parameters.AddWithValue("@idFamilia", Me.EIdFamilia)
+            comando.Parameters.AddWithValue("@idSubFamilia", Me.EIdSubFamilia)
+            comando.Parameters.AddWithValue("@id", Me.EId)
+            comando.Parameters.AddWithValue("@idHasta", Me.EIdHasta)
+            BaseDatos.conexionCatalogo.Open()
+            Dim dataReader As SqlDataReader
+            dataReader = comando.ExecuteReader()
+            datos.Load(dataReader)
+            BaseDatos.conexionCatalogo.Close()
+            Return datos
+        Catch ex As Exception
+            Throw ex
+        Finally
+            BaseDatos.conexionCatalogo.Close()
+        End Try
+
+    End Function
+
+    Public Function ObtenerListadoIds() As DataTable
+
+        Try
+            Dim datos As New DataTable
+            Dim comando As New SqlCommand()
+            comando.Connection = BaseDatos.conexionCatalogo
+            Dim condicion As String = String.Empty
+            If (Me.EIdAlmacen > 0) Then
+                condicion &= " AND IdAlmacen=@idAlmacen"
+            End If
+            If (Me.EIdFamilia > 0) Then
+                condicion &= " AND IdFamilia=@idFamilia"
+            End If
+            If (Me.EIdSubFamilia > 0) Then
+                condicion &= " AND IdSubFamilia=@idSubFamilia"
+            End If
+            If (Me.EId > 0) Then
+                condicion &= " AND Id>@id"
+            End If
+            comando.CommandText = String.Format("SELECT Id " & _
+            " FROM {0}Articulos " & _
+            " WHERE 0=0 {1} ORDER BY Id ASC", ALMLogicaCatalogos.Programas.prefijoBaseDatosAlmacen, condicion)
             comando.Parameters.AddWithValue("@idAlmacen", Me.EIdAlmacen)
             comando.Parameters.AddWithValue("@idFamilia", Me.EIdFamilia)
             comando.Parameters.AddWithValue("@idSubFamilia", Me.EIdSubFamilia)

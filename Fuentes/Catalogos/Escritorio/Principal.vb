@@ -32,12 +32,16 @@ Public Class Principal
     Public anchoTercio As Integer = 0 : Public altoTercio As Integer = 0 : Public altoCuarto As Integer = 0
     Public izquierda As Integer = 0 : Public arriba As Integer = 0
     ' Variables de formatos de spread.
-    Public Shared tipoLetraSpread As String = "Microsoft Sans Serif" : Public Shared tamañoLetraSpread As Integer = 9
+    Public Shared tipoLetraSpread As String = "Microsoft Sans Serif" : Public Shared tamañoLetraSpread As Integer = 8
     Public Shared alturaFilasEncabezadosGrandesSpread As Integer = 35 : Public Shared alturaFilasEncabezadosMedianosSpread As Integer = 28
     Public Shared alturaFilasEncabezadosChicosSpread As Integer = 22 : Public Shared alturaFilasSpread As Integer = 20
-    Public Shared colorAreaGris = Color.White
     ' Variables de eventos de spread.
     Public filaAlmacen As Integer = -1 : Public filaFamilia As Integer = -1 : Public filaSubFamilia As Integer = -1
+    ' Variables de estilos.
+    Public Shared colorSpreadAreaGris As Color = Color.FromArgb(245, 245, 245) : Public Shared colorSpreadTotal As Color = Color.White
+    Public Shared colorCaptura As Color = Color.White : Public Shared colorCapturaBloqueada As Color = Color.FromArgb(235, 255, 255)
+    Public Shared colorAdvertencia As Color = Color.Orange
+    Public Shared colorTemaAzul As Color = Color.FromArgb(99, 160, 162)
     ' Variables generales.
     Public nombreEstePrograma As String = String.Empty
     Public medidasUnaVez As Boolean = False
@@ -45,10 +49,14 @@ Public Class Principal
     Public estaCerrando As Boolean = False
     Public ejecutarProgramaPrincipal As New ProcessStartInfo()
     Public prefijoBaseDatosAlmacen As String = "ALM" & "_"
+    ' Variables de Impresión.
+    Public datosArticulosParaImprimir As New DataTable
+    Public contadorArticulosParaImprimir As Integer = 0 : Public listaArticulosParaImprimir As New List(Of System.Data.DataRow)
+    Public estaImprimiendo As Boolean = False
     ' Hilos para carga rapida. 
     Public hiloCentrar As New Thread(AddressOf Centrar)
-    Public hiloNombrePrograma As New Thread(AddressOf CargarNombrePrograma) 
-    Public hiloEncabezadosTitulos As New Thread(AddressOf CargarEncabezadosTitulos) 
+    Public hiloNombrePrograma As New Thread(AddressOf CargarNombrePrograma)
+    Public hiloEncabezadosTitulos As New Thread(AddressOf CargarEncabezadosTitulos)
     ' Variable de desarrollo.
     Public esDesarrollo As Boolean = False
 
@@ -57,7 +65,7 @@ Public Class Principal
     Private Sub Principal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Me.Cursor = Cursors.WaitCursor
-        MostrarCargando(True) 
+        MostrarCargando(True)
         ConfigurarConexiones()
         IniciarHilosCarga()
         AsignarTooltips()
@@ -73,6 +81,8 @@ Public Class Principal
         '    Salir()
         'End If 
         FormatearSpread()
+        CargarOpcionesImpresion()
+        CargarEstilos()
         MostrarCargando(False)
         Me.Cursor = Cursors.Default
 
@@ -241,7 +251,7 @@ Public Class Principal
 
     Private Sub spCatalogos_CellClick(sender As Object, e As FarPoint.Win.Spread.CellClickEventArgs) Handles spCatalogos.CellClick
 
-        Dim fila As Integer = e.Row 
+        Dim fila As Integer = e.Row
         CargarDatosEnSpreadDeCatalogos(fila)
 
     End Sub
@@ -255,7 +265,7 @@ Public Class Principal
     Private Sub spCatalogos_KeyDown(sender As Object, e As KeyEventArgs) Handles spCatalogos.KeyDown
 
         If (e.KeyCode = Keys.Enter) Then
-            Dim fila As Integer = spCatalogos.ActiveSheet.ActiveRowIndex 
+            Dim fila As Integer = spCatalogos.ActiveSheet.ActiveRowIndex
             CargarDatosEnSpreadDeCatalogos(fila)
         ElseIf (e.KeyCode = Keys.Escape) Then
             VolverFocoDeCatalogos()
@@ -318,11 +328,13 @@ Public Class Principal
     Private Sub spAlmacen_CellClick(sender As Object, e As FarPoint.Win.Spread.CellClickEventArgs) Handles spAlmacenes.CellClick
 
         If (Me.opcionSeleccionada = OpcionMenu.familias Or Me.opcionSeleccionada = OpcionMenu.subFamilias Or Me.opcionSeleccionada = OpcionMenu.articulos) Then
-            If (e.Row >= 0) Then
-                Me.filaAlmacen = e.Row
-                spFamilias.Show()
-                Dim idAlmacen As Integer = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spAlmacenes.ActiveSheet.Cells(Me.filaAlmacen, spAlmacenes.ActiveSheet.Columns("id").Index).Value)
-                CargarFamilias(idAlmacen)
+            If (Not e.RowHeader AndAlso Not e.ColumnHeader) Then
+                If (e.Row >= 0) Then
+                    Me.filaAlmacen = e.Row
+                    spFamilias.Show()
+                    Dim idAlmacen As Integer = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spAlmacenes.ActiveSheet.Cells(Me.filaAlmacen, spAlmacenes.ActiveSheet.Columns("id").Index).Value)
+                    CargarFamilias(idAlmacen)
+                End If
             End If
         End If
 
@@ -353,12 +365,14 @@ Public Class Principal
     Private Sub spFamilia_CellClick(sender As Object, e As FarPoint.Win.Spread.CellClickEventArgs) Handles spFamilias.CellClick
 
         If (Me.opcionSeleccionada = OpcionMenu.subFamilias Or Me.opcionSeleccionada = OpcionMenu.articulos) Then
-            If (e.Row >= 0) Then
-                Me.filaFamilia = e.Row
-                spSubFamilias.Show()
-                Dim idAlmacen As Integer = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spAlmacenes.ActiveSheet.Cells(Me.filaAlmacen, spAlmacenes.ActiveSheet.Columns("id").Index).Value)
-                Dim idFamilia As Integer = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spFamilias.ActiveSheet.Cells(Me.filaFamilia, spFamilias.ActiveSheet.Columns("id").Index).Value)
-                CargarSubFamilias(idAlmacen, idFamilia)
+            If (Not e.RowHeader AndAlso Not e.ColumnHeader) Then
+                If (e.Row >= 0) Then
+                    Me.filaFamilia = e.Row
+                    spSubFamilias.Show()
+                    Dim idAlmacen As Integer = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spAlmacenes.ActiveSheet.Cells(Me.filaAlmacen, spAlmacenes.ActiveSheet.Columns("id").Index).Value)
+                    Dim idFamilia As Integer = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spFamilias.ActiveSheet.Cells(Me.filaFamilia, spFamilias.ActiveSheet.Columns("id").Index).Value)
+                    CargarSubFamilias(idAlmacen, idFamilia)
+                End If
             End If
         End If
 
@@ -388,16 +402,21 @@ Public Class Principal
 
     Private Sub spSubFamilias_CellClick(sender As Object, e As FarPoint.Win.Spread.CellClickEventArgs) Handles spSubFamilias.CellClick
 
+        Me.Cursor = Cursors.WaitCursor
         If (Me.opcionSeleccionada = OpcionMenu.articulos) Then
-            If (e.Row >= 0) Then
-                Me.filaSubFamilia = e.Row
-                spArticulos.Show()
-                Dim idAlmacen As Integer = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spAlmacenes.ActiveSheet.Cells(Me.filaAlmacen, spAlmacenes.ActiveSheet.Columns("id").Index).Value)
-                Dim idFamilia As Integer = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spFamilias.ActiveSheet.Cells(Me.filaFamilia, spFamilias.ActiveSheet.Columns("id").Index).Value)
-                Dim idSubFamilia As Integer = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spSubFamilias.ActiveSheet.Cells(Me.filaSubFamilia, spSubFamilias.ActiveSheet.Columns("id").Index).Value)
-                CargarArticulos(idAlmacen, idFamilia, idSubFamilia)
+            If (Not e.RowHeader AndAlso Not e.ColumnHeader) Then
+                If (e.Row >= 0) Then
+                    Me.filaSubFamilia = e.Row
+                    Dim idAlmacen As Integer = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spAlmacenes.ActiveSheet.Cells(Me.filaAlmacen, spAlmacenes.ActiveSheet.Columns("id").Index).Value)
+                    Dim idFamilia As Integer = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spFamilias.ActiveSheet.Cells(Me.filaFamilia, spFamilias.ActiveSheet.Columns("id").Index).Value)
+                    Dim idSubFamilia As Integer = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spSubFamilias.ActiveSheet.Cells(Me.filaSubFamilia, spSubFamilias.ActiveSheet.Columns("id").Index).Value)
+                    CargarArticulos(idAlmacen, idFamilia, idSubFamilia)
+                    spArticulos.Show()
+                    btnPreImprimir.Enabled = True
+                End If
             End If
         End If
+        Me.Cursor = Cursors.Default
 
     End Sub
 
@@ -557,11 +576,65 @@ Public Class Principal
 
     End Sub
 
+    Private Sub pbMarca_MouseEnter(sender As Object, e As EventArgs) Handles pbMarca.MouseEnter
+
+        AsignarTooltips("Producido por Berry.")
+
+    End Sub
+
+    Private Sub btnConfigurarImpresion_Click(sender As Object, e As EventArgs) Handles btnConfigurarImpresion.Click
+
+        Me.Cursor = Cursors.WaitCursor
+        Impresoras.Show()
+        Impresoras.BringToFront()
+        Me.Enabled = False
+        Me.Cursor = Cursors.Default
+
+    End Sub
+
+    Private Sub btnPreImprimir_Click(sender As Object, e As EventArgs) Handles btnPreImprimir.Click
+
+        Me.Cursor = Cursors.WaitCursor
+        MostrarOcultarImpresion()
+        CargarArticulos()
+        Me.Cursor = Cursors.Default
+
+    End Sub
+
+    Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
+
+        Me.Cursor = Cursors.WaitCursor
+        ImprimirManualmente()
+        MostrarOcultarImpresion()
+        btnPreImprimir.Enabled = False
+        Me.Cursor = Cursors.Default
+
+    End Sub
+
+    Private Sub pdArticulo_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles pdArticulo.PrintPage
+
+        CrearFormatoArticulo(e)
+
+    End Sub
+
 #End Region
 
 #Region "Métodos"
 
 #Region "Básicos"
+
+    Private Sub CargarEstilos()
+
+        pnlMenu.BackColor = Principal.colorSpreadAreaGris
+        pnlImpresión.BackColor = Principal.colorSpreadAreaGris
+        pnlPie.BackColor = Principal.colorSpreadAreaGris
+        spAlmacenes.ActiveSheet.GrayAreaBackColor = Principal.colorSpreadAreaGris
+        spFamilias.ActiveSheet.GrayAreaBackColor = Principal.colorSpreadAreaGris
+        spSubFamilias.ActiveSheet.GrayAreaBackColor = Principal.colorSpreadAreaGris
+        spArticulos.ActiveSheet.GrayAreaBackColor = Principal.colorSpreadAreaGris
+        spVarios.ActiveSheet.GrayAreaBackColor = Principal.colorSpreadAreaGris
+
+    End Sub
 
     Private Sub BuscarCatalogos()
 
@@ -735,6 +808,7 @@ Public Class Principal
         tp.SetToolTip(Me.btnEliminar, "Eliminar.")
         tp.SetToolTip(Me.btnImportar, "Importar.")
         tp.SetToolTip(Me.pnlMenu, "Menú.")
+        tp.SetToolTip(Me.pbMarca, "Producido por Berry.")
 
     End Sub
 
@@ -779,7 +853,7 @@ Public Class Principal
         Dim lista As New List(Of ALMEntidadesCatalogos.Usuarios)
         usuarios.EId = ALMLogicaCatalogos.Usuarios.id
         lista = usuarios.ObtenerListado()
-        If (lista.Count = 1) Then
+        If (lista.Count > 0) Then
             ALMLogicaCatalogos.Usuarios.id = lista(0).EId
             ALMLogicaCatalogos.Usuarios.nombre = lista(0).ENombre
             ALMLogicaCatalogos.Usuarios.contrasena = lista(0).EContrasena
@@ -791,10 +865,10 @@ Public Class Principal
 
     Private Sub CargarEncabezadosTitulos()
 
-        lblEncabezadoPrograma.Text = "Programa: " + Me.Text
-        lblEncabezadoEmpresa.Text = "Directorio: " + ALMLogicaCatalogos.Directorios.nombre
-        lblEncabezadoUsuario.Text = "Usuario: " + ALMLogicaCatalogos.Usuarios.nombre
-        Me.Text = "Programa:  " + Me.nombreEstePrograma + "              Directorio:  " + ALMLogicaCatalogos.Directorios.nombre + "              Usuario:  " + ALMLogicaCatalogos.Usuarios.nombre
+        lblEncabezadoPrograma.Text = "Programa: " & Me.Text
+        lblEncabezadoEmpresa.Text = "Directorio: " & ALMLogicaCatalogos.Directorios.nombre
+        lblEncabezadoUsuario.Text = "Usuario: " & ALMLogicaCatalogos.Usuarios.nombre
+        Me.Text = "Programa:  " & Me.nombreEstePrograma & "              Directorio:  " & ALMLogicaCatalogos.Directorios.nombre & "              Usuario:  " & ALMLogicaCatalogos.Usuarios.nombre
         hiloEncabezadosTitulos.Abort()
 
     End Sub
@@ -906,11 +980,11 @@ Public Class Principal
         spArticulos.Skin = FarPoint.Win.Spread.DefaultSpreadSkins.Seashell
         spVarios.Skin = FarPoint.Win.Spread.DefaultSpreadSkins.Seashell
         spCatalogos.Skin = FarPoint.Win.Spread.DefaultSpreadSkins.Midnight
-        spAlmacenes.ActiveSheet.GrayAreaBackColor = Principal.colorAreaGris
-        spFamilias.ActiveSheet.GrayAreaBackColor = Principal.colorAreaGris
-        spSubFamilias.ActiveSheet.GrayAreaBackColor = Principal.colorAreaGris
-        spArticulos.ActiveSheet.GrayAreaBackColor = Principal.colorAreaGris
-        spVarios.ActiveSheet.GrayAreaBackColor = Principal.colorAreaGris
+        spAlmacenes.ActiveSheet.GrayAreaBackColor = Principal.colorSpreadAreaGris
+        spFamilias.ActiveSheet.GrayAreaBackColor = Principal.colorSpreadAreaGris
+        spSubFamilias.ActiveSheet.GrayAreaBackColor = Principal.colorSpreadAreaGris
+        spArticulos.ActiveSheet.GrayAreaBackColor = Principal.colorSpreadAreaGris
+        spVarios.ActiveSheet.GrayAreaBackColor = Principal.colorSpreadAreaGris
         spAlmacenes.Font = New Font(Principal.tipoLetraSpread, Principal.tamañoLetraSpread, FontStyle.Regular)
         spFamilias.Font = New Font(Principal.tipoLetraSpread, Principal.tamañoLetraSpread, FontStyle.Regular)
         spSubFamilias.Font = New Font(Principal.tipoLetraSpread, Principal.tamañoLetraSpread, FontStyle.Regular)
@@ -1522,7 +1596,7 @@ Public Class Principal
             articulos.EIdFamilia = idFamilia
             articulos.EIdSubFamilia = idSubFamilia
             articulos.EId = 0
-            spArticulos.ActiveSheet.DataSource = articulos.ObtenerListadoReporte()
+            spArticulos.ActiveSheet.DataSource = articulos.ObtenerListadoDetallado()
             FormatearSpreadArticulos()
         End If
 
@@ -2556,6 +2630,124 @@ Public Class Principal
         End If
 
     End Sub
+
+    Private Sub CargarOpcionesImpresion()
+
+        Impresoras.CargarImpresoras(True)
+
+    End Sub
+
+    Private Sub ImprimirManualmente()
+
+        Dim id As Integer = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(cbDesde.SelectedValue)
+        Dim idHasta As Integer = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(cbHasta.SelectedValue)
+        PrepararImpresion(id, idHasta)
+        MandarImprimir()
+
+    End Sub
+
+    Private Sub PrepararImpresion(ByVal id As Integer, ByVal idHasta As Integer)
+
+        Dim idAlmacen As Integer = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spAlmacenes.ActiveSheet.Cells(Me.filaAlmacen, spAlmacenes.ActiveSheet.Columns("id").Index).Value)
+        Dim idFamilia As Integer = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spFamilias.ActiveSheet.Cells(Me.filaFamilia, spFamilias.ActiveSheet.Columns("id").Index).Value)
+        Dim idSubFamilia As Integer = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spSubFamilias.ActiveSheet.Cells(Me.filaSubFamilia, spSubFamilias.ActiveSheet.Columns("id").Index).Value)
+        articulos.EIdAlmacen = idAlmacen
+        articulos.EIdFamilia = idFamilia
+        articulos.EIdSubFamilia = idSubFamilia
+        articulos.EId = id
+        articulos.EIdHasta = idHasta
+        Me.datosArticulosParaImprimir = articulos.ObtenerListadoImpresion()
+        For fila As Integer = 0 To Me.datosArticulosParaImprimir.Rows.Count - 1
+            ' Se agrega al listado.
+            Me.listaArticulosParaImprimir.Add(Me.datosArticulosParaImprimir.Rows(fila))
+        Next
+
+    End Sub
+
+    Private Sub MandarImprimir()
+
+        Me.estaImprimiendo = True
+        ' Impresión de articulos.
+        ' Si hay datos para imprimir.
+        If (Me.listaArticulosParaImprimir.Count > 0) Then
+            pdArticulo.PrinterSettings.PrinterName = Impresoras.nombreImpresoraArticulo
+            If (Impresoras.habilitarImpresoraArticulo) Then
+                pdArticulo.DocumentName = "Articulo" ' & txtId.Text.PadLeft(6, "0")
+                Try
+                    pdArticulo.Print()
+                Catch ex As Exception
+                    MsgBox("Hay un error al imprimir. " & ex.Message, MsgBoxStyle.Critical, "Error.")
+                End Try
+            End If
+        End If
+        ' Se reinician los valores para la próxima impresión.
+        Me.contadorArticulosParaImprimir = 0
+        Me.listaArticulosParaImprimir.Clear()
+        Me.datosArticulosParaImprimir.Clear()
+        Me.estaImprimiendo = False
+
+    End Sub
+
+    Private Sub CargarArticulos()
+
+        Dim idAlmacen As Integer = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spAlmacenes.ActiveSheet.Cells(Me.filaAlmacen, spAlmacenes.ActiveSheet.Columns("id").Index).Value)
+        Dim idFamilia As Integer = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spFamilias.ActiveSheet.Cells(Me.filaFamilia, spFamilias.ActiveSheet.Columns("id").Index).Value)
+        Dim idSubFamilia As Integer = ALMLogicaCatalogos.Funciones.ValidarNumeroACero(spSubFamilias.ActiveSheet.Cells(Me.filaSubFamilia, spSubFamilias.ActiveSheet.Columns("id").Index).Value)
+        articulos.EIdAlmacen = idAlmacen
+        articulos.EIdFamilia = idFamilia
+        articulos.EIdSubFamilia = idSubFamilia
+        articulos.EId = 0
+        cbDesde.DataSource = articulos.ObtenerListadoIds()
+        cbDesde.DisplayMember = "Id"
+        cbDesde.ValueMember = "Id"
+        cbHasta.DataSource = articulos.ObtenerListadoIds()
+        cbHasta.DisplayMember = "Id"
+        cbHasta.ValueMember = "Id"
+
+    End Sub
+
+    Private Sub MostrarOcultarImpresion()
+
+        If (pnlImpresión.Visible) Then
+            pnlImpresión.Visible = False
+        Else
+            pnlImpresión.Visible = True
+        End If
+
+    End Sub
+
+    Private Sub CrearFormatoArticulo(ByRef e As System.Drawing.Printing.PrintPageEventArgs)
+
+        Dim fuenteDescripcion8 As New Font(Principal.tipoLetraSpread, 8, FontStyle.Bold)
+        Dim imagen As System.Drawing.Image = Nothing
+        Dim margenIzquierdo As Integer = Impresoras.margenIzquierdoArticulo : Dim margenSuperior As Integer = Impresoras.margenSuperiorArticulo
+        Dim altura As Integer = 0
+        ' Se obtienen los datos generales.
+        'Dim clave As String = ALMLogicaCatalogos.Funciones.ValidarLetra(Me.listaArticulosParaImprimir.Item(Me.contadorArticulosParaImprimir).Item("Clave").ToString()).PadLeft(2, "0").ToString()
+        Dim id As String = ALMLogicaCatalogos.Funciones.ValidarLetra(Me.listaArticulosParaImprimir.Item(Me.contadorArticulosParaImprimir).Item("Id").ToString()).PadLeft(6, "0").ToString()
+        ' Información de articulo.
+        altura = 5
+        e.Graphics.DrawImage(GenerarBarras(id), margenIzquierdo + 5, margenSuperior + altura, 90, 48) ' Codigo de barras.
+        altura += 50
+        e.Graphics.DrawString(id, fuenteDescripcion8, Brushes.Black, margenIzquierdo + 30, margenSuperior + altura) ' Id.
+        ' Se aumenta el contador de cajas.
+        Me.contadorArticulosParaImprimir += 1
+        ' Se verifica si tiene mas impresiones pendientes de acuerdo a las cajas.
+        If (Me.contadorArticulosParaImprimir < Me.listaArticulosParaImprimir.Count) Then
+            e.HasMorePages = True
+        Else
+            e.HasMorePages = False
+        End If
+
+    End Sub
+
+    Private Function GenerarBarras(ByVal texto As String) As Image
+
+        Dim imagenBarras As Image = Nothing
+        imagenBarras = BarCode.Code128(texto, BarCode.Code128SubTypes.CODE128_UCC, False, 80)
+        Return imagenBarras
+
+    End Function
 
 #End Region
 

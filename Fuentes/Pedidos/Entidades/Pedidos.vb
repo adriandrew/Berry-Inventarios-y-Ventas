@@ -277,7 +277,7 @@ Public Class Pedidos
 
     End Function
 
-    Public Function ObtenerListadoReporte() As DataTable
+    Public Function ObtenerListadoDetallado() As DataTable
 
         Try
             Dim datos As New DataTable
@@ -314,7 +314,7 @@ Public Class Pedidos
 
     End Function
 
-    Public Function ObtenerListado() As List(Of Pedidos)
+    Public Function ObtenerListadoGeneral() As List(Of Pedidos)
 
         Try
             Dim lista As New List(Of Pedidos)
@@ -366,7 +366,7 @@ Public Class Pedidos
             comando.Connection = BaseDatos.conexionAlmacen
             Dim condicion As String = String.Empty
             If (aplicaFecha) Then
-                condicion &= "FechaLlegada=@fechaLlegada, "
+                condicion &= " FechaLlegada=@fechaLlegada, "
             End If
             comando.CommandText = String.Format("UPDATE Pedidos " & _
             " SET EstaActualizado=@estaActualizado, EstatusConfirmado=@estatusConfirmado, EstatusCancelado=@estatusCancelado, EstatusRecibido=@estatusRecibido, EstatusEntregado=@estatusEntregado, {0} Observaciones2=@observaciones2, EstaIntegradoAlmacen=@estaIntegradoAlmacen " & _

@@ -1,0 +1,8 @@
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Creditos\Logica\bin\x86\Debug\ALMLogicaCreditos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Creditos\Logica\bin\x86\Debug\ALMLogicaCreditos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Creditos\Logica\bin\x86\Debug\ALMLogicaCreditos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Creditos\Logica\obj\x86\Debug\ALMLogicaCreditos.Resources.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Creditos\Logica\obj\x86\Debug\Logica.vbproj.GenerateResource.Cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Creditos\Logica\obj\x86\Debug\ALMLogicaCreditos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Creditos\Logica\obj\x86\Debug\ALMLogicaCreditos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Creditos\Logica\obj\x86\Debug\ALMLogicaCreditos.pdb

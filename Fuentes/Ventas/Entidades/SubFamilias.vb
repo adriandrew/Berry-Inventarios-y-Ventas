@@ -40,20 +40,20 @@ Public Class SubFamilias
         End Set
     End Property
      
-    Public Function ObtenerListadoReporte() As DataTable
+    Public Function ObtenerListadoCatalogos() As DataTable
 
         Try
             Dim datos As New DataTable
             Dim comando As New SqlCommand()
             comando.Connection = BaseDatos.conexionCatalogo
             Dim condicion As String = String.Empty
-            if (Me.EIdAlmacen > 0) Then
+            If (Me.EIdAlmacen > 0) Then
                 condicion &= " AND IdAlmacen=@idAlmacen"
             End If
-            if (Me.EIdFamilia > 0) Then
+            If (Me.EIdFamilia > 0) Then
                 condicion &= " AND IdFamilia=@idFamilia"
             End If
-            if (Me.EId > 0) Then
+            If (Me.EId > 0) Then
                 condicion &= " AND Id=@id"
             End If
             comando.CommandText = String.Format("SELECT Id, Nombre FROM {0}SubFamilias WHERE 0=0 {1} ORDER BY IdAlmacen, IdFamilia, Id ASC", ALMLogicaVentas.Programas.prefijoBaseDatosAlmacen, condicion)

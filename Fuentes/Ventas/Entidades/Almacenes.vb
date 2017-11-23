@@ -31,13 +31,18 @@ Public Class Almacenes
         End Set
     End Property
       
-    Public Function ObtenerListadoReporteCatalogo() As DataTable
+    Public Function ObtenerListadoCatalogos() As DataTable
 
         Try
             Dim datos As New DataTable
             Dim comando As New SqlCommand()
             comando.Connection = BaseDatos.conexionCatalogo
+            Dim condicion As String = String.Empty
+            If (Me.EId > 0) Then
+                condicion &= " AND Id=@id"
+            End If
             comando.CommandText = String.Format("SELECT Id, Nombre FROM {0}Almacenes ORDER BY Id ASC", ALMLogicaVentas.Programas.prefijoBaseDatosAlmacen)
+            comando.Parameters.AddWithValue("@id", Me.EId)
             BaseDatos.conexionCatalogo.Open()
             Dim lectorDatos As SqlDataReader
             lectorDatos = comando.ExecuteReader()
@@ -58,7 +63,7 @@ Public Class Almacenes
             Dim datos As New DataTable
             Dim comando As New SqlCommand()
             comando.Connection = BaseDatos.conexionCatalogo
-            Dim condicion As String = String.Empty 
+            Dim condicion As String = String.Empty
             If (Me.EId > 0) Then
                 condicion &= " AND Id=@id"
             End If

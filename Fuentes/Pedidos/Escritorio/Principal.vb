@@ -32,10 +32,15 @@ Public Class Principal
     Public anchoTercio As Integer = 0 : Public altoTercio As Integer = 0 : Public altoCuarto As Integer = 0
     Public izquierda As Integer = 0 : Public arriba As Integer = 0
     ' Variables de formatos de spread.
-    Public Shared tipoLetraSpread As String = "Microsoft Sans Serif" : Public Shared tamañoLetraSpread As Integer = 9
+    Public Shared tipoLetraSpread As String = "Microsoft Sans Serif" : Public Shared tamañoLetraSpread As Integer = 8
     Public Shared alturaFilasEncabezadosGrandesSpread As Integer = 35 : Public Shared alturaFilasEncabezadosMedianosSpread As Integer = 28
     Public Shared alturaFilasEncabezadosChicosSpread As Integer = 22 : Public Shared alturaFilasSpread As Integer = 20
-    Public Shared colorAreaGris = Color.White 
+    Public Shared colorAreaGris = Color.White
+    ' Variables de estilos.
+    Public Shared colorSpreadAreaGris As Color = Color.FromArgb(245, 245, 245) : Public Shared colorSpreadTotal As Color = Color.White
+    Public Shared colorCaptura As Color = Color.White : Public Shared colorCapturaBloqueada As Color = Color.FromArgb(235, 255, 255)
+    Public Shared colorAdvertencia As Color = Color.Orange
+    Public Shared colorTemaAzul As Color = Color.FromArgb(99, 160, 162)
     ' Variables generales.
     Public nombreEstePrograma As String = String.Empty
     Public estaCerrando As Boolean = False
@@ -47,6 +52,11 @@ Public Class Principal
     Public esGuardadoValido As Boolean = True
     Public esIzquierdaCapturar As Boolean = False : Public esIzquierdaActualizar As Boolean = False
     Public datosCatalogo As New DataTable
+    Public filaAnteriorActualizar As Integer = -1
+    Public colorConfirmado As Color = Color.LightBlue
+    Public colorCancelado As Color = Color.OrangeRed
+    Public colorRecibido As Color = Color.LightGreen
+    Public colorEntregado As Color = Color.Yellow
     ' Variables fijas.
     Public idAlmacenPredeterminado As Integer = 1 : Public idFamiliaPredeterminado As Integer = 1 : Public idSubFamiliaPredeterminado As Integer = 1
     Public idOrigen As Integer = 2 ' El 2 es para compras.
@@ -83,6 +93,7 @@ Public Class Principal
         CargarIdConsecutivo()
         AsignarFoco(txtId)
         Me.estaMostrado = True
+        CargarEstilos()
         MostrarCargando(False)
         Me.Cursor = Cursors.Default
 
@@ -124,18 +135,20 @@ Public Class Principal
 
     Private Sub spPedidos_KeyDown(sender As Object, e As KeyEventArgs) Handles spPedidosCapturar.KeyDown
 
+        Me.Cursor = Cursors.WaitCursor
         If (e.KeyData = Keys.F6) Then ' Eliminar un registro.
             If (MessageBox.Show("Confirmas que deseas eliminar el registro seleccionado?", "Confirmación.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes) Then
                 EliminarRegistroDeSpread(spPedidosCapturar)
             End If
         ElseIf (e.KeyData = Keys.Enter) Then ' Validar registros.
             ControlarSpreadEnter(spPedidosCapturar)
-        ElseIf (e.KeyData = Keys.F5) Then ' Abrir catalogos. 
+        ElseIf (e.KeyData = Keys.F5) Then ' Abrir catalogos.
             CargarCatalogoEnSpread()
         ElseIf (e.KeyData = Keys.Escape) Then
             spPedidosCapturar.ActiveSheet.SetActiveCell(0, 0)
             AsignarFoco(cbClientes)
         End If
+        Me.Cursor = Cursors.Default
 
     End Sub
 
@@ -143,12 +156,12 @@ Public Class Principal
 
         Me.Cursor = Cursors.WaitCursor
         If (Me.opcionPestanaSeleccionada = OpcionPestana.capturar) Then
-            ValidarGuardado()
+            ValidarGuardadoPedidos()
             If (Me.esGuardadoValido) Then
                 GuardarEditarPedidos()
             End If
         Else
-            ActualizarPedidosActualizar()
+            EditarPedidosActualizar()
         End If
         Me.Cursor = Cursors.Default
 
@@ -158,7 +171,7 @@ Public Class Principal
 
         Me.Cursor = Cursors.WaitCursor
         If (Me.opcionPestanaSeleccionada = OpcionPestana.capturar) Then
-            EliminarPedidos(True) 
+            EliminarPedidos(True)
         End If
         Me.Cursor = Cursors.Default
 
@@ -166,23 +179,23 @@ Public Class Principal
 
     Private Sub btnGuardar_MouseEnter(sender As Object, e As EventArgs) Handles btnGuardar.MouseEnter
 
-        AsignarTooltips("Guardar.")
+        AsignarTooltips("Guardar")
 
     End Sub
 
     Private Sub btnEliminar_MouseEnter(sender As Object, e As EventArgs) Handles btnEliminar.MouseEnter
 
-        AsignarTooltips("Eliminar.")
+        AsignarTooltips("Eliminar")
 
     End Sub
 
     Private Sub btnSalir_MouseEnter(sender As Object, e As EventArgs) Handles btnSalir.MouseEnter
 
-        AsignarTooltips("Salir.")
+        AsignarTooltips("Salir")
 
     End Sub
 
-    Private Sub pnlEncabezado_MouseEnter(sender As Object, e As EventArgs) Handles pnlPie.MouseEnter, pnlEncabezado.MouseEnter, pnlCuerpo.MouseEnter
+    Private Sub pnlEncabezado_MouseEnter(sender As Object, e As EventArgs) Handles pnlEncabezado.MouseEnter, pnlCuerpo.MouseEnter
 
         AsignarTooltips(String.Empty)
 
@@ -230,13 +243,15 @@ Public Class Principal
 
     Private Sub btnAyuda_Click(sender As Object, e As EventArgs) Handles btnAyuda.Click
 
+        Me.Cursor = Cursors.WaitCursor
         MostrarAyuda()
+        Me.Cursor = Cursors.Default
 
     End Sub
 
     Private Sub btnAyuda_MouseEnter(sender As Object, e As EventArgs) Handles btnAyuda.MouseEnter
 
-        AsignarTooltips("Ayuda.")
+        AsignarTooltips("Ayuda")
 
     End Sub
 
@@ -348,9 +363,9 @@ Public Class Principal
     Private Sub btnMostrarOcultar_MouseEnter(sender As Object, e As EventArgs) Handles btnMostrarOcultar.MouseEnter
 
         If (Me.esIzquierdaCapturar) Then
-            AsignarTooltips("Mostrar.")
+            AsignarTooltips("Mostrar")
         Else
-            AsignarTooltips("Ocultar.")
+            AsignarTooltips("Ocultar")
         End If
 
     End Sub
@@ -397,11 +412,12 @@ Public Class Principal
 
         If (tcPestanas.SelectedIndex = 0) Then
             Me.opcionPestanaSeleccionada = OpcionPestana.capturar
+            btnGuardar.Enabled = True
             btnEliminar.Enabled = True
         ElseIf (tcPestanas.SelectedIndex = 1) Then
             Me.opcionPestanaSeleccionada = OpcionPestana.actualizar
-            btnEliminar.Enabled = False
             btnGuardar.Enabled = False
+            btnEliminar.Enabled = False
         End If
 
     End Sub
@@ -460,21 +476,74 @@ Public Class Principal
         Dim fila As Integer = e.Row
         Dim columna As Integer = e.Column
         If (columna = spPedidosActualizar.ActiveSheet.Columns("confirmado").Index) Then
+            spPedidosActualizar.ActiveSheet.Rows(fila).BackColor = Me.colorConfirmado
             spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("cancelado").Index).Value = False
             spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("recibido").Index).Value = False
             spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("entregado").Index).Value = False
         ElseIf (columna = spPedidosActualizar.ActiveSheet.Columns("cancelado").Index) Then
+            spPedidosActualizar.ActiveSheet.Rows(fila).BackColor = Me.colorCancelado
             spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("confirmado").Index).Value = False
             spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("recibido").Index).Value = False
             spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("entregado").Index).Value = False
         ElseIf (columna = spPedidosActualizar.ActiveSheet.Columns("recibido").Index) Then
+            spPedidosActualizar.ActiveSheet.Rows(fila).BackColor = Me.colorRecibido
             spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("confirmado").Index).Value = False
             spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("cancelado").Index).Value = False
             spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("entregado").Index).Value = False
         ElseIf (columna = spPedidosActualizar.ActiveSheet.Columns("entregado").Index) Then
+            spPedidosActualizar.ActiveSheet.Rows(fila).BackColor = Me.colorEntregado
             spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("confirmado").Index).Value = False
             spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("cancelado").Index).Value = False
             spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("recibido").Index).Value = False
+        End If
+        Me.filaAnteriorActualizar = fila
+
+    End Sub
+
+    Private Sub pbMarca_MouseEnter(sender As Object, e As EventArgs) Handles pbMarca.MouseEnter
+
+        AsignarTooltips("Producido por Berry")
+
+    End Sub
+
+    Private Sub pnlCapturaSuperior_MouseEnter(sender As Object, e As EventArgs) Handles pnlCapturaSuperior.MouseEnter
+
+        AsignarTooltips("Capturar Datos Generales")
+
+    End Sub
+
+    Private Sub spPedidosCapturar_MouseEnter(sender As Object, e As EventArgs) Handles spPedidosCapturar.MouseEnter
+
+        AsignarTooltips("Capturar Datos Detallados")
+
+    End Sub
+
+    Private Sub pnlFiltrado_MouseEnter(sender As Object, e As EventArgs) Handles pnlFiltrado.MouseEnter
+
+        AsignarTooltips("Filtros para el Generar el Reporte")
+
+    End Sub
+
+    Private Sub spPedidosActualizar_MouseEnter(sender As Object, e As EventArgs) Handles spPedidosActualizar.MouseEnter
+
+        AsignarTooltips("Reporte Generado")
+
+    End Sub
+
+    Private Sub pnlPie_MouseEnter(sender As Object, e As EventArgs) Handles pnlPie.MouseEnter
+
+        AsignarTooltips("Opciones")
+
+    End Sub
+
+    Private Sub spPedidosActualizar_LeaveCell(sender As Object, e As FarPoint.Win.Spread.LeaveCellEventArgs) Handles spPedidosActualizar.LeaveCell
+
+        If (Convert.ToInt32(e.Row) <> Convert.ToInt32(Me.filaAnteriorActualizar)) Then
+            If (e.Column = spPedidosActualizar.ActiveSheet.Columns("confirmado").Index Or e.Column = spPedidosActualizar.ActiveSheet.Columns("cancelado").Index Or e.Column = spPedidosActualizar.ActiveSheet.Columns("recibido").Index Or e.Column = spPedidosActualizar.ActiveSheet.Columns("entregado").Index) Then
+                If (Not spPedidosActualizar.ActiveSheet.Cells(e.Row, spPedidosActualizar.ActiveSheet.Columns("confirmado").Index).Value AndAlso Not spPedidosActualizar.ActiveSheet.Cells(e.Row, spPedidosActualizar.ActiveSheet.Columns("cancelado").Index).Value AndAlso Not spPedidosActualizar.ActiveSheet.Cells(e.Row, spPedidosActualizar.ActiveSheet.Columns("recibido").Index).Value AndAlso Not spPedidosActualizar.ActiveSheet.Cells(e.Row, spPedidosActualizar.ActiveSheet.Columns("entregado").Index).Value) Then
+                    spPedidosActualizar.ActiveSheet.Rows(e.Row).BackColor = Color.White
+                End If
+            End If
         End If
 
     End Sub
@@ -484,6 +553,16 @@ Public Class Principal
 #Region "Métodos"
 
 #Region "Básicos"
+
+    Private Sub CargarEstilos()
+
+        pnlCapturaSuperior.BackColor = Principal.colorSpreadAreaGris
+        pnlFiltrado.BackColor = Principal.colorSpreadAreaGris
+        pnlPie.BackColor = Principal.colorSpreadAreaGris
+        spPedidosCapturar.ActiveSheet.GrayAreaBackColor = Principal.colorSpreadAreaGris
+        spPedidosActualizar.ActiveSheet.GrayAreaBackColor = Principal.colorSpreadAreaGris
+
+    End Sub
 
     Private Sub BuscarCatalogos()
 
@@ -647,7 +726,7 @@ Public Class Principal
             txtAyuda.Width = pnlAyuda.Width - 10
             txtAyuda.Height = pnlAyuda.Height - 10
             txtAyuda.Location = New Point(5, 5)
-            txtAyuda.Text = "Sección de Ayuda: " & vbNewLine & vbNewLine & "* Teclas básicas: " & vbNewLine & "F5 sirve para mostrar catálogos. " & vbNewLine & "F6 sirve para eliminar un registro únicamente. " & vbNewLine & "Escape sirve para ocultar catálogos que se encuentren desplegados. " & vbNewLine & vbNewLine & "* Catálogos desplegados: " & vbNewLine & "Cuando se muestra algún catálogo, al seleccionar alguna opción de este, se va mostrando en tiempo real en la captura de donde se originó. Cuando se le da doble clic en alguna opción o a la tecla escape se oculta dicho catálogo. " & vbNewLine & vbNewLine & "* Datos obligatorios: " & vbNewLine & "Todos los que tengan el simbolo * son estrictamente obligatorios." & vbNewLine & vbNewLine & "* Captura:" & vbNewLine & "* Parte superior: " & vbNewLine & "En esta parte se capturarán todos los datos que son generales, tal cual como el número de la entrada, el almacén al que corresponde, etc." & vbNewLine & "* Parte inferior: " & vbNewLine & "En esta parte se capturarán todos los datos que pueden combinarse, por ejemplo los distintos artículos de ese número de entrada." & vbNewLine & vbNewLine & "* Existen los botones de guardar/editar y eliminar todo dependiendo lo que se necesite hacer. "
+            txtAyuda.Text = "Sección de Ayuda: " & vbNewLine & vbNewLine & "* Teclas básicas: " & vbNewLine & "F5 sirve para mostrar catálogos. " & vbNewLine & "F6 sirve para eliminar un registro únicamente. " & vbNewLine & "F7 sirve para mostrar listados." & vbNewLine & "Escape sirve para ocultar catálogos o listados que se encuentren desplegados. " & vbNewLine & vbNewLine & "* Catálogos o listados desplegados: " & vbNewLine & "Cuando se muestra algún catálogo o listado, al seleccionar alguna opción de este, se va mostrando en tiempo real en la captura de donde se originó. Cuando se le da doble clic en alguna opción o a la tecla escape se oculta dicho catálogo o listado. " & vbNewLine & vbNewLine & "* Datos obligatorios:" & vbNewLine & "Todos los que tengan el simbolo * son estrictamente obligatorios." & vbNewLine & vbNewLine & "* Captura:" & vbNewLine & "* Parte superior/izquierda: " & vbNewLine & "En esta parte se capturarán todos los datos que son generales, tal cual como el número de pedido, fecha, cliente, etc." & vbNewLine & "* Parte inferior/derecha: " & vbNewLine & "En esta parte se capturarán todos los artículos correspondientes a ese pedido y otros datos extra que llevará." & vbNewLine & vbNewLine & "* Existen los botones de guardar/editar y eliminar todo dependiendo lo que se necesite hacer. "
             pnlAyuda.Controls.Add(txtAyuda)
         Else
             pnlCuerpo.Visible = True
@@ -706,11 +785,12 @@ Public Class Principal
         tp.InitialDelay = 0
         tp.ReshowDelay = 100
         tp.ShowAlways = True
-        tp.SetToolTip(Me.pnlEncabezado, "Datos Principales.")
-        tp.SetToolTip(Me.btnAyuda, "Ayuda.")
-        tp.SetToolTip(Me.btnSalir, "Salir.")
-        tp.SetToolTip(Me.btnGuardar, "Guardar.")
-        tp.SetToolTip(Me.btnEliminar, "Eliminar.")
+        tp.SetToolTip(Me.pnlEncabezado, "Datos Principales")
+        tp.SetToolTip(Me.btnAyuda, "Ayuda")
+        tp.SetToolTip(Me.btnSalir, "Salir")
+        tp.SetToolTip(Me.btnGuardar, "Guardar")
+        tp.SetToolTip(Me.btnEliminar, "Eliminar")
+        tp.SetToolTip(Me.pbMarca, "Producido por Berry")
 
     End Sub
 
@@ -728,7 +808,6 @@ Public Class Principal
             ALMLogicaPedidos.Directorios.usuarioSql = "AdminBerry"
             ALMLogicaPedidos.Directorios.contrasenaSql = "@berry2017"
             pnlEncabezado.BackColor = Color.DarkRed
-            pnlPie.BackColor = Color.DarkRed
         Else
             ALMLogicaPedidos.Directorios.ObtenerParametros()
             ALMLogicaPedidos.Usuarios.ObtenerParametros()
@@ -770,10 +849,10 @@ Public Class Principal
 
     Private Sub CargarEncabezadosTitulos()
 
-        lblEncabezadoPrograma.Text = "Programa: " + Me.Text
-        lblEncabezadoEmpresa.Text = "Directorio: " + ALMLogicaPedidos.Directorios.nombre
-        lblEncabezadoUsuario.Text = "Usuario: " + ALMLogicaPedidos.Usuarios.nombre
-        Me.Text = "Programa:  " + Me.nombreEstePrograma + "              Directorio:  " + ALMLogicaPedidos.Directorios.nombre + "              Usuario:  " + ALMLogicaPedidos.Usuarios.nombre
+        lblEncabezadoPrograma.Text = "Programa: " & Me.Text
+        lblEncabezadoEmpresa.Text = "Directorio: " & ALMLogicaPedidos.Directorios.nombre
+        lblEncabezadoUsuario.Text = "Usuario: " & ALMLogicaPedidos.Usuarios.nombre
+        Me.Text = "Programa:  " & Me.nombreEstePrograma & "              Directorio:  " & ALMLogicaPedidos.Directorios.nombre & "              Usuario:  " & ALMLogicaPedidos.Usuarios.nombre
         hiloEncabezadosTitulos.Abort()
 
     End Sub
@@ -864,8 +943,8 @@ Public Class Principal
 
     Private Sub CargarCombosCaptura()
 
-        CargarAlmacenes()
-        CargarClientes()
+        CargarComboAlmacenes()
+        CargarComboClientes()
 
     End Sub
 
@@ -873,11 +952,13 @@ Public Class Principal
 
         If (Me.opcionPestanaSeleccionada = OpcionPestana.capturar) Then
             For Each c As Control In pnlCapturaSuperior.Controls
-                c.BackColor = Color.White
+                If ((Not TypeOf c Is Button) AndAlso (Not TypeOf c Is Label)) Then
+                    c.BackColor = Principal.colorCaptura
+                End If
             Next
             For fila = 0 To spPedidosCapturar.ActiveSheet.Rows.Count - 1
                 For columna = 0 To spPedidosCapturar.ActiveSheet.Columns.Count - 1
-                    spPedidosCapturar.ActiveSheet.Cells(fila, columna).BackColor = Color.White
+                    spPedidosCapturar.ActiveSheet.Cells(fila, columna).BackColor = Principal.colorCaptura
                 Next
             Next
             If (Not chkMantenerDatos.Checked) Then
@@ -903,7 +984,7 @@ Public Class Principal
 
     End Sub
 
-    Private Sub CargarClientes()
+    Private Sub CargarComboClientes()
 
         cbClientes.DataSource = clientes.ObtenerListadoReporteCombos()
         cbClientes.DisplayMember = "IdNombre"
@@ -911,7 +992,7 @@ Public Class Principal
 
     End Sub
 
-    Private Sub CargarAlmacenes()
+    Private Sub CargarComboAlmacenes()
 
         cbAlmacenes.DataSource = almacenes.ObtenerListadoReporte()
         cbAlmacenes.DisplayMember = "IdNombre"
@@ -953,12 +1034,8 @@ Public Class Principal
 
     Private Sub EliminarRegistroDeSpread(ByVal spread As FarPoint.Win.Spread.FpSpread)
 
-        If (spread.ActiveSheet.ActiveRowIndex > 0) Then
-            spread.ActiveSheet.Rows.Remove(spread.ActiveSheet.ActiveRowIndex, 1)
-        Else
-            spread.ActiveSheet.ClearRange(spread.ActiveSheet.ActiveRowIndex, 0, 1, spread.ActiveSheet.Columns.Count, False)
-            spread.ActiveSheet.SetActiveCell(spread.ActiveSheet.ActiveRowIndex, 0)
-        End If
+        spread.ActiveSheet.Rows.Remove(spread.ActiveSheet.ActiveRowIndex, 1)
+        spread.ActiveSheet.Rows.Count += 1
 
     End Sub
 
@@ -970,7 +1047,7 @@ Public Class Principal
         End If
         If (spread.Name = spPedidosCapturar.Name) Then
             Dim fila As Integer = 0
-            If (columnaActiva = spPedidosCapturar.ActiveSheet.Columns("idProveedor").Index) Then
+            If (columnaActiva = spPedidosCapturar.ActiveSheet.Columns("idProveedor").Index Or columnaActiva = spPedidosCapturar.ActiveSheet.Columns("nombreProveedor").Index) Then
                 fila = spPedidosCapturar.ActiveSheet.ActiveRowIndex
                 Dim idProveedor As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("idProveedor").Index).Value)
                 proveedores.EId = idProveedor
@@ -1150,6 +1227,7 @@ Public Class Principal
         If (spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("idProveedor").Index Or spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("nombreProveedor").Index) Then
             spPedidosCapturar.ActiveSheet.Cells(spPedidosCapturar.ActiveSheet.ActiveRowIndex, spPedidosCapturar.ActiveSheet.Columns("idProveedor").Index).Text = spCatalogos.ActiveSheet.Cells(filaCatalogos, spCatalogos.ActiveSheet.Columns("id").Index).Text
             spPedidosCapturar.ActiveSheet.Cells(spPedidosCapturar.ActiveSheet.ActiveRowIndex, spPedidosCapturar.ActiveSheet.Columns("nombreProveedor").Index).Text = spCatalogos.ActiveSheet.Cells(filaCatalogos, spCatalogos.ActiveSheet.Columns("nombre").Index).Text
+            ControlarSpreadEnter(spPedidosCapturar)
         ElseIf (spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("idFamilia").Index Or spPedidosCapturar.ActiveSheet.ActiveColumnIndex = spPedidosCapturar.ActiveSheet.Columns("nombreFamilia").Index) Then
             spPedidosCapturar.ActiveSheet.Cells(spPedidosCapturar.ActiveSheet.ActiveRowIndex, spPedidosCapturar.ActiveSheet.Columns("idFamilia").Index).Text = spCatalogos.ActiveSheet.Cells(filaCatalogos, spCatalogos.ActiveSheet.Columns("id").Index).Text
             spPedidosCapturar.ActiveSheet.Cells(spPedidosCapturar.ActiveSheet.ActiveRowIndex, spPedidosCapturar.ActiveSheet.Columns("nombreFamilia").Index).Text = spCatalogos.ActiveSheet.Cells(filaCatalogos, spCatalogos.ActiveSheet.Columns("nombre").Index).Text
@@ -1167,6 +1245,7 @@ Public Class Principal
             spPedidosCapturar.ActiveSheet.Cells(spPedidosCapturar.ActiveSheet.ActiveRowIndex, spPedidosCapturar.ActiveSheet.Columns("modelo").Index).Text = spCatalogos.ActiveSheet.Cells(filaCatalogos, spCatalogos.ActiveSheet.Columns("modelo").Index).Text
             spPedidosCapturar.ActiveSheet.Cells(spPedidosCapturar.ActiveSheet.ActiveRowIndex, spPedidosCapturar.ActiveSheet.Columns("codigoInternet").Index).Text = spCatalogos.ActiveSheet.Cells(filaCatalogos, spCatalogos.ActiveSheet.Columns("codigoInternet").Index).Text
             spPedidosCapturar.ActiveSheet.Cells(spPedidosCapturar.ActiveSheet.ActiveRowIndex, spPedidosCapturar.ActiveSheet.Columns("precio").Index).Text = spCatalogos.ActiveSheet.Cells(filaCatalogos, spCatalogos.ActiveSheet.Columns("precio").Index).Text
+            ControlarSpreadEnter(spPedidosCapturar)
         End If
 
     End Sub
@@ -1197,7 +1276,7 @@ Public Class Principal
                 spCatalogos.ActiveSheet.Rows.Count = 0
                 spPedidosCapturar.Enabled = True
             End If
-            FormatearSpreadCatalogo(OpcionPosicion.derecha)
+            FormatearSpreadCatalogos(OpcionPosicion.derecha)
         ElseIf ((columna = spPedidosCapturar.ActiveSheet.Columns("idFamilia").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("nombreFamilia").Index)) Then
             Me.opcionCatalogoSeleccionada = OpcionCatalogo.familia
             Dim idAlmacen As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(cbAlmacenes.SelectedValue)
@@ -1218,7 +1297,7 @@ Public Class Principal
                 spCatalogos.ActiveSheet.Rows.Count = 0
                 spPedidosCapturar.Enabled = True
             End If
-            FormatearSpreadCatalogo(OpcionPosicion.derecha)
+            FormatearSpreadCatalogos(OpcionPosicion.derecha)
         ElseIf ((columna = spPedidosCapturar.ActiveSheet.Columns("idSubFamilia").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("nombreSubFamilia").Index)) Then
             Me.opcionCatalogoSeleccionada = OpcionCatalogo.subfamilia
             Dim idAlmacen As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(cbAlmacenes.SelectedValue)
@@ -1241,7 +1320,7 @@ Public Class Principal
                 spCatalogos.ActiveSheet.Rows.Count = 0
                 spPedidosCapturar.Enabled = True
             End If
-            FormatearSpreadCatalogo(OpcionPosicion.derecha)
+            FormatearSpreadCatalogos(OpcionPosicion.derecha)
         ElseIf ((columna = spPedidosCapturar.ActiveSheet.Columns("idArticulo").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("nombreArticulo").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("nombreUnidadMedida").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("codigo").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("pagina").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("color").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("talla").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("modelo").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("codigoInternet").Index) Or (columna = spPedidosCapturar.ActiveSheet.Columns("precio").Index)) Then
             Me.opcionCatalogoSeleccionada = OpcionCatalogo.articulo
             Dim idAlmacen As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(cbAlmacenes.SelectedValue)
@@ -1269,7 +1348,7 @@ Public Class Principal
                 spCatalogos.ActiveSheet.Rows.Count = 0
                 spPedidosCapturar.Enabled = True
             End If
-            FormatearSpreadCatalogo(OpcionPosicion.derecha)
+            FormatearSpreadCatalogos(OpcionPosicion.derecha)
         Else
             spPedidosCapturar.Enabled = True
         End If
@@ -1291,7 +1370,7 @@ Public Class Principal
                 spCatalogos.ActiveSheet.Rows.Count = 0
                 pnlCapturaSuperior.Enabled = True
             End If
-            FormatearSpreadCatalogo(OpcionPosicion.centro)
+            FormatearSpreadCatalogos(OpcionPosicion.centro)
         ElseIf (Me.opcionCatalogoSeleccionada = OpcionCatalogo.cliente) Then
             clientes.EId = 0
             Dim datos As New DataTable
@@ -1303,16 +1382,16 @@ Public Class Principal
                 spCatalogos.ActiveSheet.Rows.Count = 0
                 pnlCapturaSuperior.Enabled = True
             End If
-            FormatearSpreadCatalogo(OpcionPosicion.centro)
+            FormatearSpreadCatalogos(OpcionPosicion.centro)
         End If
         AsignarFoco(txtBuscarCatalogo)
 
     End Sub
 
-    Private Sub FormatearSpreadCatalogo(ByVal posicion As Integer)
+    Private Sub FormatearSpreadCatalogos(ByVal posicion As Integer)
 
         If (Me.opcionCatalogoSeleccionada = OpcionCatalogo.articulo) Then
-            spCatalogos.Width = 1110
+            spCatalogos.Width = 1100
             spCatalogos.ActiveSheet.Columns.Count = 10
         Else
             spCatalogos.Width = 500
@@ -1323,7 +1402,7 @@ Public Class Principal
         ElseIf (posicion = OpcionPosicion.centro) Then ' Centrar.
             pnlCatalogos.Location = New Point(Me.anchoMitad - (spCatalogos.Width / 2), Me.arriba)
         ElseIf (posicion = OpcionPosicion.derecha) Then ' Derecha.
-            pnlCatalogos.Location = New Point(Me.anchoTotal - (spCatalogos.Width), Me.arriba)
+            pnlCatalogos.Location = New Point(Me.anchoTotal - 10 - (spCatalogos.Width), Me.arriba)
         End If
         spCatalogos.ActiveSheet.ColumnHeader.Rows(0).Font = New Font(Principal.tipoLetraSpread, Principal.tamañoLetraSpread, FontStyle.Bold)
         If (Me.opcionCatalogoSeleccionada = OpcionCatalogo.articulo) Then
@@ -1364,6 +1443,11 @@ Public Class Principal
             spCatalogos.ActiveSheet.Columns("unidadMedida").Visible = False
         End If
         spCatalogos.ActiveSheet.Columns(0, spCatalogos.ActiveSheet.Columns.Count - 1).AllowAutoFilter = True
+        If (Me.opcionCatalogoSeleccionada = OpcionCatalogo.articulo) Then
+            spCatalogos.ActiveSheet.Columns("id").AllowAutoFilter = False
+            spCatalogos.ActiveSheet.Columns("nombre").AllowAutoFilter = False
+            spCatalogos.ActiveSheet.Columns("codigo").AllowAutoFilter = False
+        End If
         spCatalogos.ActiveSheet.Columns(0, spCatalogos.ActiveSheet.Columns.Count - 1).AllowAutoSort = True
         pnlCatalogos.Height = spPedidosCapturar.Height
         pnlCatalogos.Width = spCatalogos.Width
@@ -1413,11 +1497,11 @@ Public Class Principal
         pedidos.EId = ALMLogicaPedidos.Funciones.ValidarNumeroACero(txtId.Text)
         If (pedidos.EId > 0) Then
             Dim lista As New List(Of ALMEntidadesPedidos.Pedidos)
-            lista = pedidos.ObtenerListado()
+            lista = pedidos.ObtenerListadoGeneral()
             If (lista.Count > 0) Then
                 dtpFecha.Value = lista(0).EFechaEnvio
                 cbClientes.SelectedValue = lista(0).EIdCliente
-                spPedidosCapturar.ActiveSheet.DataSource = pedidos.ObtenerListadoReporte()
+                spPedidosCapturar.ActiveSheet.DataSource = pedidos.ObtenerListadoDetallado()
                 Me.cantidadFilas = spPedidosCapturar.ActiveSheet.Rows.Count + 1
                 FormatearSpreadPedidos()
             Else
@@ -1460,24 +1544,24 @@ Public Class Principal
         spPedidosCapturar.ActiveSheet.Columns(numeracion).Tag = "observaciones" : numeracion += 1
         spPedidosCapturar.ActiveSheet.Columns.Count = numeracion
         spPedidosCapturar.ActiveSheet.Columns("idProveedor").Width = 50
-        spPedidosCapturar.ActiveSheet.Columns("nombreProveedor").Width = 100
+        spPedidosCapturar.ActiveSheet.Columns("nombreProveedor").Width = 80
         spPedidosCapturar.ActiveSheet.Columns("idFamilia").Width = 50
         spPedidosCapturar.ActiveSheet.Columns("nombreFamilia").Width = 100
         spPedidosCapturar.ActiveSheet.Columns("idSubFamilia").Width = 50
         spPedidosCapturar.ActiveSheet.Columns("nombreSubFamilia").Width = 100
-        spPedidosCapturar.ActiveSheet.Columns("idArticulo").Width = 70
-        spPedidosCapturar.ActiveSheet.Columns("nombreArticulo").Width = 200
-        spPedidosCapturar.ActiveSheet.Columns("nombreUnidadMedida").Width = 90
-        spPedidosCapturar.ActiveSheet.Columns("codigo").Width = 150
-        spPedidosCapturar.ActiveSheet.Columns("pagina").Width = 90
+        spPedidosCapturar.ActiveSheet.Columns("idArticulo").Width = 50
+        spPedidosCapturar.ActiveSheet.Columns("nombreArticulo").Width = 120
+        spPedidosCapturar.ActiveSheet.Columns("nombreUnidadMedida").Width = 80
+        spPedidosCapturar.ActiveSheet.Columns("codigo").Width = 110
+        spPedidosCapturar.ActiveSheet.Columns("pagina").Width = 65
         spPedidosCapturar.ActiveSheet.Columns("color").Width = 100
-        spPedidosCapturar.ActiveSheet.Columns("talla").Width = 80
-        spPedidosCapturar.ActiveSheet.Columns("modelo").Width = 100
-        spPedidosCapturar.ActiveSheet.Columns("codigoInternet").Width = 100
-        spPedidosCapturar.ActiveSheet.Columns("precio").Width = 90
+        spPedidosCapturar.ActiveSheet.Columns("talla").Width = 65
+        spPedidosCapturar.ActiveSheet.Columns("modelo").Width = 80
+        spPedidosCapturar.ActiveSheet.Columns("codigoInternet").Width = 80
+        spPedidosCapturar.ActiveSheet.Columns("precio").Width = 70
         spPedidosCapturar.ActiveSheet.Columns("cantidad").Width = 110
         spPedidosCapturar.ActiveSheet.Columns("total").Width = 110
-        spPedidosCapturar.ActiveSheet.Columns("observaciones").Width = 200
+        spPedidosCapturar.ActiveSheet.Columns("observaciones").Width = 150
         spPedidosCapturar.ActiveSheet.Columns("idProveedor").CellType = tipoEntero
         spPedidosCapturar.ActiveSheet.Columns("nombreProveedor").CellType = tipoTexto
         spPedidosCapturar.ActiveSheet.Columns("idFamilia").CellType = tipoEntero
@@ -1536,24 +1620,23 @@ Public Class Principal
 
     End Sub
 
-    Private Sub ValidarGuardado()
+    Private Sub ValidarGuardadoPedidos()
 
-        Me.Cursor = Cursors.WaitCursor
         Me.esGuardadoValido = True
         ' Parte superior.
         Dim idAlmacen As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(cbAlmacenes.SelectedValue)
         If (idAlmacen <= 0) Then
-            cbAlmacenes.BackColor = Color.Orange
+            cbAlmacenes.BackColor = Principal.colorAdvertencia
             Me.esGuardadoValido = False
         End If
         Dim id As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(txtId.Text)
         If (id <= 0) Then
-            txtId.BackColor = Color.Orange
+            txtId.BackColor = Principal.colorAdvertencia
             Me.esGuardadoValido = False
         End If
         Dim idCliente As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(cbClientes.SelectedValue)
         If (idCliente <= 0) Then
-            cbClientes.BackColor = Color.Orange
+            cbClientes.BackColor = Principal.colorAdvertencia
             Me.esGuardadoValido = False
         End If
         ' Parte inferior.
@@ -1565,29 +1648,28 @@ Public Class Principal
             If (idFamilia > 0 And idSubFamilia > 0 And idArticulo > 0 And idProveedor > 0) Then
                 Dim cantidad As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("cantidad").Index).Text)
                 If (cantidad <= 0) Then
-                    spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("cantidad").Index).BackColor = Color.Orange
+                    spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("cantidad").Index).BackColor = Principal.colorAdvertencia
                     Me.esGuardadoValido = False
                 End If
                 Dim precio As String = spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precio").Index).Text
                 Dim precio2 As Double = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precio").Index).Text)
                 If (String.IsNullOrEmpty(precio) Or precio2 < 0) Then
-                    spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precio").Index).BackColor = Color.Orange
+                    spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("precio").Index).BackColor = Principal.colorAdvertencia
                     Me.esGuardadoValido = False
                 End If
                 Dim total As String = spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("total").Index).Text
                 Dim total2 As Double = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("total").Index).Text)
                 If (String.IsNullOrEmpty(total) Or total2 < 0) Then
-                    spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("total").Index).BackColor = Color.Orange
+                    spPedidosCapturar.ActiveSheet.Cells(fila, spPedidosCapturar.ActiveSheet.Columns("total").Index).BackColor = Principal.colorAdvertencia
                     Me.esGuardadoValido = False
                 End If
             End If
         Next
-        Me.Cursor = Cursors.Default
 
     End Sub
 
     Private Sub GuardarEditarPedidos()
-         
+
         EliminarPedidos(False)
         ' Parte superior.
         Dim idAlmacen As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(cbAlmacenes.SelectedValue)
@@ -1626,16 +1708,15 @@ Public Class Principal
         MessageBox.Show("Guardado finalizado.", "Finalizado.", MessageBoxButtons.OK)
         LimpiarPantalla()
         CargarIdConsecutivo()
-        AsignarFoco(txtId) 
+        AsignarFoco(txtId)
 
     End Sub
 
     Private Sub EliminarPedidos(ByVal conMensaje As Boolean)
 
-        Me.Cursor = Cursors.WaitCursor
         Dim respuestaSi As Boolean = False
         If (conMensaje) Then
-            If (MessageBox.Show("Confirmas que deseas eliminar esta entrada?", "Confirmación.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes) Then
+            If (MessageBox.Show("Confirmas que deseas eliminar este pedido?", "Confirmación.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes) Then
                 respuestaSi = True
             End If
         End If
@@ -1650,7 +1731,6 @@ Public Class Principal
             CargarIdConsecutivo()
             AsignarFoco(txtId)
         End If
-        Me.Cursor = Cursors.Default
 
     End Sub
 
@@ -1660,7 +1740,7 @@ Public Class Principal
 
     Private Sub CargarPedidosActualizar()
 
-        Dim fecha As Date = dtpFecha.Value.ToShortDateString : Dim fecha2 As Date = dtpFechaFinal.Value.ToShortDateString
+        Dim fecha As Date = dtpFechaInicial.Value.ToShortDateString : Dim fecha2 As Date = dtpFechaFinal.Value.ToShortDateString
         Dim aplicaFecha As Boolean = False
         If (chkFecha.Checked) Then
             aplicaFecha = True
@@ -1681,13 +1761,13 @@ Public Class Principal
 
     Private Sub FormatearSpreadPedidosActualizar()
 
+        ControlarSpreadEnterASiguienteColumna(spPedidosActualizar)
+        spPedidosActualizar.ActiveSheet.OperationMode = FarPoint.Win.Spread.OperationMode.Normal
         spPedidosActualizar.ActiveSheet.ColumnHeader.RowCount = 2
         spPedidosActualizar.ActiveSheet.ColumnHeader.Rows(0, spPedidosActualizar.ActiveSheet.ColumnHeader.Rows.Count - 1).Font = New Font(Principal.tipoLetraSpread, Principal.tamañoLetraSpread, FontStyle.Bold)
         spPedidosActualizar.ActiveSheet.ColumnHeader.Rows(0).Height = Principal.alturaFilasEncabezadosMedianosSpread
         spPedidosActualizar.ActiveSheet.ColumnHeader.Rows(1).Height = Principal.alturaFilasEncabezadosGrandesSpread
-        spPedidosActualizar.ActiveSheet.OperationMode = FarPoint.Win.Spread.OperationMode.Normal
-        'spPedidosActualizar.ActiveSheet.Rows.Count = cantidadFilas
-        ControlarSpreadEnterASiguienteColumna(spPedidosActualizar)
+        'spPedidosActualizar.ActiveSheet.Rows.Count = me.cantidadFilas
         Dim numeracion As Integer = 0
         spPedidosActualizar.ActiveSheet.Columns.Count += 10
         spPedidosActualizar.ActiveSheet.Columns(numeracion).Tag = "fechaEnvio" : numeracion += 1
@@ -1722,12 +1802,12 @@ Public Class Principal
         spPedidosActualizar.ActiveSheet.Columns(numeracion).Tag = "fechaLlegada" : numeracion += 1
         spPedidosActualizar.ActiveSheet.Columns(numeracion).Tag = "observaciones2" : numeracion += 1
         spPedidosActualizar.ActiveSheet.Columns.Count = numeracion
-        spPedidosActualizar.ActiveSheet.Columns("fechaEnvio").Width = 80
+        spPedidosActualizar.ActiveSheet.Columns("fechaEnvio").Width = 70
         spPedidosActualizar.ActiveSheet.Columns("id").Width = 50
         spPedidosActualizar.ActiveSheet.Columns("idCliente").Width = 50
         spPedidosActualizar.ActiveSheet.Columns("nombreCliente").Width = 150
         spPedidosActualizar.ActiveSheet.Columns("idProveedor").Width = 50
-        spPedidosActualizar.ActiveSheet.Columns("nombreProveedor").Width = 90
+        spPedidosActualizar.ActiveSheet.Columns("nombreProveedor").Width = 80
         spPedidosActualizar.ActiveSheet.Columns("idAlmacen").Width = 50
         spPedidosActualizar.ActiveSheet.Columns("nombreAlmacen").Width = 150
         spPedidosActualizar.ActiveSheet.Columns("idFamilia").Width = 50
@@ -1735,24 +1815,24 @@ Public Class Principal
         spPedidosActualizar.ActiveSheet.Columns("idSubFamilia").Width = 50
         spPedidosActualizar.ActiveSheet.Columns("nombreSubFamilia").Width = 150
         spPedidosActualizar.ActiveSheet.Columns("idArticulo").Width = 70
-        spPedidosActualizar.ActiveSheet.Columns("nombreArticulo").Width = 200
-        spPedidosActualizar.ActiveSheet.Columns("nombreUnidadMedida").Width = 90
-        spPedidosActualizar.ActiveSheet.Columns("codigo").Width = 150
-        spPedidosActualizar.ActiveSheet.Columns("pagina").Width = 80
+        spPedidosActualizar.ActiveSheet.Columns("nombreArticulo").Width = 120
+        spPedidosActualizar.ActiveSheet.Columns("nombreUnidadMedida").Width = 80
+        spPedidosActualizar.ActiveSheet.Columns("codigo").Width = 110
+        spPedidosActualizar.ActiveSheet.Columns("pagina").Width = 75
         spPedidosActualizar.ActiveSheet.Columns("color").Width = 100
-        spPedidosActualizar.ActiveSheet.Columns("talla").Width = 75
-        spPedidosActualizar.ActiveSheet.Columns("modelo").Width = 90
-        spPedidosActualizar.ActiveSheet.Columns("codigoInternet").Width = 100
-        spPedidosActualizar.ActiveSheet.Columns("precio").Width = 80
+        spPedidosActualizar.ActiveSheet.Columns("talla").Width = 70
+        spPedidosActualizar.ActiveSheet.Columns("modelo").Width = 85
+        spPedidosActualizar.ActiveSheet.Columns("codigoInternet").Width = 90
+        spPedidosActualizar.ActiveSheet.Columns("precio").Width = 75
         spPedidosActualizar.ActiveSheet.Columns("cantidad").Width = 110
         spPedidosActualizar.ActiveSheet.Columns("total").Width = 110
-        spPedidosActualizar.ActiveSheet.Columns("observaciones").Width = 200
-        spPedidosActualizar.ActiveSheet.Columns("confirmado").Width = 110
-        spPedidosActualizar.ActiveSheet.Columns("cancelado").Width = 100
-        spPedidosActualizar.ActiveSheet.Columns("recibido").Width = 85
-        spPedidosActualizar.ActiveSheet.Columns("entregado").Width = 100
-        spPedidosActualizar.ActiveSheet.Columns("fechaLlegada").Width = 80
-        spPedidosActualizar.ActiveSheet.Columns("observaciones2").Width = 200
+        spPedidosActualizar.ActiveSheet.Columns("observaciones").Width = 150
+        spPedidosActualizar.ActiveSheet.Columns("confirmado").Width = 100
+        spPedidosActualizar.ActiveSheet.Columns("cancelado").Width = 90
+        spPedidosActualizar.ActiveSheet.Columns("recibido").Width = 80
+        spPedidosActualizar.ActiveSheet.Columns("entregado").Width = 95
+        spPedidosActualizar.ActiveSheet.Columns("fechaLlegada").Width = 70
+        spPedidosActualizar.ActiveSheet.Columns("observaciones2").Width = 150
         spPedidosActualizar.ActiveSheet.Columns("fechaEnvio").CellType = tipoFecha
         spPedidosActualizar.ActiveSheet.Columns("id").CellType = tipoEntero
         spPedidosActualizar.ActiveSheet.Columns("idCliente").CellType = tipoEntero
@@ -1838,7 +1918,6 @@ Public Class Principal
         spPedidosActualizar.ActiveSheet.ColumnHeader.Cells(0, spPedidosActualizar.ActiveSheet.Columns("observaciones2").Index).Value = "Observaciones 2".ToUpper()
         spPedidosActualizar.ActiveSheet.Columns("idCliente").Visible = False
         spPedidosActualizar.ActiveSheet.Columns("idProveedor").Visible = False
-        spPedidosActualizar.ActiveSheet.Columns("idProveedor").Visible = False
         spPedidosActualizar.ActiveSheet.Columns("idArticulo").Visible = False
         spPedidosActualizar.ActiveSheet.Columns("nombreArticulo").Visible = False
         spPedidosActualizar.ActiveSheet.Columns(spPedidosActualizar.ActiveSheet.Columns("idAlmacen").Index, spPedidosActualizar.ActiveSheet.Columns("nombreSubFamilia").Index).Visible = False
@@ -1846,15 +1925,35 @@ Public Class Principal
         spPedidosActualizar.ActiveSheet.Columns("cantidad").Visible = False
         spPedidosActualizar.ActiveSheet.Columns("total").Visible = False
         spPedidosActualizar.ActiveSheet.Columns("observaciones").Visible = False
-        spPedidosActualizar.ActiveSheet.Columns(0, spPedidosActualizar.ActiveSheet.Columns("observaciones").Index).BackColor = Color.FromArgb(240, 240, 240)
         spPedidosActualizar.ActiveSheet.Columns(0, spPedidosActualizar.ActiveSheet.Columns("observaciones").Index).AllowAutoFilter = True
         spPedidosActualizar.ActiveSheet.Columns(0, spPedidosActualizar.ActiveSheet.Columns("observaciones").Index).Locked = True
+        spPedidosActualizar.ActiveSheet.LockBackColor = Principal.colorCapturaBloqueada
         spPedidosActualizar.Visible = True
         spPedidosActualizar.Refresh()
+        PintarPedidosActualizar()
 
     End Sub
 
-    Private Sub ActualizarPedidosActualizar()
+    Private Sub PintarPedidosActualizar()
+
+        For fila = 0 To spPedidosActualizar.ActiveSheet.Rows.Count - 1
+            spPedidosActualizar.ActiveSheet.Rows(fila).BackColor = Principal.colorCaptura
+        Next
+        For fila = 0 To spPedidosActualizar.ActiveSheet.Rows.Count - 1
+            If (spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("confirmado").Index).Value) Then
+                spPedidosActualizar.ActiveSheet.Rows(fila).BackColor = Me.colorConfirmado
+            ElseIf (spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("cancelado").Index).Value) Then
+                spPedidosActualizar.ActiveSheet.Rows(fila).BackColor = Me.colorCancelado
+            ElseIf (spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("recibido").Index).Value) Then
+                spPedidosActualizar.ActiveSheet.Rows(fila).BackColor = Me.colorRecibido
+            ElseIf (spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("entregado").Index).Value) Then
+                spPedidosActualizar.ActiveSheet.Rows(fila).BackColor = Me.colorEntregado
+            End If
+        Next
+
+    End Sub
+
+    Private Sub EditarPedidosActualizar()
 
         GuardarEditarEntradasPedidosActualizar()
         'GuardarEditarSalidasPedidosActualizar()
@@ -1897,8 +1996,8 @@ Public Class Principal
                 pedidos.Actualizar(aplicaFecha)
             End If
         Next
+        FormatearSpreadPedidosActualizar()
         MessageBox.Show("Guardado finalizado.", "Finalizado.", MessageBoxButtons.OK)
-        'LimpiarPantalla() 
 
     End Sub
 
@@ -1910,9 +2009,6 @@ Public Class Principal
         Dim tipoCambio As Double = 1 ' 1
         Dim idTipoEntrada As Integer = 1 ' Normal o compra.
         Dim factura As String = String.Empty
-        Dim chofer As String = String.Empty
-        Dim camion As String = String.Empty
-        Dim noEconomico As String = String.Empty
         Dim idAlmacenCopia As Integer = -1
         Dim idCopia As Integer = -1
         ' Parte inferior.
@@ -1920,8 +2016,8 @@ Public Class Principal
             Dim recibido As Boolean = spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("recibido").Index).Value
             Dim idAlmacen As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("idAlmacen").Index).Text)
             Dim id As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("id").Index).Text)
-            If (idAlmacen <> idAlmacenCopia AndAlso id <> idCopia AndAlso recibido) Then
-                EliminarEntradasPedidosActualizar(False, fila)
+            If ((idAlmacen <> idAlmacenCopia Or id <> idCopia) AndAlso recibido) Then
+                EliminarEntradasPedidosActualizar(fila)
                 idAlmacenCopia = idAlmacen
                 idCopia = id
             End If
@@ -1933,12 +2029,12 @@ Public Class Principal
             fechaLLegadaCopia = spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("fechaLlegada").Index).Value
             If (Not String.IsNullOrEmpty(fechaLLegadaCopia)) Then
                 fechaLlegada = fechaLLegadaCopia
-                spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("fechaLlegada").Index).BackColor = Color.White
+                spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("fechaLlegada").Index).BackColor = Principal.colorCaptura
             Else
                 If (recibido) Then
-                    spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("fechaLlegada").Index).BackColor = Color.Orange
+                    spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("fechaLlegada").Index).BackColor = Principal.colorAdvertencia
                 Else
-                    spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("fechaLlegada").Index).BackColor = Color.White
+                    spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("fechaLlegada").Index).BackColor = Principal.colorCaptura
                 End If
             End If
             Dim idProveedor As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("idProveedor").Index).Text)
@@ -1968,38 +2064,20 @@ Public Class Principal
                 entradas.EOrden = orden
                 entradas.EObservaciones = observaciones
                 entradas.EFactura = factura
-                entradas.EChofer = chofer
-                entradas.ECamion = camion
-                entradas.ENoEconomico = noEconomico
                 entradas.Guardar()
             End If
         Next
-        'MessageBox.Show("Guardado finalizado.", "Finalizado.", MessageBoxButtons.OK)
 
     End Sub
 
-    Private Sub EliminarEntradasPedidosActualizar(ByVal conMensaje As Boolean, ByVal fila As Integer)
+    Private Sub EliminarEntradasPedidosActualizar(ByVal fila As Integer)
 
-        Dim respuestaSi As Boolean = False
-        If (conMensaje) Then
-            If (MessageBox.Show("Confirmas que deseas eliminar esta entrada?", "Confirmación.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes) Then
-                respuestaSi = True
-            End If
-        End If
-        If ((respuestaSi) Or (Not conMensaje)) Then
-            Dim idAlmacen As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("idAlmacen").Index).Text)
-            Dim id As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("id").Index).Text)
-            entradas.EIdOrigen = Me.idOrigen
-            entradas.EIdAlmacen = idAlmacen
-            entradas.EId = id
-            entradas.Eliminar()
-        End If
-        If (conMensaje And respuestaSi) Then
-            MessageBox.Show("Eliminado finalizado.", "Finalizado.", MessageBoxButtons.OK)
-            LimpiarPantalla()
-            CargarIdConsecutivo()
-            AsignarFoco(txtId)
-        End If
+        Dim idAlmacen As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("idAlmacen").Index).Text)
+        Dim id As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("id").Index).Text)
+        entradas.EIdOrigen = Me.idOrigen
+        entradas.EIdAlmacen = idAlmacen
+        entradas.EId = id
+        entradas.Eliminar()
 
     End Sub
 
@@ -2011,9 +2089,6 @@ Public Class Principal
         Dim tipoCambio As Double = 1 ' 1
         Dim idTipoSalida As Integer = 1 ' Normal o venta.
         Dim factura As String = String.Empty
-        Dim chofer As String = String.Empty
-        Dim camion As String = String.Empty
-        Dim noEconomico As String = String.Empty
         Dim idAlmacenCopia As Integer = -1
         Dim idCopia As Integer = -1
         ' Parte inferior.
@@ -2022,7 +2097,7 @@ Public Class Principal
             Dim idAlmacen As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("idAlmacen").Index).Text)
             Dim id As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("id").Index).Text)
             If (idAlmacen <> idAlmacenCopia AndAlso id <> idCopia AndAlso entregado) Then
-                EliminarSalidasPedidosActualizar(False, fila)
+                EliminarSalidasPedidosActualizar(fila)
                 idAlmacenCopia = idAlmacen
                 idCopia = id
             End If
@@ -2034,12 +2109,12 @@ Public Class Principal
             fechaLLegadaCopia = spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("fechaLlegada").Index).Value
             If (Not String.IsNullOrEmpty(fechaLLegadaCopia)) Then
                 fechaLlegada = fechaLLegadaCopia
-                spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("fechaLlegada").Index).BackColor = Color.White
+                spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("fechaLlegada").Index).BackColor = Principal.colorCaptura
             Else
                 If (entregado) Then
-                    spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("fechaLlegada").Index).BackColor = Color.Orange
+                    spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("fechaLlegada").Index).BackColor = Principal.colorAdvertencia
                 Else
-                    spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("fechaLlegada").Index).BackColor = Color.White
+                    spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("fechaLlegada").Index).BackColor = Principal.colorCaptura
                 End If
             End If
             Dim idCliente As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("idCliente").Index).Text)
@@ -2069,38 +2144,20 @@ Public Class Principal
                 salidas.EOrden = orden
                 salidas.EObservaciones = observaciones
                 salidas.EFactura = factura
-                salidas.EChofer = chofer
-                salidas.ECamion = camion
-                salidas.ENoEconomico = noEconomico
                 salidas.Guardar()
             End If
         Next
-        'MessageBox.Show("Guardado finalizado.", "Finalizado.", MessageBoxButtons.OK)
 
     End Sub
 
-    Private Sub EliminarSalidasPedidosActualizar(ByVal conMensaje As Boolean, ByVal fila As Integer)
+    Private Sub EliminarSalidasPedidosActualizar(ByVal fila As Integer)
 
-        Dim respuestaSi As Boolean = False
-        If (conMensaje) Then
-            If (MessageBox.Show("Confirmas que deseas eliminar esta salida?", "Confirmación.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes) Then
-                respuestaSi = True
-            End If
-        End If
-        If ((respuestaSi) Or (Not conMensaje)) Then
-            Dim idAlmacen As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("idAlmacen").Index).Text)
-            Dim id As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("id").Index).Text)
-            salidas.EIdOrigen = Me.idOrigen
-            salidas.EIdAlmacen = idAlmacen
-            salidas.EId = id
-            salidas.Eliminar()
-        End If
-        If (conMensaje And respuestaSi) Then
-            MessageBox.Show("Eliminado finalizado.", "Finalizado.", MessageBoxButtons.OK)
-            LimpiarPantalla()
-            CargarIdConsecutivo()
-            AsignarFoco(txtId)
-        End If
+        Dim idAlmacen As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("idAlmacen").Index).Text)
+        Dim id As Integer = ALMLogicaPedidos.Funciones.ValidarNumeroACero(spPedidosActualizar.ActiveSheet.Cells(fila, spPedidosActualizar.ActiveSheet.Columns("id").Index).Text)
+        salidas.EIdOrigen = Me.idOrigen
+        salidas.EIdAlmacen = idAlmacen
+        salidas.EId = id
+        salidas.Eliminar()
 
     End Sub
 
@@ -2137,7 +2194,7 @@ Public Class Principal
         actualizar = 2
 
     End Enum
-     
+
 #End Region
 
 End Class

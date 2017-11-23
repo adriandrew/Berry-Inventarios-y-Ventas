@@ -1,0 +1,36 @@
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Salidas\Entidades\bin\x86\Debug\ALMEntidadesVentas.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Salidas\Entidades\bin\x86\Debug\ALMEntidadesVentas.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Salidas\Entidades\bin\x86\Debug\ALMEntidadesVentas.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Salidas\Entidades\bin\x86\Debug\ALMLogicaVentas.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Salidas\Entidades\bin\x86\Debug\ALMLogicaVentas.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Salidas\Entidades\bin\x86\Debug\ALMLogicaVentas.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Salidas\Entidades\obj\x86\Debug\Entidades.vbprojResolveAssemblyReference.cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Salidas\Entidades\obj\x86\Debug\ALMEntidadesVentas.Resources.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Salidas\Entidades\obj\x86\Debug\Entidades.vbproj.GenerateResource.Cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Salidas\Entidades\obj\x86\Debug\ALMEntidadesVentas.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Salidas\Entidades\obj\x86\Debug\ALMEntidadesVentas.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Salidas\Entidades\obj\x86\Debug\ALMEntidadesVentas.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Ventas\Entidades\bin\x86\Debug\ALMEntidadesVentas.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Ventas\Entidades\bin\x86\Debug\ALMEntidadesVentas.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Ventas\Entidades\bin\x86\Debug\ALMEntidadesVentas.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Ventas\Entidades\bin\x86\Debug\ALMLogicaVentas.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Ventas\Entidades\bin\x86\Debug\ALMLogicaVentas.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Ventas\Entidades\bin\x86\Debug\ALMLogicaVentas.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Ventas\Entidades\obj\x86\Debug\Entidades.vbprojResolveAssemblyReference.cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Ventas\Entidades\obj\x86\Debug\ALMEntidadesVentas.Resources.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Ventas\Entidades\obj\x86\Debug\Entidades.vbproj.GenerateResource.Cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Ventas\Entidades\obj\x86\Debug\ALMEntidadesVentas.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Ventas\Entidades\obj\x86\Debug\ALMEntidadesVentas.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Ventas\Entidades\obj\x86\Debug\ALMEntidadesVentas.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Devoluciones\Entidades\bin\x86\Debug\ALMEntidadesDevoluciones.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Devoluciones\Entidades\bin\x86\Debug\ALMEntidadesDevoluciones.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Devoluciones\Entidades\bin\x86\Debug\ALMEntidadesDevoluciones.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Devoluciones\Entidades\bin\x86\Debug\ALMLogicaDevoluciones.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Devoluciones\Entidades\bin\x86\Debug\ALMLogicaDevoluciones.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Devoluciones\Entidades\bin\x86\Debug\ALMLogicaDevoluciones.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Devoluciones\Entidades\obj\x86\Debug\Entidades.vbprojResolveAssemblyReference.cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Devoluciones\Entidades\obj\x86\Debug\ALMEntidadesDevoluciones.Resources.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Devoluciones\Entidades\obj\x86\Debug\Entidades.vbproj.GenerateResource.Cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Devoluciones\Entidades\obj\x86\Debug\ALMEntidadesDevoluciones.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Devoluciones\Entidades\obj\x86\Debug\ALMEntidadesDevoluciones.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Devoluciones\Entidades\obj\x86\Debug\ALMEntidadesDevoluciones.pdb

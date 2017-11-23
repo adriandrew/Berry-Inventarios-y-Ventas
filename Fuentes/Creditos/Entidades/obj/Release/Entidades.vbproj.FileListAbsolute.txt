@@ -1,0 +1,60 @@
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Entradas\Entidades\bin\Release\ALMEntidadesEntradas.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Entradas\Entidades\bin\Release\ALMEntidadesEntradas.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Entradas\Entidades\bin\Release\ALMEntidadesEntradas.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Entradas\Entidades\bin\Release\ALMLogicaEntradas.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Entradas\Entidades\bin\Release\ALMLogicaEntradas.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Entradas\Entidades\bin\Release\ALMLogicaEntradas.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Entradas\Entidades\obj\Release\Entidades.vbprojResolveAssemblyReference.cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Entradas\Entidades\obj\Release\ALMEntidadesEntradas.Resources.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Entradas\Entidades\obj\Release\Entidades.vbproj.GenerateResource.Cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Entradas\Entidades\obj\Release\ALMEntidadesEntradas.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Entradas\Entidades\obj\Release\ALMEntidadesEntradas.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\ERP Almacen\Fuentes Modificados\Entradas\Entidades\obj\Release\ALMEntidadesEntradas.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Pedidos\Entidades\bin\Release\ALMEntidadesPedidos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Pedidos\Entidades\bin\Release\ALMEntidadesPedidos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Pedidos\Entidades\bin\Release\ALMEntidadesPedidos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Pedidos\Entidades\bin\Release\ALMLogicaPedidos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Pedidos\Entidades\bin\Release\ALMLogicaPedidos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Pedidos\Entidades\bin\Release\ALMLogicaPedidos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Pedidos\Entidades\obj\Release\Entidades.vbprojResolveAssemblyReference.cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Pedidos\Entidades\obj\Release\ALMEntidadesPedidos.Resources.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Pedidos\Entidades\obj\Release\Entidades.vbproj.GenerateResource.Cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Pedidos\Entidades\obj\Release\ALMEntidadesPedidos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Pedidos\Entidades\obj\Release\ALMEntidadesPedidos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Mios\Pedidos\Entidades\obj\Release\ALMEntidadesPedidos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\bin\Release\ALMEntidadesPedidos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\bin\Release\ALMEntidadesPedidos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\bin\Release\ALMEntidadesPedidos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\bin\Release\ALMLogicaPedidos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\bin\Release\ALMLogicaPedidos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\bin\Release\ALMLogicaPedidos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\obj\Release\Entidades.vbprojResolveAssemblyReference.cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\obj\Release\ALMEntidadesPedidos.Resources.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\obj\Release\Entidades.vbproj.GenerateResource.Cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\obj\Release\ALMEntidadesPedidos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\obj\Release\ALMEntidadesPedidos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda\Fuentes Modificados\Pedidos\Entidades\obj\Release\ALMEntidadesPedidos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Pedidos\Entidades\bin\Release\ALMEntidadesPedidos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Pedidos\Entidades\bin\Release\ALMEntidadesPedidos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Pedidos\Entidades\bin\Release\ALMEntidadesPedidos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Pedidos\Entidades\bin\Release\ALMLogicaPedidos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Pedidos\Entidades\bin\Release\ALMLogicaPedidos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Pedidos\Entidades\bin\Release\ALMLogicaPedidos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Pedidos\Entidades\obj\Release\Entidades.vbprojResolveAssemblyReference.cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Pedidos\Entidades\obj\Release\ALMEntidadesPedidos.Resources.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Pedidos\Entidades\obj\Release\Entidades.vbproj.GenerateResource.Cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Pedidos\Entidades\obj\Release\ALMEntidadesPedidos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Pedidos\Entidades\obj\Release\ALMEntidadesPedidos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Pedidos\Entidades\obj\Release\ALMEntidadesPedidos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Creditos\Entidades\bin\Release\ALMEntidadesCreditos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Creditos\Entidades\bin\Release\ALMEntidadesCreditos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Creditos\Entidades\bin\Release\ALMEntidadesCreditos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Creditos\Entidades\bin\Release\ALMLogicaCreditos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Creditos\Entidades\bin\Release\ALMLogicaCreditos.pdb
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Creditos\Entidades\bin\Release\ALMLogicaCreditos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Creditos\Entidades\obj\Release\Entidades.vbprojResolveAssemblyReference.cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Creditos\Entidades\obj\Release\ALMEntidadesCreditos.Resources.resources
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Creditos\Entidades\obj\Release\Entidades.vbproj.GenerateResource.Cache
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Creditos\Entidades\obj\Release\ALMEntidadesCreditos.dll
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Creditos\Entidades\obj\Release\ALMEntidadesCreditos.xml
+C:\Users\Berry 1\Desktop\Proyectos Berry\Clientes\Eko Moda (Inventarios y Ventas)\Fuentes Modificados\Creditos\Entidades\obj\Release\ALMEntidadesCreditos.pdb

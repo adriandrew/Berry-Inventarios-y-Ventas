@@ -88,6 +88,7 @@
     <Compile Include="Articulos.vb" />
     <Compile Include="BaseDatos.vb" />
     <Compile Include="Clientes.vb" />
+    <Compile Include="ConfiguracionImpresoras.vb" />
     <Compile Include="Familias.vb" />
     <Compile Include="Monedas.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

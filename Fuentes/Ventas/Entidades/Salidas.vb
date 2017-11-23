@@ -21,9 +21,6 @@ Public Class Salidas
     Private orden As Integer
     Private observaciones As String
     Private factura As String
-    Private chofer As String
-    Private camion As String
-    Private noEconomico As String
     Private idLote As Integer
     Private idCultivo As Integer
 
@@ -179,30 +176,6 @@ Public Class Salidas
             factura = value
         End Set
     End Property
-    Public Property EChofer() As String
-        Get
-            Return chofer
-        End Get
-        Set(value As String)
-            chofer = value
-        End Set
-    End Property
-    Public Property ECamion() As String
-        Get
-            Return camion
-        End Get
-        Set(value As String)
-            camion = value
-        End Set
-    End Property
-    Public Property ENoEconomico() As String
-        Get
-            Return noEconomico
-        End Get
-        Set(value As String)
-            noEconomico = value
-        End Set
-    End Property
     Public Property EIdLote() As Integer
         Get
             Return idLote
@@ -225,7 +198,7 @@ Public Class Salidas
         Try
             Dim comando As New SqlCommand()
             comando.Connection = BaseDatos.conexionAlmacen
-            comando.CommandText = String.Format("INSERT INTO Salidas (IdOrigen, IdAlmacen, IdFamilia, IdSubFamilia, IdArticulo, Id, IdExterno, IdTipoSalida, IdCliente, IdMoneda, TipoCambio, Fecha, Cantidad, Precio, Total, TotalPesos, Orden, Observaciones, Factura, Chofer, Camion, NoEconomico, IdLote, IdCultivo) VALUES (@idOrigen, @idAlmacen, @idFamilia, @idSubFamilia, @idArticulo, @id, @idExterno, @idTipoSalida, @idCliente, @idMoneda, @tipoCambio, @fecha, @cantidad, @precio, @total, @totalPesos, @orden, @observaciones, @factura, @chofer, @camion, @noEconomico, @idLote, @idCultivo)")
+            comando.CommandText = String.Format("INSERT INTO Salidas (IdOrigen, IdAlmacen, IdFamilia, IdSubFamilia, IdArticulo, Id, IdExterno, IdTipoSalida, IdCliente, IdMoneda, TipoCambio, Fecha, Cantidad, Precio, Total, TotalPesos, Orden, Observaciones, Factura, IdLote, IdCultivo) VALUES (@idOrigen, @idAlmacen, @idFamilia, @idSubFamilia, @idArticulo, @id, @idExterno, @idTipoSalida, @idCliente, @idMoneda, @tipoCambio, @fecha, @cantidad, @precio, @total, @totalPesos, @orden, @observaciones, @factura, @idLote, @idCultivo)")
             comando.Parameters.AddWithValue("@idOrigen", Me.EIdOrigen)
             comando.Parameters.AddWithValue("@idAlmacen", Me.EIdAlmacen)
             comando.Parameters.AddWithValue("@idFamilia", Me.EIdFamilia)
@@ -245,9 +218,6 @@ Public Class Salidas
             comando.Parameters.AddWithValue("@orden", Me.EOrden)
             comando.Parameters.AddWithValue("@observaciones", Me.EObservaciones)
             comando.Parameters.AddWithValue("@factura", Me.EFactura)
-            comando.Parameters.AddWithValue("@chofer", Me.EChofer)
-            comando.Parameters.AddWithValue("@camion", Me.ECamion)
-            comando.Parameters.AddWithValue("@noEconomico", Me.ENoEconomico)
             comando.Parameters.AddWithValue("@idLote", Me.EIdLote)
             comando.Parameters.AddWithValue("@idCultivo", Me.EIdCultivo)
             BaseDatos.conexionAlmacen.Open()

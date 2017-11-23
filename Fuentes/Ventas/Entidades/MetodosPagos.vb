@@ -22,7 +22,7 @@ Public Class MetodosPagos
         End Set
     End Property
      
-    Public Function ObtenerListadoReporte() As DataTable
+    Public Function ObtenerListadoCombos() As DataTable
 
         Try
             Dim datos As New DataTable

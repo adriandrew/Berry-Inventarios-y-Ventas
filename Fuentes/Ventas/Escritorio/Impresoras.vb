@@ -6,7 +6,7 @@ Public Class Impresoras
     Public configuracionImpresoras As New ALMEntidadesVentas.ConfiguracionImpresoras()
     ' Variables generales.
     Public nombreEstePrograma As String = String.Empty
-    Public tipoImpresora As Integer = 1 ' Siempre es este valor, corresponde al area de ventas.
+    Public tipoImpresora As Integer = 3 ' Siempre es este valor, corresponde al area de ventas.
     Public Shared nombreImpresoraRecibo As String = String.Empty
     Public Shared habilitarImpresoraRecibo As Boolean = False
     Public Shared margenIzquierdoRecibo As Integer = 0
@@ -33,6 +33,7 @@ Public Class Impresoras
         Me.Cursor = Cursors.WaitCursor
         CargarTitulosDirectorio()
         CargarImpresoras(False)
+        CargarEstilos()
         Me.Cursor = Cursors.Default
 
     End Sub
@@ -57,9 +58,34 @@ Public Class Impresoras
 
     End Sub
 
+    Private Sub btnAyuda_MouseEnter(sender As Object, e As EventArgs) Handles btnAyuda.MouseEnter
+
+        AsignarTooltips("Ayuda")
+
+    End Sub
+
+    Private Sub btnGuardar_MouseEnter(sender As Object, e As EventArgs) Handles btnGuardar.MouseEnter
+
+        AsignarTooltips("Guardar")
+
+    End Sub
+
+    Private Sub btnSalir_MouseEnter(sender As Object, e As EventArgs) Handles btnSalir.MouseEnter
+
+        AsignarTooltips("Salir")
+
+    End Sub
+
 #End Region
 
 #Region "Métodos"
+
+    Private Sub CargarEstilos()
+
+        pnlConfiguracion.BackColor = Principal.colorSpreadAreaGris
+        pnlPie.BackColor = Principal.colorSpreadAreaGris
+
+    End Sub
 
     Private Sub Centrar()
 
@@ -81,9 +107,15 @@ Public Class Impresoras
         tp.InitialDelay = 0
         tp.ReshowDelay = 100
         tp.ShowAlways = True
-        tp.SetToolTip(Me.btnAyuda, "Ayuda.")
-        tp.SetToolTip(Me.btnGuardar, "Guardar.")
-        tp.SetToolTip(Me.btnSalir, "Salir.")
+        tp.SetToolTip(Me.btnAyuda, "Ayuda")
+        tp.SetToolTip(Me.btnGuardar, "Guardar")
+        tp.SetToolTip(Me.btnSalir, "Salir")
+
+    End Sub
+
+    Private Sub AsignarTooltips(ByVal texto As String)
+
+        lblDescripcionTooltip.Text = texto
 
     End Sub
 
